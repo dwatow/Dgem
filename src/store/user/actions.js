@@ -1,7 +1,7 @@
 import axios from 'axios'
 export default {
-  async GET ({ getters }, { path, data }) {
-    const response = await axios.get(`${getter.host}${path}`, { headers: getters.headers })
+  async GET ({ getters }, path) {
+    const response = await axios.get(`${getters.host}${path}`, { ...getters.headers })
     return response
   },
   // async POST ({ getters }, { path, data }) {
@@ -24,6 +24,5 @@ export default {
     if (response.status === 200) {
       commit('token', { token: response.data.access_token })
     }
-    // commit('token', )
   },
 }

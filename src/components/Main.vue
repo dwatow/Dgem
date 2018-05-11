@@ -53,31 +53,31 @@ min-height: 100vh;
                           <Icon type="person"></Icon>
                           個人中心
                       </template>
-                      <router-link to="/profile"><MenuItem name="2-1">基本資料</MenuItem></router-link>
-                      <router-link to="/parent-child"><MenuItem name="2-2">子母帳號</MenuItem></router-link>
-                      <router-link to="/change-mobile"><MenuItem name="2-3">更換手機</MenuItem></router-link>
-                      <router-link to="/resurrection"><MenuItem name="2-4">夢想卡解涷</MenuItem></router-link>
+                      <router-link to="/notStart"><MenuItem name="2-1">基本資料</MenuItem></router-link>
+                      <router-link to="/notStart"><MenuItem name="2-2">子母帳號</MenuItem></router-link>
+                      <router-link to="/notStart"><MenuItem name="2-3">更換手機</MenuItem></router-link>
+                      <router-link to="/notStart"><MenuItem name="2-4">夢想卡解涷</MenuItem></router-link>
                   </Submenu>
                   <Submenu name="3">
                       <template slot="title">
                           <Icon type="leaf"></Icon>
                           夢寶龍樹種區
                       </template>
-                      <router-link to="/dragon"><MenuItem name="3-1">夢寶龍激活</MenuItem></router-link>
-                      <router-link to="/tree"><MenuItem name="3-2">夢寶樹激活</MenuItem></router-link>
-                      <router-link to="/get-money"><MenuItem name="3-3">夢寶樹開採狀況</MenuItem></router-link>
+                      <router-link to="/notStart"><MenuItem name="3-1">夢寶龍激活</MenuItem></router-link>
+                      <router-link to="/notStart"><MenuItem name="3-2">夢寶樹激活</MenuItem></router-link>
+                      <router-link to="/notStart"><MenuItem name="3-3">夢寶樹開採狀況</MenuItem></router-link>
                   </Submenu>
                   <Submenu name="4">
                       <template slot="title">
                           <Icon type="social-usd"></Icon>
                           寶石卡片管理
                       </template>
-                      <router-link to="/outter-translate"><MenuItem name="4-1">外部轉帳</MenuItem></router-link>
-                      <router-link to="/foo"><MenuItem name="4-2">平台轉帳</MenuItem></router-link>
-                      <router-link to="/foo"><MenuItem name="4-3">帳上庫存</MenuItem></router-link>
-                      <router-link to="/logs"><MenuItem name="4-4">進出明細</MenuItem></router-link>
+                      <router-link to="/notStart"><MenuItem name="4-1">外部轉帳</MenuItem></router-link>
+                      <router-link to="/notStart"><MenuItem name="4-2">平台轉帳</MenuItem></router-link>
+                      <router-link to="/notStart"><MenuItem name="4-3">帳上庫存</MenuItem></router-link>
+                      <router-link to="/notStart"><MenuItem name="4-4">進出明細</MenuItem></router-link>
                   </Submenu>
-                  <router-link to="/group"><MenuItem name="5-1">
+                  <router-link to="/notStart"><MenuItem name="5-1">
                     <Icon type="person-stalker"></Icon>
                     家族開採狀況
                   </MenuItem></router-link>
@@ -87,7 +87,9 @@ min-height: 100vh;
             <Layout>
                 <Header class="layout-header-bar"></Header>
                 <Content :style="{margin: '20px', background: '#fff', minHeight: '220px'}">
+                  <keep-alive>
                     <router-view></router-view>
+                  </keep-alive>
                 </Content>
             </Layout>
         </Layout>

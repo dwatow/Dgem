@@ -16,11 +16,12 @@ export default {
       return state.host
     },
     headers (state) {
-      const headers = {
-        'Accept': `application/json`,
-        'Authorization': `Bearer${state.token}`,
+      return {
+        headers: {
+          'Accept': `application/json`,
+          'Authorization': `Bearer ${state.token}`,
+        },
       }
-      return headers
     },
   },
   mutations: {
