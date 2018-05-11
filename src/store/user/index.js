@@ -26,6 +26,7 @@ export default {
   },
   mutations: {
     token (state, payload) {
+      // console.log(payload);
       state.token = payload.token
     },
   },

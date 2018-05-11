@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <img src="https://picsum.photos/800" alt="">
+    龍之頁面
   </div>
 </template>
 

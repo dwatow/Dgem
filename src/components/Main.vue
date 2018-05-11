@@ -63,8 +63,8 @@ min-height: 100vh;
                           <Icon type="leaf"></Icon>
                           夢寶龍樹種區
                       </template>
-                      <router-link to="/notStart"><MenuItem name="3-1">夢寶龍激活</MenuItem></router-link>
-                      <router-link to="/notStart"><MenuItem name="3-2">夢寶樹激活</MenuItem></router-link>
+                      <router-link to="/Dragon"><MenuItem name="3-1">夢寶龍激活</MenuItem></router-link>
+                      <router-link to="/Tree"><MenuItem name="3-2">夢寶樹激活</MenuItem></router-link>
                       <router-link to="/notStart"><MenuItem name="3-3">夢寶樹開採狀況</MenuItem></router-link>
                   </Submenu>
                   <Submenu name="4">

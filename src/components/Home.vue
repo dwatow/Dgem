@@ -15,7 +15,7 @@ export default {
       this.$store.dispatch('Login')
     },
     test () {
-      this.$store.dispatch('TreeList')
+      console.log('test')
     },
   },
   computed: {
