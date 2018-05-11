@@ -87,7 +87,7 @@ min-height: 100vh;
             <Layout>
                 <Header class="layout-header-bar"></Header>
                 <Content :style="{margin: '20px', background: '#fff', minHeight: '220px'}">
-                    Content
+                    <router-view></router-view>
                 </Content>
             </Layout>
         </Layout>
@@ -97,16 +97,16 @@ min-height: 100vh;
 export default {
   data () {
     return {
-      isCollapsed: false
+      isCollapsed: false,
     }
   },
   computed: {
     menuitemClasses: function () {
       return [
         'menu-item',
-        this.isCollapsed ? 'collapsed-menu' : ''
+        this.isCollapsed ? 'collapsed-menu' : '',
       ]
-    }
-  }
+    },
+  },
 }
 </script>

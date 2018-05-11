@@ -8,7 +8,7 @@
 import Main from '@/components/Main'
 export default {
   components: { Main },
-  name: 'App'
+  name: 'App',
 }
 </script>
 
