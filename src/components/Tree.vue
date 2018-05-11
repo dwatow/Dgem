@@ -1,6 +1,7 @@
 <template lang="html">
   <div>
-    <Table :columns="columns1" :data="tree"></Table>
+    <Table stripe :columns="columns1" :data="tree"></Table>
+    <Page :total="40" size="small"></Page>
   </div>
 </template>
 
@@ -12,26 +13,32 @@ export default {
         {
           title: '是否激活',
           key: 'isEnable',
+          minWidth: 120,
         },
         {
           title: '夢寶樹激活對象',
           key: 'user_id',
+          minWidth: 120,
         },
         {
           title: '夢寶樹的擁有者',
           key: 'owner_id',
+          minWidth: 120,
         },
         {
           title: '夢寶樹剩餘開採數量',
           key: 'remain',
+          minWidth: 170,
         },
         {
           title: '夢寶樹原始開採數量',
           key: 'capacity',
+          minWidth: 170,
         },
         {
           title: '夢寶樹目前開採進度',
           key: 'progress',
+          minWidth: 200,
         },
       ],
     }

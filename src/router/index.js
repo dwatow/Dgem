@@ -33,8 +33,13 @@ var route = new Router({
 })
 
 route.beforeEach((to, from, next) => {
-  if (to.name === 'Tree') {
-    route.app.$store.dispatch('initTree')
+  switch (to.name) {
+    case 'Tree':
+      route.app.$store.dispatch('initTree')
+      break
+    case 'Dragon':
+      route.app.$store.dispatch('initDragon')
+      break
   }
   next()
 })

@@ -8,15 +8,23 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     tree: [],
+    dragon: [],
+    paging: {},
   },
   getters: {
     tree (state) {
       return state.tree
     },
+    dragon (state) {
+      return state.dragon
+    },
   },
   mutations: {
     setTreeList (state, payload) {
       state.tree = payload.tree
+    },
+    setDragonList (state, payload) {
+      state.dragon = payload.dragons
     },
   },
   actions,
