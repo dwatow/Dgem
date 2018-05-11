@@ -9,6 +9,19 @@ export default {
     isLogin (state) {
       return state.token.length !== 0
     },
+    token (state) {
+      return state.token
+    },
+    host (state) {
+      return state.host
+    },
+    headers (state) {
+      const headers = {
+        'Accept': `application/json`,
+        'Authorization': `Bearer${state.token}`,
+      }
+      return headers
+    },
   },
   mutations: {
     token (state, payload) {

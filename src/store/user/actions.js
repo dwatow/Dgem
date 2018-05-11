@@ -1,24 +1,26 @@
 import axios from 'axios'
 export default {
-  async POST ({ state }, { path, header, data }) {
-    const response = await axios.post(`${state.host}${path}`, data, { header })
+  async GET ({ getters }, { path, data }) {
+    const response = await axios.get(`${getter.host}${path}`, { headers: getters.headers })
     return response
   },
-  async Login ({ dispatch, commit }, payload) {
-    const config = {
-      path: `/oauth/token`,
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      data: {
-        'grant_type': 'password',
-        'username': 'root', // ${payload.username}
-        'password': 'password', // ${payload.passworld}
-        'client_id': '2',
-        'client_secret': 'TCqXPHubxIcPHCCAA1IwyZKMx3txKMWVsvC0oFmV',
-      },
+  // async POST ({ getters }, { path, data }) {
+  //   const response = await axios.post(`${getters.host}${path}`, data, { headers: getters.header })
+  //   return response
+  // },
+  async Login ({ commit, state }) {
+    const headers = {
+      'Content-Type': 'application/json',
     }
-    const response = await dispatch('POST', config)
+    const data = {
+      'grant_type': 'password',
+      'username': 'root', // ${payload.username}
+      'password': 'password', // ${payload.passworld}
+      'client_id': '2',
+      'client_secret': 'TCqXPHubxIcPHCCAA1IwyZKMx3txKMWVsvC0oFmV',
+    }
+
+    const response = await axios.post(`${state.host}/oauth/token`, data, { headers })
     if (response.status === 200) {
       commit('token', { token: response.data.access_token })
     }
