@@ -11,18 +11,13 @@ export default {
     return {
       columns1: [
         {
-          title: '是否激活',
-          key: 'isEnable',
+          title: '夢寶樹的擁有者',
+          key: 'owner_name',
           minWidth: 120,
         },
         {
           title: '夢寶樹激活對象',
-          key: 'user_id',
-          minWidth: 120,
-        },
-        {
-          title: '夢寶樹的擁有者',
-          key: 'owner_id',
+          key: 'user_name',
           minWidth: 120,
         },
         {
@@ -40,6 +35,36 @@ export default {
           key: 'progress',
           minWidth: 200,
         },
+        {
+          title: '激活',
+          key: 'activated',
+          minWidth: 120,
+        },
+        {
+          title: '動作',
+          key: 'action',
+          width: 150,
+          align: 'center',
+          render: (h, params) => {
+            return h('div', [
+              h('Button', {
+                props: {
+                  type: 'primary',
+                  size: 'small',
+                  disabled: params.row.isEnable,
+                },
+                on: {
+                  click: () => {
+                    // this.$store.dispatch('')
+                    // console.log(params)
+                    // const List = this.$store.getters.tree
+                    // List.filter((item) => item.index)
+                  },
+                },
+              }, '激活'),
+            ])
+          },
+        },
       ],
     }
   },
@@ -51,7 +76,8 @@ export default {
       if (this.$store.getters.isExist('tree') &&
         this.$store.getters.tree.constructor.name === 'Array') {
         return this.$store.getters.tree.map((item) => {
-          item.isEnable = item.owner_id !== ''
+          item.owner_name = (item.owner && item.owner.name) || '未指定'
+          item.user_name = (item.user && item.user.name) || '未指定'
           return item
         })
       } else {
@@ -64,7 +90,7 @@ export default {
   },
   methods: {
     async changePage (nextIndex) {
-      const json = await this.$store.dispatch('GET', `/api/users/1/tree?page=${nextIndex}`)
+      const json = await this.$store.dispatch('GET', `/api/users/1/trees?owner_id=1&page=${nextIndex}`)
       this.$store.commit('setTreeList', json)
     },
   },
