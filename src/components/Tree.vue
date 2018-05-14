@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
-    <Table stripe :columns="columns1" :data="tree"></Table>
     <Page :total="paging.total" :page-size="paging.per_page" simple size="small"></Page>
+    <Table stripe :columns="columns1" :data="tree"></Table>
   </div>
 </template>
 
@@ -20,21 +20,21 @@ export default {
           key: 'user_name',
           minWidth: 120,
         },
-        {
-          title: '夢寶樹剩餘開採數量',
-          key: 'remain',
-          minWidth: 170,
-        },
-        {
-          title: '夢寶樹原始開採數量',
-          key: 'capacity',
-          minWidth: 170,
-        },
-        {
-          title: '夢寶樹目前開採進度',
-          key: 'progress',
-          minWidth: 200,
-        },
+        // {
+        //   title: '夢寶樹剩餘開採數量',
+        //   key: 'remain',
+        //   minWidth: 170,
+        // },
+        // {
+        //   title: '夢寶樹原始開採數量',
+        //   key: 'capacity',
+        //   minWidth: 170,
+        // },
+        // {
+        //   title: '夢寶樹目前開採進度',
+        //   key: 'progress',
+        //   minWidth: 200,
+        // },
         {
           title: '激活',
           key: 'activated',
@@ -51,7 +51,7 @@ export default {
                 props: {
                   type: 'primary',
                   size: 'small',
-                  disabled: params.row.isEnable,
+                  disabled: params.row.activated,
                 },
                 on: {
                   click: () => {
@@ -68,13 +68,9 @@ export default {
       ],
     }
   },
-  // mounted () {
-  //   this.$store.dispatch('initTree')
-  // },
   computed: {
     tree () {
-      if (this.$store.getters.isExist('tree') &&
-        this.$store.getters.tree.constructor.name === 'Array') {
+      if (this.$store.getters.isExist('tree')) {
         return this.$store.getters.tree.map((item) => {
           item.owner_name = (item.owner && item.owner.name) || '未指定'
           item.user_name = (item.user && item.user.name) || '未指定'

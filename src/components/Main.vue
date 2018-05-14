@@ -65,7 +65,7 @@ min-height: 100vh;
                       </template>
                       <router-link to="/Dragon"><MenuItem name="3-1">夢寶龍激活</MenuItem></router-link>
                       <router-link to="/Tree"><MenuItem name="3-2">夢寶樹激活</MenuItem></router-link>
-                      <router-link to="/notStart"><MenuItem name="3-3">開採狀況</MenuItem></router-link>
+                      <router-link to="/Activating"><MenuItem name="3-3">開採狀況</MenuItem></router-link>
                   </Submenu>
                   <Submenu name="4">
                       <template slot="title">

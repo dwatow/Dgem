@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
-    <Table border stripe :columns="columns1" :data="dragon"></Table>
     <Page :total="paging.total" :page-size="paging.per_page" simple size="small" @on-change="changePage($event)"></Page>
+    <Table stripe :columns="columns1" :data="dragon"></Table>
   </div>
 </template>
 

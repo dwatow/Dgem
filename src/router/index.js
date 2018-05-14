@@ -4,6 +4,7 @@ import Home from '@/components/Home'
 import notStart from '@/components/notStart'
 import Dragon from '@/components/Dragon'
 import Tree from '@/components/Tree'
+import Activating from '@/components/Activating'
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ var route = new Router({
       name: 'Tree',
       component: Tree,
     },
+    {
+      path: '/Activating',
+      name: 'Activating',
+      component: Activating,
+    },
   ],
 })
 
@@ -40,6 +46,10 @@ route.beforeEach((to, from, next) => {
         break
       case 'Dragon':
         route.app.$store.dispatch('initDragon')
+        break
+      case 'Activating':
+        route.app.$store.dispatch('initActiveDragon')
+        route.app.$store.dispatch('initActiveTree')
         break
     }
   }
