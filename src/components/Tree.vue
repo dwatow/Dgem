@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <Table stripe :columns="columns1" :data="tree"></Table>
-    <Page :total="40" size="small"></Page>
+    <Page :total="paging.total" :page-size="paging.per_page" size="small"></Page>
   </div>
 </template>
 
@@ -48,10 +48,18 @@ export default {
   // },
   computed: {
     tree () {
-      return this.$store.getters.tree.map((item) => {
-        item.isEnable = item.owner_id !== ''
-        return item
-      })
+      if (this.$store.getters.isExist('tree') &&
+        this.$store.getters.tree.constructor.name === 'Array') {
+        return this.$store.getters.tree.map((item) => {
+          item.isEnable = item.owner_id !== ''
+          return item
+        })
+      } else {
+        return []
+      }
+    },
+    paging () {
+      return this.$store.getters.paging('tree')
     },
   },
 }

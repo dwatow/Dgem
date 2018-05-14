@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <Table border stripe :columns="columns1" :data="dragon"></Table>
-    <Page :total="40" size="small"></Page>
+    <Page :total="paging.total" :page-size="paging.per_page" size="small"></Page>
   </div>
 </template>
 
@@ -33,12 +33,20 @@ export default {
   // },
   computed: {
     dragon () {
-      return this.$store.getters.dragon.map((item) => {
-        item.isEnable = item.owner_id !== ''
-        item.owner = item.owner_id === null ? 'null' : item.owner_id
-        item.user = item.user_id === null ? 'null' : item.user_id
-        return item
-      })
+      if (this.$store.getters.isExist('dragon') &&
+      this.$store.getters.dragon.constructor.name === 'Array') {
+        return this.$store.getters.dragon.map((item) => {
+          item.isEnable = item.owner_id !== ''
+          item.owner = item.owner_id === null ? 'null' : item.owner_id
+          item.user = item.user_id === null ? 'null' : item.user_id
+          return item
+        })
+      } else {
+        return []
+      }
+    },
+    paging () {
+      return this.$store.getters.paging('dragon')
     },
   },
 }

@@ -7,24 +7,31 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    tree: [],
-    dragon: [],
-    paging: {},
+    tree: {},
+    dragon: {},
   },
   getters: {
-    tree (state) {
-      return state.tree
+    tree: (state) => state.tree.data,
+    dragon: (state) => state.dragon.data,
+    paging: (state) => (type) => {
+      return {
+        total: state[type].total,
+        pre_page: state[type].per_page,
+        curr_page: state[type].current_page,
+      }
     },
-    dragon (state) {
-      return state.dragon
+    isExist: (state) => (type) => {
+      console.log(state[type].hasOwnProperty('data'))
+      console.log((state[type].hasOwnProperty('data') && state[type].data.constructor.name === 'Array'))
+      return (state[type].hasOwnProperty('data') && state[type].data.constructor.name === 'Array')
     },
   },
   mutations: {
-    setTreeList (state, payload) {
-      state.tree = payload.tree
+    setTreeList (state, json) {
+      state.tree = json
     },
-    setDragonList (state, payload) {
-      state.dragon = payload.dragons
+    setDragonList (state, json) {
+      state.dragon = json
     },
   },
   actions,
