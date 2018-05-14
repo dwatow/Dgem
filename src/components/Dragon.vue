@@ -33,8 +33,7 @@ export default {
   // },
   computed: {
     dragon () {
-      if (this.$store.getters.isExist('dragon') &&
-      this.$store.getters.dragon.constructor.name === 'Array') {
+      if (this.$store.getters.isExist('dragon')) {
         return this.$store.getters.dragon.map((item) => {
           item.isEnable = item.owner_id !== ''
           item.owner = item.owner_id === null ? 'null' : item.owner_id
@@ -53,8 +52,8 @@ export default {
     async changePage (nextIndex) {
       const json = await this.$store.dispatch('GET', `/api/dragons?page=${nextIndex}`)
       this.$store.commit('setDragonList', json)
-    }
-  }
+    },
+  },
 }
 </script>
 

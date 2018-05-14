@@ -66,8 +66,8 @@ export default {
     async changePage (nextIndex) {
       const json = await this.$store.dispatch('GET', `/api/users/1/tree?page=${nextIndex}`)
       this.$store.commit('setTreeList', json)
-    }
-  }
+    },
+  },
 }
 </script>
 
