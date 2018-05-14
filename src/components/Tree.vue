@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <Table stripe :columns="columns1" :data="tree"></Table>
-    <Page :total="paging.total" :page-size="paging.per_page" size="small"></Page>
+    <Page :total="paging.total" :page-size="paging.per_page" simple size="small"></Page>
   </div>
 </template>
 
@@ -62,6 +62,12 @@ export default {
       return this.$store.getters.paging('tree')
     },
   },
+  methods: {
+    async changePage (nextIndex) {
+      const json = await this.$store.dispatch('GET', `/api/users/1/tree?page=${nextIndex}`)
+      this.$store.commit('setTreeList', json)
+    }
+  }
 }
 </script>
 
