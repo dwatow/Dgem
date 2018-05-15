@@ -5,6 +5,7 @@ import notStart from '@/components/notStart'
 import Dragon from '@/components/Dragon'
 import Tree from '@/components/Tree'
 import Activating from '@/components/Activating'
+import ChildAccount from '@/components/ChildAccount'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ var route = new Router({
       path: '/Activating',
       name: 'Activating',
       component: Activating,
+    },
+    {
+      path: '/ChildAccount',
+      name: 'ChildAccount',
+      component: ChildAccount,
     },
   ],
 })
