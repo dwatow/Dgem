@@ -12,15 +12,39 @@ export default new Vuex.Store({
   },
   getters: {
     paging: (state) => (type) => {
+      const subType = type
+      if (!type.split('active')[0]) {
+        type = type.split('active')[1].toLowerCase()
+      }
+
+      // type:  dragon , subType:  activeDragon
+      // type:  tree , subType:  activeTree
       return {
-        total: state[type][type].total,
-        pre_page: state[type][type].per_page,
-        curr_page: state[type][type].current_page,
+        total: state[type][subType].total,
+        pre_page: state[type][subType].per_page,
+        curr_page: state[type][subType].current_page,
       }
     },
     isExist: (state) => (type) => {
-      return !!state[type][type].data
+      const subType = type
+      if (!type.split('active')[0]) {
+        type = type.split('active')[1].toLowerCase()
+      }
+
+      // type:  dragon , subType:  activeDragon
+      // type:  tree , subType:  activeTree
+      return !!state[type][subType].data
     },
+    // currPage: (state) => (type) => {
+    //   const subType = type
+    //   if (!type.split('active')[0]) {
+    //     type = type.split('active')[1].toLowerCase()
+    //   }
+    //
+    //   // type:  dragon , subType:  activeDragon
+    //   // type:  tree , subType:  activeTree
+    //   return !!state[type][subType].current_page
+    // },
   },
   mutations: {
   },

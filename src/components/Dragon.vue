@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <Page :total="paging.total" :page-size="paging.per_page" simple size="small" @on-change="changePage($event)"></Page>
+    <Page :total="paging.total" :page-size="paging.pre_page" simple size="small" @on-change="changePage($event)"></Page>
     <Table stripe :columns="columns1" :data="dragon"></Table>
   </div>
 </template>
@@ -69,8 +69,7 @@ export default {
   },
   methods: {
     async changePage (nextIndex) {
-      const json = await this.$store.dispatch('GET', `/api/dragons?owner_id=1&page=${nextIndex}`)
-      this.$store.commit('setDragonList', json)
+      await this.$store.dispatch('goToDragonPage', { nextIndex })
     },
   },
 }

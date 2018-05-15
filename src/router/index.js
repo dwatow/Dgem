@@ -42,14 +42,14 @@ route.beforeEach((to, from, next) => {
   if (route.app.$store !== undefined) {
     switch (to.name) {
       case 'Tree':
-        route.app.$store.dispatch('initTree')
+        route.app.$store.dispatch('goToTreePage', { nextIndex: 1 })
         break
       case 'Dragon':
-        route.app.$store.dispatch('initDragon')
+        route.app.$store.dispatch('goToDragonPage', { nextIndex: 1 })
         break
       case 'Activating':
-        route.app.$store.dispatch('initActiveDragon')
-        route.app.$store.dispatch('initActiveTree')
+        route.app.$store.dispatch('goToActiveDragonPage', { nextIndex: 1 })
+        route.app.$store.dispatch('goToActiveTreePage', { nextIndex: 1 })
         break
     }
   }

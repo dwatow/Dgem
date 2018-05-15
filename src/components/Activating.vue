@@ -1,9 +1,9 @@
 <template lang="html">
   <div>
-    <Page :total="paging.total" :page-size="paging.per_page" simple size="small"></Page>
-    <Table stripe :columns="columnsDragon" :data="activeDragon"></Table>
-    <Page :total="paging.total" :page-size="paging.per_page" simple size="small"></Page>
-    <Table stripe :columns="columnsTree" :data="activeTree"></Table>
+    <Page :total="pagingDragon.total" :page-size="pagingDragon.pre_page" simple size="small" @on-change="changeDragonPage($event)"></Page>
+    <Table stripe :columns="columnsDragon" :data="dragon"></Table>
+    <Page :total="pagingTree.total" :page-size="pagingTree.pre_page" simple size="small" @on-change="changeTreePage($event)"></Page>
+    <Table stripe :columns="columnsTree" :data="tree"></Table>
   </div>
 </template>
 
@@ -63,8 +63,8 @@ export default {
     }
   },
   computed: {
-    activeDragon () {
-      if (!!this.$store.state.dragon.activeDragon) {
+    dragon () {
+      if (this.$store.getters.isExist('activeDragon')) {
         return this.$store.getters.activeDragon.map((item) => {
           item.owner_name = (item.owner && item.owner.name) || '未指定'
           item.user_name = (item.user && item.user.name) || '未指定'
@@ -74,8 +74,8 @@ export default {
         return []
       }
     },
-    activeTree () {
-      if (!!this.$store.state.tree.activeTree) {
+    tree () {
+      if (this.$store.getters.isExist('activeTree')) {
         return this.$store.getters.activeTree.map((item) => {
           item.owner_name = (item.owner && item.owner.name) || '未指定'
           item.user_name = (item.user && item.user.name) || '未指定'
@@ -85,14 +85,19 @@ export default {
         return []
       }
     },
-    paging () {
-      return this.$store.getters.paging('tree')
+    pagingTree () {
+      return this.$store.getters.paging('activeTree')
+    },
+    pagingDragon () {
+      return this.$store.getters.paging('activeDragon')
     },
   },
   methods: {
-    async changePage (nextIndex) {
-      const json = await this.$store.dispatch('GET', `/api/users/1/trees?owner_id=1&page=${nextIndex}`)
-      this.$store.commit('setTreeList', json)
+    async changeTreePage (nextIndex) {
+      await this.$store.dispatch('goToActiveDragonPage', { nextIndex })
+    },
+    async changeDragonPage (nextIndex) {
+      await this.$store.dispatch('goToActiveTreePage', { nextIndex })
     },
   },
 }
