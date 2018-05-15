@@ -1,0 +1,65 @@
+<template lang="html">
+  <div>
+    <h1>子帳號</h1>
+    <Page :total="paging.total" :page-size="paging.pre_page" simple size="small" @on-change="changePage($event)"></Page>
+    <Table stripe :columns="columns1" :data="childAccount"></Table>
+  </div>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      columns1: [
+        {
+          title: 'ID',
+          key: 'id',
+          minWidth: 150,
+        },
+        {
+          title: '使用者名稱',
+          key: 'name',
+          minWidth: 150,
+        },
+        {
+          title: '使用者信箱',
+          key: 'email',
+          minWidth: 150,
+        },
+        {
+          title: '是否被凍結帳號',
+          key: 'frozen',
+          minWidth: 150,
+        },
+        {
+          title: '是否已激活',
+          key: 'activated',
+          minWidth: 150,
+        },
+      ],
+    }
+  },
+  computed: {
+    childAccount () {
+      console.log(this)
+      if (this.$store.getters.isExist('user', 'childAccount')) {
+        return this.$store.getters.childAccount
+      } else {
+        return []
+      }
+    },
+    paging () {
+      console.log(this)
+      return this.$store.getters.paging('user', 'childAccount')
+    },
+  },
+  methods: {
+    async changePage (nextIndex) {
+      await this.$store.dispatch('goToChildAccountPage', { nextIndex })
+    },
+  },
+}
+</script>
+
+<style lang="css">
+</style>

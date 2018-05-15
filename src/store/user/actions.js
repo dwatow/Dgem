@@ -1,30 +1,7 @@
-import axios from 'axios'
 export default {
-  async GET ({ getters }, path) {
-    const response = await axios.get(`${getters.host}${path}`, { ...getters.headers })
-    if (response.status === 200) {
-      return response.data
-    } else {
-      return response
-    }
-  },
-  // async POST ({ getters }, { path, data }) {
-  //   const response = await axios.post(`${getters.host}${path}`, data, { headers: getters.header })
-  //   return response
-  // },
-  async Login ({ commit, state }) {
-    const headers = {
-      'Content-Type': 'application/json',
-    }
-    const data = {
-      'grant_type': 'password',
-      'username': 'root', // ${payload.username}
-      'password': 'password', // ${payload.passworld}
-      'client_id': '2',
-      'client_secret': 'TCqXPHubxIcPHCCAA1IwyZKMx3txKMWVsvC0oFmV',
-    }
-
-    const response = await axios.post(`${state.host}/oauth/token`, data, { headers })
-    commit('token', { token: response.data.access_token })
+  async goToChildAccountPage ({ dispatch, commit }, { nextIndex }) {
+    nextIndex = nextIndex || 1
+    const json = await dispatch('GET', `/api/users/1/child-accounts?page=${nextIndex}`)
+    commit('setChildAccount', json)
   },
 }

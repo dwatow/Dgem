@@ -70,7 +70,7 @@ export default {
   },
   computed: {
     tree () {
-      if (this.$store.getters.isExist('tree')) {
+      if (this.$store.getters.isExist('tree', 'tree')) {
         return this.$store.getters.tree.map((item) => {
           item.owner_name = (item.owner && item.owner.name) || '未指定'
           item.user_name = (item.user && item.user.name) || '未指定'
@@ -81,7 +81,7 @@ export default {
       }
     },
     paging () {
-      return this.$store.getters.paging('tree')
+      return this.$store.getters.paging('tree', 'tree')
     },
   },
   methods: {

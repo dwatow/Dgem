@@ -97,6 +97,9 @@ min-height: 100vh;
 </template>
 <script>
 export default {
+  created () {
+    this.$store.dispatch('Login')
+  },
   data () {
     return {
       isCollapsed: false,

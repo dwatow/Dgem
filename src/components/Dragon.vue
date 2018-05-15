@@ -53,7 +53,7 @@ export default {
   },
   computed: {
     dragon () {
-      if (this.$store.getters.isExist('dragon')) {
+      if (this.$store.getters.isExist('dragon', 'dragon')) {
         return this.$store.getters.dragon.map((item) => {
           item.owner_name = (item.owner && item.owner.name) || '未指定'
           item.user_name = (item.user && item.user.name) || '未指定'
@@ -64,7 +64,7 @@ export default {
       }
     },
     paging () {
-      return this.$store.getters.paging('dragon')
+      return this.$store.getters.paging('dragon', 'dragon')
     },
   },
   methods: {

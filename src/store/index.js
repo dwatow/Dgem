@@ -9,44 +9,34 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    host: 'http://dreamsgemdev-env.ap-northeast-1.elasticbeanstalk.com',
+    token: '',
   },
   getters: {
-    paging: (state) => (type) => {
-      const subType = type
-      if (!type.split('active')[0]) {
-        type = type.split('active')[1].toLowerCase()
-      }
-
-      // type:  dragon , subType:  activeDragon
-      // type:  tree , subType:  activeTree
+    isExist: (state) => (module, collection) => !!state[module][collection].data,
+    isLogin: (state) => state.token.length !== 0,
+    token: (state) => state.token,
+    host: (state) => state.host,
+    // query: (state) => (module) =>
+    paging: (state) => (module, collection) => {
       return {
-        total: state[type][subType].total,
-        pre_page: state[type][subType].per_page,
-        curr_page: state[type][subType].current_page,
+        total: state[module][collection].total,
+        pre_page: state[module][collection].per_page,
       }
     },
-    isExist: (state) => (type) => {
-      const subType = type
-      if (!type.split('active')[0]) {
-        type = type.split('active')[1].toLowerCase()
+    headers: (state) => {
+      return {
+        headers: {
+          'Accept': `application/json`,
+          'Authorization': `Bearer ${state.token}`,
+        },
       }
-
-      // type:  dragon , subType:  activeDragon
-      // type:  tree , subType:  activeTree
-      return !!state[type][subType].data
     },
-    // currPage: (state) => (type) => {
-    //   const subType = type
-    //   if (!type.split('active')[0]) {
-    //     type = type.split('active')[1].toLowerCase()
-    //   }
-    //
-    //   // type:  dragon , subType:  activeDragon
-    //   // type:  tree , subType:  activeTree
-    //   return !!state[type][subType].current_page
-    // },
   },
   mutations: {
+    token (state, payload) {
+      state.token = payload.token
+    },
   },
   actions,
   modules: {

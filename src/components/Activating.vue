@@ -1,7 +1,9 @@
 <template lang="html">
   <div>
+    <h1>夢寶龍</h1>
     <Page :total="pagingDragon.total" :page-size="pagingDragon.pre_page" simple size="small" @on-change="changeDragonPage($event)"></Page>
     <Table stripe :columns="columnsDragon" :data="dragon"></Table>
+    <h1>夢寶樹</h1>
     <Page :total="pagingTree.total" :page-size="pagingTree.pre_page" simple size="small" @on-change="changeTreePage($event)"></Page>
     <Table stripe :columns="columnsTree" :data="tree"></Table>
   </div>
@@ -64,7 +66,7 @@ export default {
   },
   computed: {
     dragon () {
-      if (this.$store.getters.isExist('activeDragon')) {
+      if (this.$store.getters.isExist('dragon', 'activeDragon')) {
         return this.$store.getters.activeDragon.map((item) => {
           item.owner_name = (item.owner && item.owner.name) || '未指定'
           item.user_name = (item.user && item.user.name) || '未指定'
@@ -75,7 +77,7 @@ export default {
       }
     },
     tree () {
-      if (this.$store.getters.isExist('activeTree')) {
+      if (this.$store.getters.isExist('tree', 'activeTree')) {
         return this.$store.getters.activeTree.map((item) => {
           item.owner_name = (item.owner && item.owner.name) || '未指定'
           item.user_name = (item.user && item.user.name) || '未指定'
@@ -86,10 +88,10 @@ export default {
       }
     },
     pagingTree () {
-      return this.$store.getters.paging('activeTree')
+      return this.$store.getters.paging('tree', 'activeTree')
     },
     pagingDragon () {
-      return this.$store.getters.paging('activeDragon')
+      return this.$store.getters.paging('dragon', 'activeDragon')
     },
   },
   methods: {
