@@ -8,6 +8,7 @@ import Activating from '@/components/Activating'
 import ChildAccount from '@/components/ChildAccount'
 import Wallet from '@/components/Wallet'
 import BuyDragon from '@/components/BuyDragon'
+import Group from '@/components/Group'
 
 Vue.use(Router)
 
@@ -53,6 +54,11 @@ var route = new Router({
       name: 'BuyDragon',
       component: BuyDragon,
     },
+    {
+      path: '/Group',
+      name: 'Group',
+      component: Group,
+    },
   ],
 })
 
@@ -71,6 +77,9 @@ route.beforeEach((to, from, next) => {
       case 'ChildAccount':
       case 'Wallet':
         route.app.$store.dispatch(`goTo${to.name}Page`, { nextIndex: 1 })
+        break
+      case 'Group':
+        route.app.$store.dispatch('userDownLines', { idUser: 1 })
         break
     }
   }

@@ -10,4 +10,8 @@ export default {
     })
     commit('setChildAccount', json)
   },
+  async userDownLines ({ dispatch, commit }, { idUser }) {
+    const json = await dispatch('GET', `/api/users/${idUser}`)
+    commit('setUserDownLines', json)
+  },
 }

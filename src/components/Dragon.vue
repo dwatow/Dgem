@@ -11,11 +11,6 @@ export default {
     return {
       columns1: [
         {
-          title: 'ID',
-          key: 'id',
-          minWidth: 150,
-        },
-        {
           title: '夢寶龍的擁有者',
           key: 'owner_name',
           minWidth: 150,

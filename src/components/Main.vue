@@ -80,7 +80,7 @@ min-height: 100vh;
                       <router-link to="/notStart"><MenuItem name="4-2">平台轉帳</MenuItem></router-link>
                       <router-link to="/notStart"><MenuItem name="4-4">進出明細</MenuItem></router-link>
                   </Submenu>
-                  <router-link to="/notStart"><MenuItem name="5-1">
+                  <router-link to="/Group"><MenuItem name="5-1">
                     <Icon type="person-stalker"></Icon>
                     家族開採狀況
                   </MenuItem></router-link>
@@ -102,6 +102,7 @@ min-height: 100vh;
 export default {
   created () {
     this.$store.dispatch('Login')
+    this.$store.dispatch('userDownLines', { idUser: 1 })
   },
   data () {
     return {

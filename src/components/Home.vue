@@ -15,7 +15,7 @@ export default {
       this.$store.dispatch('Login')
     },
     test () {
-      console.log('test')
+      this.$store.dispatch('userDownLines', { idUser: 1 })
     },
   },
   computed: {
