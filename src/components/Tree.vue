@@ -20,21 +20,6 @@ export default {
           key: 'user_name',
           minWidth: 120,
         },
-        // {
-        //   title: '夢寶樹剩餘開採數量',
-        //   key: 'remain',
-        //   minWidth: 170,
-        // },
-        // {
-        //   title: '夢寶樹原始開採數量',
-        //   key: 'capacity',
-        //   minWidth: 170,
-        // },
-        // {
-        //   title: '夢寶樹目前開採進度',
-        //   key: 'progress',
-        //   minWidth: 200,
-        // },
         {
           title: '激活',
           key: 'activated',

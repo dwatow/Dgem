@@ -7,6 +7,7 @@ import Tree from '@/components/Tree'
 import Activating from '@/components/Activating'
 import ChildAccount from '@/components/ChildAccount'
 import Wallet from '@/components/Wallet'
+import BuyDragon from '@/components/BuyDragon'
 
 Vue.use(Router)
 
@@ -47,6 +48,11 @@ var route = new Router({
       name: 'Wallet',
       component: Wallet,
     },
+    {
+      path: '/BuyDragon',
+      name: 'BuyDragon',
+      component: BuyDragon,
+    },
   ],
 })
 
@@ -56,6 +62,9 @@ route.beforeEach((to, from, next) => {
       case 'Activating':
         route.app.$store.dispatch('goToActiveDragonPage', { nextIndex: 1 })
         route.app.$store.dispatch('goToActiveTreePage', { nextIndex: 1 })
+        break
+      case 'BuyDragon':
+        route.app.$store.dispatch(`goToAllDragonPage`, { nextIndex: 1 })
         break
       case 'Tree':
       case 'Dragon':

@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <Page :total="paging.total" :page-size="paging.pre_page" simple size="small" @on-change="changePage($event)"></Page>
-    <Table stripe :columns="columns1" :data="dragon"></Table>
+    <Table stripe :columns="columns1" :data="allDragon"></Table>
   </div>
 </template>
 
@@ -44,12 +44,17 @@ export default {
                   disabled: params.row.activated,
                 },
                 on: {
-                  click: () => {
-                    console.log(params.index)
-                    // this.show()
+                  click: async () => {
+                    const data = {
+                      owner_id: 1,
+                    }
+                    const idDragon = params.row.id
+                    await this.$store.dispatch('buyDragon', { idDragon, data })
+                    const currIndex = this.$store.getters.paging('dragon', 'allDragon').curr_page
+                    await this.$store.dispatch('goToAllDragonPage', { currIndex })
                   },
                 },
-              }, '激活'),
+              }, '購買'),
             ])
           },
         },
@@ -57,9 +62,10 @@ export default {
     }
   },
   computed: {
-    dragon () {
-      if (this.$store.getters.isExist('dragon', 'dragon')) {
-        return this.$store.getters.dragon.map((item) => {
+    allDragon () {
+      if (this.$store.getters.isExist('dragon', 'allDragon')) {
+        console.log(this.$store.getters.allDragon)
+        return this.$store.getters.allDragon.map((item) => {
           item.owner_name = (item.owner && item.owner.name) || '未指定'
           item.user_name = (item.user && item.user.name) || '未指定'
           return item
@@ -69,16 +75,12 @@ export default {
       }
     },
     paging () {
-      return this.$store.getters.paging('dragon', 'dragon')
+      return this.$store.getters.paging('dragon', 'allDragon')
     },
   },
   methods: {
     async changePage (nextIndex) {
-      await this.$store.dispatch('goToDragonPage', { nextIndex })
-    },
-    async Activate () {
-      const currIndex = this.$store.getters.paging('user', 'childAccount').curr_page
-      await this.$store.dispatch('goToDragonPage', { currIndex })
+      await this.$store.dispatch('goToAllDragonPage', { nextIndex })
     },
   },
 }

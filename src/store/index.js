@@ -12,6 +12,7 @@ export default new Vuex.Store({
   state: {
     host: 'http://dreamsgemdev-env.ap-northeast-1.elasticbeanstalk.com',
     token: '',
+    token_type: '', // Bearer
   },
   getters: {
     isExist: (state) => (module, collection) => !!state[module][collection].data,
@@ -29,13 +30,14 @@ export default new Vuex.Store({
     headers: (state) => {
       return {
         'Accept': `application/json`,
-        'Authorization': `Bearer ${state.token}`,
+        'Authorization': `${state.token_type} ${state.token}`,
       }
     },
   },
   mutations: {
     token (state, payload) {
-      state.token = payload.token
+      state.token = payload.access_token
+      state.token_type = payload.token_type
     },
   },
   actions,

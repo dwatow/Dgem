@@ -13,7 +13,7 @@ export default {
     }
 
     const response = await axios.post(`${getters.host}/oauth/token`, data, { headers })
-    commit('token', { token: response.data.access_token })
+    commit('token', response.data)
   },
   async GET ({ getters }, path) {
     const response = await axios.get(`${getters.host}${path}`, {
@@ -29,6 +29,16 @@ export default {
   },
   async POST ({ getters }, { path, data }) {
     const response = await axios.post(`${getters.host}${path}`,
+      data, {
+        headers: {
+          ...getters.headers,
+          'Content-Type': 'application/json',
+        },
+      })
+    return response
+  },
+  async PUT ({ getters }, { path, data }) {
+    const response = await axios.put(`${getters.host}${path}`,
       data, {
         headers: {
           ...getters.headers,
