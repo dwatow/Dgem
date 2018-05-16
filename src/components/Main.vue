@@ -44,10 +44,12 @@ min-height: 100vh;
         <Layout>
             <Sider breakpoint="md" collapsible :collapsed-width="78" v-model="isCollapsed">
                 <Menu active-name="1-2" theme="dark" width="auto" :class="menuitemClasses">
-                  <router-link to="/"><MenuItem name="1-1">
-                    <Icon type="ios-navigate"></Icon>
-                    首頁
-                  </MenuItem></router-link>
+                  <router-link to="/">
+                    <MenuItem name="1-1">
+                      <Icon type="ios-navigate"></Icon>
+                      首頁
+                    </MenuItem>
+                  </router-link>
                   <Submenu name="2">
                       <template slot="title">
                           <Icon type="person"></Icon>
@@ -72,9 +74,9 @@ min-height: 100vh;
                           <Icon type="social-usd"></Icon>
                           寶石卡片管理
                       </template>
+                      <router-link to="/Wallet"><MenuItem name="4-3">寶石庫存</MenuItem></router-link>
                       <router-link to="/notStart"><MenuItem name="4-1">外部轉帳</MenuItem></router-link>
                       <router-link to="/notStart"><MenuItem name="4-2">平台轉帳</MenuItem></router-link>
-                      <router-link to="/notStart"><MenuItem name="4-3">帳上庫存</MenuItem></router-link>
                       <router-link to="/notStart"><MenuItem name="4-4">進出明細</MenuItem></router-link>
                   </Submenu>
                   <router-link to="/notStart"><MenuItem name="5-1">

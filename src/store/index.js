@@ -4,6 +4,7 @@ import user from './user'
 import actions from './actions'
 import dragon from './dragon'
 import tree from './tree'
+import wallet from './wallet'
 
 Vue.use(Vuex)
 
@@ -43,5 +44,6 @@ export default new Vuex.Store({
     user,
     dragon,
     tree,
+    wallet,
   },
 })
