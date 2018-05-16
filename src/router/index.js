@@ -62,7 +62,7 @@ route.beforeEach((to, from, next) => {
       case 'ChildAccount':
       case 'Wallet':
         route.app.$store.dispatch(`goTo${to.name}Page`, { nextIndex: 1 })
-        break;
+        break
     }
   }
   next()
