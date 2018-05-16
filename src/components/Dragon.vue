@@ -71,6 +71,10 @@ export default {
     async changePage (nextIndex) {
       await this.$store.dispatch('goToDragonPage', { nextIndex })
     },
+    async Activate () {
+      const currIndex = this.$store.getters.paging('user', 'childAccount').curr_page
+      await this.$store.dispatch('goToDragonPage', { currIndex })
+    },
   },
 }
 </script>

@@ -23,14 +23,13 @@ export default new Vuex.Store({
       return {
         total: state[module][collection].total,
         pre_page: state[module][collection].per_page,
+        curr_page: state[module][collection].current_page,
       }
     },
     headers: (state) => {
       return {
-        headers: {
-          'Accept': `application/json`,
-          'Authorization': `Bearer ${state.token}`,
-        },
+        'Accept': `application/json`,
+        'Authorization': `Bearer ${state.token}`,
       }
     },
   },

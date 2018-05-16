@@ -57,11 +57,12 @@ route.beforeEach((to, from, next) => {
         route.app.$store.dispatch('goToActiveDragonPage', { nextIndex: 1 })
         route.app.$store.dispatch('goToActiveTreePage', { nextIndex: 1 })
         break
-      default:
       case 'Tree':
       case 'Dragon':
       case 'ChildAccount':
+      case 'Wallet':
         route.app.$store.dispatch(`goTo${to.name}Page`, { nextIndex: 1 })
+        break;
     }
   }
   next()

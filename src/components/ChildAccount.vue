@@ -1,6 +1,8 @@
 <template lang="html">
   <div>
     <h1>子帳號</h1>
+    <Button type="error" @click="addChildAccount()">增加子帳號</Button>
+    <Button type="error" @click="callbackMe()">一鍵召回</Button>
     <Page :total="paging.total" :page-size="paging.pre_page" simple size="small" @on-change="changePage($event)"></Page>
     <Table stripe :columns="columns1" :data="childAccount"></Table>
   </div>
@@ -41,7 +43,6 @@ export default {
   },
   computed: {
     childAccount () {
-      console.log(this)
       if (this.$store.getters.isExist('user', 'childAccount')) {
         return this.$store.getters.childAccount
       } else {
@@ -49,13 +50,18 @@ export default {
       }
     },
     paging () {
-      console.log(this)
       return this.$store.getters.paging('user', 'childAccount')
     },
   },
   methods: {
     async changePage (nextIndex) {
       await this.$store.dispatch('goToChildAccountPage', { nextIndex })
+    },
+    async addChildAccount () {
+      await this.$store.dispatch('addChildAccount')
+      const currIndex = this.$store.getters.paging('user', 'childAccount').curr_page
+      this.$store.dispatch('goToChildAccountPage', { currIndex })
+      console.log(`addChildAccount: ${currIndex}`)
     },
   },
 }

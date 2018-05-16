@@ -17,11 +17,6 @@ export default {
       ],
       columns1: [
         {
-          title: '擁有者',
-          key: 'id',
-          minWidth: 120,
-        },
-        {
           title: '寶石種類',
           key: 'gem_name',
           minWidth: 120,
