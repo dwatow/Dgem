@@ -13,6 +13,23 @@
 export default {
   data () {
     return {
+      columnsDragon: [
+        {
+          title: '夢寶龍的擁有者',
+          key: 'owner_name',
+          minWidth: 150,
+        },
+        {
+          title: '夢寶龍激活對象',
+          key: 'user_name',
+          minWidth: 150,
+        },
+        {
+          title: '是否激活',
+          key: 'activated',
+          minWidth: 100,
+        },
+      ],
       columnsTree: [
         {
           title: '夢寶樹的擁有者',
@@ -45,23 +62,6 @@ export default {
           minWidth: 120,
         },
       ],
-      columnsDragon: [
-        {
-          title: '夢寶龍的擁有者',
-          key: 'owner_name',
-          minWidth: 150,
-        },
-        {
-          title: '夢寶龍激活對象',
-          key: 'user_name',
-          minWidth: 150,
-        },
-        {
-          title: '是否激活',
-          key: 'activated',
-          minWidth: 100,
-        },
-      ],
     }
   },
   computed: {
@@ -87,18 +87,18 @@ export default {
         return []
       }
     },
-    pagingTree () {
-      return this.$store.getters.paging('tree', 'activeTree')
-    },
     pagingDragon () {
       return this.$store.getters.paging('dragon', 'activeDragon')
     },
+    pagingTree () {
+      return this.$store.getters.paging('tree', 'activeTree')
+    },
   },
   methods: {
-    async changeTreePage (nextIndex) {
+    async changeDragonPage (nextIndex) {
       await this.$store.dispatch('goToActiveDragonPage', { nextIndex })
     },
-    async changeDragonPage (nextIndex) {
+    async changeTreePage (nextIndex) {
       await this.$store.dispatch('goToActiveTreePage', { nextIndex })
     },
   },

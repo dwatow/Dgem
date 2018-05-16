@@ -6,6 +6,7 @@ import Dragon from '@/components/Dragon'
 import Tree from '@/components/Tree'
 import Activating from '@/components/Activating'
 import ChildAccount from '@/components/ChildAccount'
+import Wallet from '@/components/Wallet'
 
 Vue.use(Router)
 
@@ -41,24 +42,26 @@ var route = new Router({
       name: 'ChildAccount',
       component: ChildAccount,
     },
+    {
+      path: '/Wallet',
+      name: 'Wallet',
+      component: Wallet,
+    },
   ],
 })
 
 route.beforeEach((to, from, next) => {
   if (route.app.$store !== undefined) {
     switch (to.name) {
-      case 'Tree':
-        route.app.$store.dispatch('goToTreePage', { nextIndex: 1 })
-        break
-      case 'Dragon':
-        route.app.$store.dispatch('goToDragonPage', { nextIndex: 1 })
-        break
       case 'Activating':
         route.app.$store.dispatch('goToActiveDragonPage', { nextIndex: 1 })
         route.app.$store.dispatch('goToActiveTreePage', { nextIndex: 1 })
         break
+      default:
+      case 'Tree':
+      case 'Dragon':
       case 'ChildAccount':
-        route.app.$store.dispatch('goToChildAccountPage', { nextIndex: 1 })
+        route.app.$store.dispatch(`goTo${to.name}Page`, { nextIndex: 1 })
     }
   }
   next()
