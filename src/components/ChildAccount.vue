@@ -16,7 +16,7 @@ export default {
         {
           title: 'ID',
           key: 'id',
-          minWidth: 150,
+          minWidth: 50,
         },
         {
           title: '使用者名稱',
@@ -26,7 +26,12 @@ export default {
         {
           title: '使用者信箱',
           key: 'email',
-          minWidth: 150,
+          minWidth: 270,
+        },
+        {
+          title: '寶石',
+          key: 'wallets',
+          minWidth: 450,
         },
         {
           title: '是否被凍結帳號',
@@ -44,7 +49,13 @@ export default {
   computed: {
     childAccount () {
       if (this.$store.getters.isExist('user', 'childAccount')) {
-        return this.$store.getters.childAccount
+        return this.$store.getters.childAccount.map(user => {
+          if (user.wallets.constructor.name === 'Array') {
+            const wallets = user.wallets.map(wallet => `${this.$store.getters.gems[wallet.gem]}: ${wallet.amount}`)
+            user.wallets = wallets.join(", ")
+          }
+          return user
+        })
       } else {
         return []
       }

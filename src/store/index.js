@@ -33,6 +33,13 @@ export default new Vuex.Store({
         'Authorization': `${state.token_type} ${state.token}`,
       }
     },
+    gems: () => [
+      '七彩寶石',
+      '多喜寶石',
+      '多福寶石',
+      '多財寶石',
+      '美金',
+    ],
   },
   mutations: {
     token (state, payload) {
