@@ -1,4 +1,8 @@
 export default {
+  async allChildAccount ({ dispatch, commit }) {
+    const json = await dispatch('GET', `/api/users/1/child-accounts?hello=world`)
+    commit('allChildAccount', json)
+  },
   async goToChildAccountPage ({ dispatch, commit }, { nextIndex }) {
     nextIndex = nextIndex || 1
     const json = await dispatch('GET', `/api/users/1/child-accounts?page=${nextIndex}`)

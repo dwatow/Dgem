@@ -58,10 +58,9 @@ export default {
       await this.$store.dispatch('goToChildAccountPage', { nextIndex })
     },
     async addChildAccount () {
-      await this.$store.dispatch('addChildAccount')
       const currIndex = this.$store.getters.paging('user', 'childAccount').curr_page
+      await this.$store.dispatch('addChildAccount')
       this.$store.dispatch('goToChildAccountPage', { currIndex })
-      console.log(`addChildAccount: ${currIndex}`)
     },
   },
 }

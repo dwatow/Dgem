@@ -1,5 +1,6 @@
 <template lang="html">
   <div>
+    <Button type="error" @click="buy()">買一顆全新夢寶樹</Button>
     <Page :total="paging.total" :page-size="paging.pre_page" simple size="small" @on-change="changePage($event)"></Page>
     <Table stripe :columns="columns1" :data="tree"></Table>
   </div>
@@ -21,9 +22,56 @@ export default {
           minWidth: 120,
         },
         {
+          title: '是否激活',
+          key: 'activated',
+          minWidth: 50,
+        },
+        {
           title: '激活',
           key: 'activated',
           minWidth: 120,
+        },
+        {
+          title: '操作',
+          key: 'operate',
+          width: 200,
+          render: (h, params) => {
+            return h('div', [
+              h('Dropdown', {
+                props: {
+                  trigger: 'click',
+                  disabled: true,
+                },
+                class: 'defaultStyle',
+                on: {
+                  'on-click': (value) => {
+                    console.log(this.$store.getters)
+                    params.row.operate = this.$store.getters.allChildAccount.filter(item => item.id === value).shift()
+                  },
+                },
+              }, [
+                h('span', [`${params.row.operate.id} ${params.row.operate.name} `, h('Icon', {
+                  props: {
+                    type: 'arrow-down-b',
+                  },
+                  style: {
+                    marginRight: '5px',
+                  },
+                })]),
+                h('DropdownMenu', {
+                  slot: 'list',
+                }, this.$store.getters.allChildAccount.map(item => {
+                  return h('DropdownItem', {
+                    props: {
+                      name: item.id,
+                      disabled: params.row.activated,
+                    },
+                  }, `${item.id} ${item.name}`)
+                }),
+                ),
+              ]),
+            ])
+          },
         },
         {
           title: '動作',
@@ -40,10 +88,12 @@ export default {
                 },
                 on: {
                   click: () => {
+                    // console.log(this.$store.getters)
                     // this.$store.dispatch('')
                     // console.log(params)
                     // const List = this.$store.getters.tree
                     // List.filter((item) => item.index)
+                    this.buy()
                   },
                 },
               }, '激活'),
@@ -59,6 +109,7 @@ export default {
         return this.$store.getters.tree.map((item) => {
           item.owner_name = (item.owner && item.owner.name) || '未指定'
           item.user_name = (item.user && item.user.name) || '未指定'
+          item.operate = { id: '', name: '選一個對象' }
           return item
         })
       } else {
@@ -72,6 +123,14 @@ export default {
   methods: {
     async changePage (nextIndex) {
       await this.$store.dispatch('goToTreePage', { nextIndex })
+    },
+    async buy () {
+      const data = {
+        'user_id': '1',
+      }
+      const nextIndex = this.$store.getters.paging('tree', 'tree').curr_page
+      await this.$store.dispatch('buyTree', { data })
+      this.$store.dispatch('goToTreePage', { nextIndex })
     },
   },
 }

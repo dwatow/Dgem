@@ -43,8 +43,7 @@ export default {
                 class: 'defaultStyle',
                 on: {
                   'on-click': (value) => {
-                    console.log(value)
-                    params.row.operate = this.$store.getters.downlines.filter(item => item.id === value).shift()
+                    params.row.operate = [...this.$store.getters.downlines, ...this.$store.getters.allChildAccount].filter(item => item.id === value).shift()
                   },
                 },
               }, [
@@ -58,7 +57,7 @@ export default {
                 })]),
                 h('DropdownMenu', {
                   slot: 'list',
-                }, this.$store.getters.downlines.map(item => {
+                }, [...this.$store.getters.downlines, ...this.$store.getters.allChildAccount].map(item => {
                   return h('DropdownItem', {
                     props: {
                       name: item.id,
@@ -74,7 +73,6 @@ export default {
           title: '動作',
           key: 'action',
           maxWidth: 100,
-          align: 'right',
           render: (h, params) => {
             return h('div', [
               h('Button', {
@@ -85,7 +83,9 @@ export default {
                 },
                 on: {
                   click: () => {
-                    console.log(params.row)
+                    console.log(params.row.operate.id)
+                    console.log(params.row.id)
+                    this.buy()
                   },
                 },
               }, '購買'),
@@ -115,6 +115,13 @@ export default {
   methods: {
     async changePage (nextIndex) {
       await this.$store.dispatch('goToAllDragonPage', { nextIndex })
+    },
+    buy () {
+      // const data = {
+      //   'owner_id': '1',
+      // }
+      // this.$store.dispatch('buyDragon', {data})
+      console.log('buy')
     },
   },
 }

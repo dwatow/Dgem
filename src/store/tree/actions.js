@@ -1,5 +1,9 @@
 // import axios from 'axios'
 export default {
+  async buyTree ({ dispatch }, { data }) {
+    const path = `/api/users/1/trees`
+    await dispatch('POST', { path, data })
+  },
   async goToTreePage ({ dispatch, commit }, { nextIndex }) {
     nextIndex = nextIndex || 1
     const json = await dispatch('GET', `/api/users/1/trees?owner_id=1&page=${nextIndex}`)

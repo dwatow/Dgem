@@ -14,6 +14,7 @@ export default {
 
     const response = await axios.post(`${getters.host}/oauth/token`, data, { headers })
     commit('token', response.data)
+    Promise.resolve()
   },
   async GET ({ getters }, path) {
     const response = await axios.get(`${getters.host}${path}`, {

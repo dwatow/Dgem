@@ -100,9 +100,10 @@ min-height: 100vh;
 </template>
 <script>
 export default {
-  created () {
-    this.$store.dispatch('Login')
-    this.$store.dispatch('userDownLines', { idUser: 1 })
+  async created () {
+    await this.$store.dispatch('Login')
+    await this.$store.dispatch('userDownLines', { idUser: 1 })
+    this.$store.dispatch(`allChildAccount`)
   },
   data () {
     return {

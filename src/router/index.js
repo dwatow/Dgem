@@ -62,24 +62,24 @@ var route = new Router({
   ],
 })
 
-route.beforeEach((to, from, next) => {
+route.beforeEach(async (to, from, next) => {
   if (route.app.$store !== undefined) {
     switch (to.name) {
       case 'Activating':
-        route.app.$store.dispatch('goToActiveDragonPage', { nextIndex: 1 })
+        await route.app.$store.dispatch('goToActiveDragonPage', { nextIndex: 1 })
         route.app.$store.dispatch('goToActiveTreePage', { nextIndex: 1 })
         break
       case 'BuyDragon':
-        route.app.$store.dispatch(`goToAllDragonPage`, { nextIndex: 1 })
+        await route.app.$store.dispatch(`goToAllDragonPage`, { nextIndex: 1 })
         break
       case 'Tree':
       case 'Dragon':
       case 'ChildAccount':
       case 'Wallet':
-        route.app.$store.dispatch(`goTo${to.name}Page`, { nextIndex: 1 })
+        await route.app.$store.dispatch(`goTo${to.name}Page`, { nextIndex: 1 })
         break
       case 'Group':
-        route.app.$store.dispatch('userDownLines', { idUser: 1 })
+        await route.app.$store.dispatch('userDownLines', { idUser: 1 })
         break
     }
   }
