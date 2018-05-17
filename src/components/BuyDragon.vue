@@ -83,9 +83,8 @@ export default {
                 },
                 on: {
                   click: () => {
-                    console.log(params.row.operate.id)
-                    console.log(params.row.id)
-                    this.buy()
+                    const idDragon = params.row.id
+                    this.buy({ data: { 'owner_id': params.row.operate.id }, idDragon })
                   },
                 },
               }, '購買'),
@@ -116,12 +115,11 @@ export default {
     async changePage (nextIndex) {
       await this.$store.dispatch('goToAllDragonPage', { nextIndex })
     },
-    buy () {
-      // const data = {
-      //   'owner_id': '1',
-      // }
-      // this.$store.dispatch('buyDragon', {data})
-      console.log('buy')
+    async buy (payload) {
+      const nextIndex = this.$store.getters.paging('dragon', 'allDragon').curr_page
+      await this.$store.dispatch('buyDragon', payload)
+      this.$store.dispatch('goToAllDragonPage', { nextIndex })
+
     },
   },
 }
