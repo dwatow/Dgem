@@ -13,7 +13,7 @@ export default {
         {
           title: 'ID',
           key: 'id',
-          minWidth: 150,
+          minWidth: 20,
         },
         {
           title: '夢寶龍的擁有者',
@@ -28,13 +28,53 @@ export default {
         {
           title: '是否激活',
           key: 'activated',
-          minWidth: 100,
+          minWidth: 50,
+        },
+        {
+          title: '操作',
+          key: 'operate',
+          width: 200,
+          render: (h, params) => {
+            return h('div', [
+              h('Dropdown', {
+                props: {
+                  trigger: 'click',
+                },
+                class: 'defaultStyle',
+                on: {
+                  'on-click': (value) => {
+                    console.log(value)
+                    params.row.operate = this.$store.getters.downlines.filter(item => item.id === value).shift()
+                  },
+                },
+              }, [
+                h('span', [`${params.row.operate.id} ${params.row.operate.name} `, h('Icon', {
+                  props: {
+                    type: 'arrow-down-b',
+                  },
+                  style: {
+                    marginRight: '5px',
+                  },
+                })]),
+                h('DropdownMenu', {
+                  slot: 'list',
+                }, this.$store.getters.downlines.map(item => {
+                  return h('DropdownItem', {
+                    props: {
+                      name: item.id,
+                    },
+                  }, `${item.id} ${item.name}`)
+                }),
+                ),
+              ]),
+            ])
+          },
         },
         {
           title: '動作',
           key: 'action',
-          width: 150,
-          align: 'center',
+          maxWidth: 100,
+          align: 'right',
           render: (h, params) => {
             return h('div', [
               h('Button', {
@@ -44,14 +84,8 @@ export default {
                   disabled: params.row.activated,
                 },
                 on: {
-                  click: async () => {
-                    const data = {
-                      owner_id: 1,
-                    }
-                    const idDragon = params.row.id
-                    await this.$store.dispatch('buyDragon', { idDragon, data })
-                    const currIndex = this.$store.getters.paging('dragon', 'allDragon').curr_page
-                    await this.$store.dispatch('goToAllDragonPage', { currIndex })
+                  click: () => {
+                    console.log(params.row)
                   },
                 },
               }, '購買'),
@@ -64,10 +98,10 @@ export default {
   computed: {
     allDragon () {
       if (this.$store.getters.isExist('dragon', 'allDragon')) {
-        console.log(this.$store.getters.allDragon)
         return this.$store.getters.allDragon.map((item) => {
           item.owner_name = (item.owner && item.owner.name) || '未指定'
           item.user_name = (item.user && item.user.name) || '未指定'
+          item.operate = { id: '', name: '選一個對象' }
           return item
         })
       } else {

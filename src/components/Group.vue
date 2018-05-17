@@ -45,7 +45,7 @@ export default {
       return [this.$store.getters.self]
     },
     downlines () {
-      return this.$store.getters.downLines
+      return this.$store.getters.downlines
     },
   },
 }
