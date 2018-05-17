@@ -88,12 +88,8 @@ export default {
                 },
                 on: {
                   click: () => {
-                    // console.log(this.$store.getters)
-                    // this.$store.dispatch('')
-                    // console.log(params)
-                    // const List = this.$store.getters.tree
-                    // List.filter((item) => item.index)
-                    this.buy()
+                    const idTree = params.row.id
+                    this.activate({ data: { 'user_id': params.row.operate.id }, idTree })
                   },
                 },
               }, '激活'),
@@ -130,6 +126,11 @@ export default {
       }
       const nextIndex = this.$store.getters.paging('tree', 'tree').curr_page
       await this.$store.dispatch('buyTree', { data })
+      this.$store.dispatch('goToTreePage', { nextIndex })
+    },
+    async activate (payload) {
+      const nextIndex = this.$store.getters.paging('tree', 'tree').curr_page
+      await this.$store.dispatch('activateTree', payload)
       this.$store.dispatch('goToTreePage', { nextIndex })
     },
   },

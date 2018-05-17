@@ -119,7 +119,6 @@ export default {
       const nextIndex = this.$store.getters.paging('dragon', 'allDragon').curr_page
       await this.$store.dispatch('buyDragon', payload)
       this.$store.dispatch('goToAllDragonPage', { nextIndex })
-
     },
   },
 }
