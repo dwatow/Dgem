@@ -2,7 +2,7 @@
   <div>
     <h1>子帳號</h1>
     <Button type="error" @click="addChildAccount()">增加子帳號</Button>
-    <Button type="error" @click="callbackMe()">一鍵召回</Button>
+    <Button type="primary" @click="callbackMe()">一鍵召回</Button>
     <Page :total="paging.total" :page-size="paging.pre_page" simple size="small" @on-change="changePage($event)"></Page>
     <Table stripe :columns="columns1" :data="childAccount"></Table>
   </div>

@@ -6,7 +6,7 @@ export default {
   },
   async activateTree ({ dispatch }, { idTree, data }) {
     await dispatch('PUT', {
-      path: `/api/tree/${idTree}`,
+      path: `/api/users/1/trees/${idTree}`,
       data,
     })
   },
