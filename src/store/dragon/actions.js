@@ -6,6 +6,12 @@ export default {
       data,
     })
   },
+  async activateDragon ({ dispatch }, { idDragon, data }) {
+    await dispatch('PUT', {
+      path: `/api/dragons/${idDragon}`,
+      data,
+    })
+  },
   async goToAllDragonPage ({ dispatch, commit }, { nextIndex }) {
     nextIndex = nextIndex || 1
     const json = await dispatch('GET', `/api/dragons?page=${nextIndex}`)

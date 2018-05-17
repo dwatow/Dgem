@@ -11,6 +11,11 @@ export default {
     return {
       columns1: [
         {
+          title: 'ID',
+          key: 'id',
+          minWidth: 20,
+        },
+        {
           title: '夢寶龍的擁有者',
           key: 'owner_name',
           minWidth: 150,
@@ -80,8 +85,8 @@ export default {
                 },
                 on: {
                   click: () => {
-                    console.log(params.index)
-                    // this.show()
+                    const idDragon = params.row.id
+                    this.activate({ data: { 'user_id': params.row.operate.id }, idDragon })
                   },
                 },
               }, '激活'),
@@ -112,9 +117,10 @@ export default {
     async changePage (nextIndex) {
       await this.$store.dispatch('goToDragonPage', { nextIndex })
     },
-    async Activate () {
-      const currIndex = this.$store.getters.paging('user', 'childAccount').curr_page
-      await this.$store.dispatch('goToDragonPage', { currIndex })
+    async activate (payload) {
+      const nextIndex = this.$store.getters.paging('dragon', 'dragon').curr_page
+      await this.$store.dispatch('activateDragon', payload)
+      this.$store.dispatch('goToDragonPage', { nextIndex })
     },
   },
 }
