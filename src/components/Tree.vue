@@ -27,11 +27,6 @@ export default {
           minWidth: 50,
         },
         {
-          title: '激活',
-          key: 'activated',
-          minWidth: 120,
-        },
-        {
           title: '操作',
           key: 'operate',
           width: 200,

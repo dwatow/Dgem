@@ -18,4 +18,8 @@ export default {
     const json = await dispatch('GET', `/api/users/${idUser}`)
     commit('setUserDownLines', json)
   },
+  async whoAmI ({ dispatch, commit }) {
+    const json = await dispatch('GET', `/api/users/me`)
+    commit('IAm', json)
+  },
 }

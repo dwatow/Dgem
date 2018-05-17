@@ -13,6 +13,7 @@ import Group from '@/components/Group'
 Vue.use(Router)
 
 var route = new Router({
+  // mode: 'history',
   routes: [
     {
       path: '/',
