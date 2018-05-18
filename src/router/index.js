@@ -88,6 +88,7 @@ route.beforeEach(async (to, from, next) => {
         await route.app.$store.dispatch('userDownLines', { idUser: 1 })
         break
       case 'Wallet':
+      case 'TransferUSD':
         await route.app.$store.dispatch(`WalletPage`)
         break
     }

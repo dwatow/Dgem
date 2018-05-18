@@ -6,7 +6,7 @@ export default {
   },
   async TransferUSD ({ dispatch }, { data }) {
     await dispatch('POST', {
-      path: `/api/wallets/14/transfers`,
+      path: `/api/wallets/17/transfers`,
       data,
     })
   },

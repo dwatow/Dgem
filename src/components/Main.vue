@@ -103,8 +103,9 @@ min-height: 100vh;
 export default {
   async created () {
     await this.$store.dispatch('Login')
-    await this.$store.dispatch('userDownLines', { idUser: 1 })
+    this.$store.dispatch('userDownLines', { idUser: 1 })
     this.$store.dispatch(`allChildAccount`)
+    await this.$store.dispatch(`WalletPage`)
   },
   data () {
     return {

@@ -5,7 +5,7 @@ export default {
     childAccount: {},
     userDownLines: {},
     allChildAccount: {},
-    mySelf: 0,
+    mySelf: {},
   },
   getters: {
     childAccount: (state) => state.childAccount.data,
