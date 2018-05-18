@@ -12,7 +12,7 @@ export default {
         'user_id': '5',
         'amount': '30',
       }
-      this.$store.dispatch('TransferUSD', data)
+      this.$store.dispatch('TransferUSD', { data })
     },
   },
 }

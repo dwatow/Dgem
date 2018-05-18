@@ -4,7 +4,7 @@ export default {
     const json = await dispatch('GET', `/api/users/${myId}/wallets?page=1`)
     commit('setWallet', json)
   },
-  async TransferUSD ({ dispatch, commit }, { data }) {
+  async TransferUSD ({ dispatch }, { data }) {
     await dispatch('POST', {
       path: `/api/wallets/14/transfers`,
       data,
