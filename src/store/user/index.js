@@ -5,12 +5,14 @@ export default {
     childAccount: {},
     userDownLines: {},
     allChildAccount: {},
+    mySelf: 0,
   },
   getters: {
     childAccount: (state) => state.childAccount.data,
     downlines: (state) => state.userDownLines.downlines,
-    self: (state) => state.userDownLines,
+    self: (state) => state.mySelf,
     allChildAccount: (state) => state.allChildAccount,
+    myId: (state) => state.mySelf.id,
   },
   mutations: {
     allChildAccount (state, json) {
@@ -21,6 +23,9 @@ export default {
     },
     setUserDownLines (state, json) {
       state.userDownLines = json
+    },
+    IAm (state, json) {
+      state.mySelf = json
     },
   },
   actions,

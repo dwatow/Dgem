@@ -9,6 +9,7 @@ import ChildAccount from '@/components/ChildAccount'
 import Wallet from '@/components/Wallet'
 import BuyDragon from '@/components/BuyDragon'
 import Group from '@/components/Group'
+import TransferUSD from '@/components/TransferUSD'
 
 Vue.use(Router)
 
@@ -51,6 +52,11 @@ var route = new Router({
       component: Wallet,
     },
     {
+      path: '/TransferUSD',
+      name: 'TransferUSD',
+      component: TransferUSD,
+    },
+    {
       path: '/BuyDragon',
       name: 'BuyDragon',
       component: BuyDragon,
@@ -83,6 +89,9 @@ route.beforeEach(async (to, from, next) => {
         break
       case 'Wallet':
         await route.app.$store.dispatch(`WalletPage`)
+        break
+      case 'TransferUSD':
+        await route.app.$store.dispatch(`TransferUSD`)
         break
     }
   }

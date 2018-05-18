@@ -45,14 +45,12 @@ export default {
                   },
                 },
               }, [
-                h('span', [`${params.row.operate.id} ${params.row.operate.name} `, h('Icon', {
-                  props: {
-                    type: 'arrow-down-b',
-                  },
-                  style: {
-                    marginRight: '5px',
-                  },
-                })]),
+                h('span', [`${params.row.operate.id} ${params.row.operate.name} `,
+                  h('Icon', {
+                    props: { type: 'arrow-down-b' },
+                    style: { marginRight: '5px' },
+                  }),
+                ]),
                 h('DropdownMenu', {
                   slot: 'list',
                 }, this.$store.getters.map(item => {

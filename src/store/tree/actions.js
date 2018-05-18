@@ -1,23 +1,27 @@
 // import axios from 'axios'
 export default {
-  async buyTree ({ dispatch }, { data }) {
-    const path = `/api/users/1/trees`
+  async buyTree ({ dispatch, getters }, { data }) {
+    const myId = getters.myId
+    const path = `/api/users/${myId}/trees`
     await dispatch('POST', { path, data })
   },
-  async activateTree ({ dispatch }, { idTree, data }) {
+  async activateTree ({ dispatch, getters }, { idTree, data }) {
+    const myId = getters.myId
     await dispatch('PUT', {
-      path: `/api/users/1/trees/${idTree}`,
+      path: `/api/users/${myId}/trees/${idTree}`,
       data,
     })
   },
-  async goToTreePage ({ dispatch, commit }, { nextIndex }) {
+  async goToTreePage ({ dispatch, commit, getters }, { nextIndex }) {
     nextIndex = nextIndex || 1
-    const json = await dispatch('GET', `/api/users/1/trees?owner_id=1&activated=0&page=${nextIndex}`)
+    const myId = getters.myId
+    const json = await dispatch('GET', `/api/users/${myId}/trees?owner_id=1&activated=0&page=${nextIndex}`)
     commit('setTreeList', json)
   },
-  async goToActiveTreePage ({ dispatch, commit }, { nextIndex }) {
+  async goToActiveTreePage ({ dispatch, commit, getters }, { nextIndex }) {
     nextIndex = nextIndex || 1
-    const json = await dispatch('GET', `/api/users/1/trees?user_id=1&page=${nextIndex}`)
+    const myId = getters.myId
+    const json = await dispatch('GET', `/api/users/${myId}/trees?user_id=1&page=${nextIndex}`)
     commit('setActiveTreeList', json)
   },
 }

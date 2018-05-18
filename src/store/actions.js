@@ -1,6 +1,6 @@
 import axios from 'axios'
 export default {
-  async Login ({ commit, getters }) {
+  async Login ({ dispatch, commit, getters }) {
     const headers = {
       'Content-Type': 'application/json',
     }
@@ -14,6 +14,7 @@ export default {
 
     const response = await axios.post(`${getters.host}/oauth/token`, data, { headers })
     commit('token', response.data)
+    await dispatch('whoAmI')
     Promise.resolve()
   },
   async GET ({ getters }, path) {

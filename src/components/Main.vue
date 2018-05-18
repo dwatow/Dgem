@@ -79,6 +79,7 @@ min-height: 100vh;
                       <router-link to="/notStart"><MenuItem name="4-1">外部轉帳</MenuItem></router-link>
                       <router-link to="/notStart"><MenuItem name="4-2">平台轉帳</MenuItem></router-link>
                       <router-link to="/notStart"><MenuItem name="4-4">進出明細</MenuItem></router-link>
+                      <router-link to="/TransferUSD"><MenuItem name="4-5">美金轉帳</MenuItem></router-link>
                   </Submenu>
                   <router-link to="/Group"><MenuItem name="5-1">
                     <Icon type="person-stalker"></Icon>

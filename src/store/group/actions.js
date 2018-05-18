@@ -1,7 +1,8 @@
 // import axios from 'axios'
 export default {
-  async goToGroupPage ({ dispatch, commit }) {
-    const json = await dispatch('GET', `/api/users/1`)
+  async goToGroupPage ({ dispatch, commit, getters }) {
+    const myId = getters.myId
+    const json = await dispatch('GET', `/api/users/${myId}`)
     commit('setGroupList', json)
   },
 }

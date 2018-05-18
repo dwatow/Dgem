@@ -17,14 +17,16 @@ export default {
     const json = await dispatch('GET', `/api/dragons?page=${nextIndex}`)
     commit('setAllDragonList', json)
   },
-  async goToDragonPage ({ dispatch, commit }, { nextIndex }) {
+  async goToDragonPage ({ dispatch, commit, getters }, { nextIndex }) {
     nextIndex = nextIndex || 1
-    const json = await dispatch('GET', `/api/dragons?owner_id=1&activated=0&page=${nextIndex}`)
+    const myId = getters.myId
+    const json = await dispatch('GET', `/api/dragons?owner_id=${myId}&activated=0&page=${nextIndex}`)
     commit('setDragonList', json)
   },
-  async goToActiveDragonPage ({ dispatch, commit }, { nextIndex }) {
+  async goToActiveDragonPage ({ dispatch, commit, getters }, { nextIndex }) {
     nextIndex = nextIndex || 1
-    const json = await dispatch('GET', `/api/dragons?user_id=1&page=${nextIndex}`)
+    const myId = getters.myId
+    const json = await dispatch('GET', `/api/dragons?user_id=${myId}&page=${nextIndex}`)
     commit('setActiveDragonList', json)
   },
 }

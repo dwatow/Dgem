@@ -1,18 +1,21 @@
 export default {
-  async allChildAccount ({ dispatch, commit }) {
-    const json = await dispatch('GET', `/api/users/1/child-accounts?hello=world&activated=1`)
+  async allChildAccount ({ dispatch, commit, getters }) {
+    const myId = getters.myId
+    const json = await dispatch('GET', `/api/users/${myId}/child-accounts?hello=world&activated=1`)
     // json.data = await dispatch('accountAndWallet', { array: json.data })
     commit('allChildAccount', json)
   },
-  async goToChildAccountPage ({ dispatch, commit }, { nextIndex }) {
+  async goToChildAccountPage ({ dispatch, commit, getters }, { nextIndex }) {
     nextIndex = nextIndex || 1
-    const json = await dispatch('GET', `/api/users/1/child-accounts?page=${nextIndex}`)
+    const myId = getters.myId
+    const json = await dispatch('GET', `/api/users/${myId}/child-accounts?page=${nextIndex}`)
     json.data = await dispatch('accountAndWallet', { array: json.data })
     commit('setChildAccount', json)
   },
-  async addChildAccount ({ dispatch, commit }) {
+  async addChildAccount ({ dispatch, commit, getters }) {
+    const myId = getters.myId
     const json = await dispatch('POST', {
-      path: `/api/users/1/child-accounts`,
+      path: `/api/users/${myId}/child-accounts`,
     })
     json.data = await dispatch('accountAndWallet', { array: json.data })
     commit('setChildAccount', json)
