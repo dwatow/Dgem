@@ -6,7 +6,7 @@ export default {
     }
     const data = {
       'grant_type': 'password',
-      'username': 'root', // ${payload.username}
+      'username': 'root@email.com', // ${payload.username}
       'password': 'password', // ${payload.passworld}
       'client_id': '2',
       'client_secret': 'TCqXPHubxIcPHCCAA1IwyZKMx3txKMWVsvC0oFmV',
