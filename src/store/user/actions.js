@@ -1,6 +1,6 @@
 export default {
   async allChildAccount ({ dispatch, commit }) {
-    const json = await dispatch('GET', `/api/users/1/child-accounts?hello=world`)
+    const json = await dispatch('GET', `/api/users/1/child-accounts?hello=world&activated=1`)
     // json.data = await dispatch('accountAndWallet', { array: json.data })
     commit('allChildAccount', json)
   },
@@ -28,12 +28,10 @@ export default {
   accountAndWallet ({ dispatch, commit }, { array }) {
     let accountAndWallet = []
     array.forEach(async user => {
-      if (user.activated) {
-        const wallets = await dispatch('childAccountWallet', { idUser: user.id })
-        user.wallets = wallets.data
-      } else {
-        user.wallets = []
-      }
+      const wallets = await dispatch('childAccountWallet', { idUser: user.id })
+      wallets.data.forEach(wallet => {
+        user[`gem${wallet.gem}`] = user.activated ? wallet.amount : ''
+      })
       accountAndWallet.push(Object.assign({}, user))
     })
     return accountAndWallet
