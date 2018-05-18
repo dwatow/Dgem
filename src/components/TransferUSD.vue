@@ -1,14 +1,22 @@
 <template lang="html">
   <div>
-    <h4>轉帳對象</h4>
-    <Input class="input-id" v-model="id" :placeholder="`${myId}`" style="width: 300px" clearable></Input>
-    <h4>目前額度</h4>
-    <span class="currUSD">{{ currUSD }}</span>
-    <h4>轉出額度</h4>
-    <Input class="input-amount" v-model="amount" placeholder="0" style="width: 300px" clearable></Input>
-    <Alert type="error">接下來的行為，將不可回溯!!</Alert>
-    <Button type="error" @click="transferTo()">轉帳</Button>
-    <Spin v-if="busy">轉帳中...</Spin>
+    <p>
+      <h4>轉帳對象</h4>
+      <Input class="input-id" v-model="id" :placeholder="`${myId}`" style="width: 300px" clearable></Input>
+    </p>
+    <p>
+      <h4>目前額度</h4>
+      <span class="currUSD">{{ currUSD }}</span>
+    </p>
+    <p>
+      <h4>轉出額度</h4>
+      <Input class="input-amount" v-model="amount" placeholder="0" style="width: 300px" clearable></Input>
+    </p>
+    <p>
+      <Alert type="error">接下來的行為，將不可回溯!!</Alert>
+    </p>
+      <Button type="error" @click="transferTo()">轉帳</Button>
+      <Spin v-if="busy">轉帳中...</Spin>
   </div>
 </template>
 
@@ -45,8 +53,7 @@ export default {
         await this.$store.dispatch('TransferUSD', { data })
         await this.$store.dispatch(`WalletPage`)
         this.busy = false
-      }
-      catch (e) {
+      } catch (e) {
         this.busy = false
       }
     },
@@ -54,7 +61,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .input-id input:invalid {
   outline: red;
 }
@@ -64,7 +71,10 @@ export default {
 .currUSD {
   font-size: 2em;
 }
-.ivu-spin.ivu-spin-show-text {
+p {
+  margin-top: 10px;
+}
+.ivu-spin.ivu-spin-show-text, .ivu-alert.ivu-alert-error {
   display: inline-block;
 }
 </style>

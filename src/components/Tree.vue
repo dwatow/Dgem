@@ -40,7 +40,10 @@ export default {
                 class: 'defaultStyle',
                 on: {
                   'on-click': (value) => {
-                    params.row.operate = this.$store.getters.allChildAccount.filter(item => item.activated && item.id === value).shift()
+                    params.row.operate = [
+                      ...this.$store.getters.allChildAccount,
+                      this.$store.getters.self,
+                    ].filter(item => item.activated && item.id === value).shift()
                   },
                 },
               }, [
@@ -52,14 +55,19 @@ export default {
                 ]),
                 h('DropdownMenu', {
                   slot: 'list',
-                }, this.$store.getters.allChildAccount.filter(item => item.activated).map(item => {
-                  return h('DropdownItem', {
-                    props: {
-                      name: item.id,
-                      disabled: params.row.activated,
-                    },
-                  }, `${item.id} ${item.name}`)
-                }),
+                }, [
+                  ...this.$store.getters.allChildAccount,
+                  this.$store.getters.self,
+                ].filter(item => item.activated)
+                  .sort((a, b) => a.id - b.id)
+                  .map(item => {
+                    return h('DropdownItem', {
+                      props: {
+                        name: item.id,
+                        disabled: params.row.activated,
+                      },
+                    }, `${item.id} ${item.name}`)
+                  }),
                 ),
               ]),
             ])
