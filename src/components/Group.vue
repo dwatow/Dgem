@@ -15,7 +15,7 @@ export default {
         {
           title: 'ID',
           key: 'id',
-          minWidth: 150,
+          width: 50,
         },
         {
           title: 'e-mail',
