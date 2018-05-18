@@ -41,7 +41,7 @@ export default {
                 on: {
                   'on-click': (value) => {
                     console.log(this.$store.getters)
-                    params.row.operate = this.$store.getters.allChildAccount.filter(item => item.activated && item.id === value).shift()
+                    params.row.operate = this.$store.getters.allChildAccount.filter(item => item.id === value).shift()
                   },
                 },
               }, [
@@ -55,7 +55,7 @@ export default {
                 })]),
                 h('DropdownMenu', {
                   slot: 'list',
-                }, this.$store.getters.allChildAccount.filter(item => item.activated).map(item => {
+                }, this.$store.getters.map(item => {
                   return h('DropdownItem', {
                     props: {
                       name: item.id,

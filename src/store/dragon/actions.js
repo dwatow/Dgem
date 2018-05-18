@@ -19,7 +19,7 @@ export default {
   },
   async goToDragonPage ({ dispatch, commit }, { nextIndex }) {
     nextIndex = nextIndex || 1
-    const json = await dispatch('GET', `/api/dragons?owner_id=1&page=${nextIndex}`)
+    const json = await dispatch('GET', `/api/dragons?owner_id=1&activated=0&page=${nextIndex}`)
     commit('setDragonList', json)
   },
   async goToActiveDragonPage ({ dispatch, commit }, { nextIndex }) {

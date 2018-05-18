@@ -13,7 +13,7 @@ export default {
         {
           title: 'ID',
           key: 'id',
-          minWidth: 20,
+          width: 50,
         },
         {
           title: '夢寶龍的擁有者',
@@ -43,7 +43,7 @@ export default {
                 class: 'defaultStyle',
                 on: {
                   'on-click': (value) => {
-                    params.row.operate = [...this.$store.getters.downlines, ...this.$store.getters.allChildAccount].filter(item => item.activated && item.id === value).shift()
+                    params.row.operate = [...this.$store.getters.downlines, ...this.$store.getters.allChildAccount].filter(item => item.id === value).shift()
                   },
                 },
               }, [
@@ -57,7 +57,7 @@ export default {
                 })]),
                 h('DropdownMenu', {
                   slot: 'list',
-                }, [...this.$store.getters.downlines, ...this.$store.getters.allChildAccount].filter(item => item.activated).map(item => {
+                }, [...this.$store.getters.downlines, ...this.$store.getters.allChildAccount].map(item => {
                   return h('DropdownItem', {
                     props: {
                       name: item.id,

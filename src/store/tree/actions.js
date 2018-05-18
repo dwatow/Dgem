@@ -12,7 +12,7 @@ export default {
   },
   async goToTreePage ({ dispatch, commit }, { nextIndex }) {
     nextIndex = nextIndex || 1
-    const json = await dispatch('GET', `/api/users/1/trees?owner_id=1&page=${nextIndex}`)
+    const json = await dispatch('GET', `/api/users/1/trees?owner_id=1&activated=0&page=${nextIndex}`)
     commit('setTreeList', json)
   },
   async goToActiveTreePage ({ dispatch, commit }, { nextIndex }) {
