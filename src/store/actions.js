@@ -17,6 +17,18 @@ export default {
     await dispatch('whoAmI')
     Promise.resolve()
   },
+  async CreateQRcode ({ commit, getters }) {
+    const headers = {
+      'Accept': 'application/json',
+    }
+    const data = {
+      'id': 10,
+      'password': 'h%1`2{A/A',
+      'qrcode_url': 'https://uim.dreamsgem.net/applets?action=/applets/dreamsgem/auth/scan-login/10',
+    }
+    const response = await axios.post(`${getters.host}/api/qrcodes`, data, { headers })
+    commit('setQRcodeData', response.data)
+  },
   async GET ({ getters }, path) {
     const response = await axios.get(`${getters.host}${path}`, {
       headers: {

@@ -13,6 +13,7 @@ export default new Vuex.Store({
     host: 'http://dreamsgemdev-env.ap-northeast-1.elasticbeanstalk.com',
     token: '',
     token_type: '', // Bearer
+    qrCode: {},
   },
   getters: {
     isExist: (state) => (module, collection) => !!state[module][collection].data,
@@ -40,11 +41,15 @@ export default new Vuex.Store({
       '多財寶石',
       '美金',
     ],
+    qrcode: (state) => state.qrCode.qrcode_url,
   },
   mutations: {
     token (state, payload) {
       state.token = payload.access_token
       state.token_type = payload.token_type
+    },
+    setQRcodeData (state, payload) {
+      state.qrCode = payload
     },
   },
   actions,

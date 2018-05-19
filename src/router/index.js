@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
+import Main from '@/components/Main'
+// import Home from '@/components/Home'
 import notStart from '@/components/notStart'
 import Dragon from '@/components/Dragon'
 import Tree from '@/components/Tree'
@@ -10,6 +11,7 @@ import Wallet from '@/components/Wallet'
 import BuyDragon from '@/components/BuyDragon'
 import Group from '@/components/Group'
 import TransferUSD from '@/components/TransferUSD'
+import QRcodeLogin from '@/components/QRcodeLogin'
 
 Vue.use(Router)
 
@@ -18,58 +20,76 @@ var route = new Router({
   routes: [
     {
       path: '/',
+      redirect: '/QRcodeLogin',
+    },
+    {
+      path: '/QRcodeLogin',
+      name: 'QRcodeLogin',
+      component: QRcodeLogin,
+    },
+    {
+      path: '/Main',
       name: 'Main',
-      component: Home,
-    },
-    {
-      path: '/notStart',
-      name: 'notStart',
-      component: notStart,
-    },
-    {
-      path: '/Dragon',
-      name: 'Dragon',
-      component: Dragon,
-    },
-    {
-      path: '/Tree',
-      name: 'Tree',
-      component: Tree,
-    },
-    {
-      path: '/Activating',
-      name: 'Activating',
-      component: Activating,
-    },
-    {
-      path: '/ChildAccount',
-      name: 'ChildAccount',
-      component: ChildAccount,
-    },
-    {
-      path: '/Wallet',
-      name: 'Wallet',
-      component: Wallet,
-    },
-    {
-      path: '/TransferUSD',
-      name: 'TransferUSD',
-      component: TransferUSD,
-    },
-    {
-      path: '/BuyDragon',
-      name: 'BuyDragon',
-      component: BuyDragon,
-    },
-    {
-      path: '/Group',
-      name: 'Group',
-      component: Group,
+      component: Main,
+      redirect: '/Main/notStart',
+      children: [
+        {
+          path: 'notStart',
+          name: 'notStart',
+          component: notStart,
+        },
+        {
+          path: 'Dragon',
+          name: 'Dragon',
+          component: Dragon,
+        },
+        {
+          path: 'Tree',
+          name: 'Tree',
+          component: Tree,
+        },
+        {
+          path: 'Activating',
+          name: 'Activating',
+          component: Activating,
+        },
+        {
+          path: 'ChildAccount',
+          name: 'ChildAccount',
+          component: ChildAccount,
+        },
+        {
+          path: 'Wallet',
+          name: 'Wallet',
+          component: Wallet,
+        },
+        {
+          path: 'TransferUSD',
+          name: 'TransferUSD',
+          component: TransferUSD,
+        },
+        {
+          path: 'BuyDragon',
+          name: 'BuyDragon',
+          component: BuyDragon,
+        },
+        {
+          path: 'Group',
+          name: 'Group',
+          component: Group,
+        },
+        // {
+        //   path: 'QRcodeLogin',
+        //   name: 'QRcodeLogin',
+        //   component: QRcodeLogin,
+        // },
+      ],
     },
   ],
 })
 
 route.beforeEach(async (to, from, next) => {
+  console.log('router: ', to.name)
   if (route.app.$store !== undefined) {
     switch (to.name) {
       case 'Activating':
@@ -91,6 +111,8 @@ route.beforeEach(async (to, from, next) => {
       case 'TransferUSD':
         await route.app.$store.dispatch(`WalletPage`)
         break
+      case 'QRcodeLogin':
+        await route.app.$store.dispatch('CreateQRcode')
     }
   }
   next()
