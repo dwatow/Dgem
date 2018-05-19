@@ -84,6 +84,11 @@ var route = new Router({
 })
 
 route.beforeEach(async (to, from, next) => {
+  console.log(from.name, to.name)
+  if (from.name === null && to.name !== 'QRcodeLogin' && (route.app.$store === undefined || route.app.$store.getters.token.length === 0)) {
+    route.push('/QRcodeLogin')
+  }
+
   if (route.app.$store !== undefined) {
     switch (to.name) {
       case 'Activating':
