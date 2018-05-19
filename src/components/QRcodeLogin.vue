@@ -19,16 +19,19 @@ export default {
   methods: {
     async test () {
       await this.$store.dispatch('Login')
-      this.$store.dispatch('userDownLines', { idUser: 1 })
+      this.$store.dispatch('userDownLines', { idUser: this.$store.getters.myId })
       this.$store.dispatch(`allChildAccount`)
       await this.$store.dispatch(`WalletPage`)
       this.$router.push('/Main')
     },
     renderQRcode () {
-      var typeNumber = 4
+      var typeNumber = 0
       var errorCorrectionLevel = 'L'
       var qr = qrcode(typeNumber, errorCorrectionLevel)
-      qr.addData(this.$store.getters.qrcode)
+      // console.log(this.$store.getters.qrcode.length, this.$store.getters.qrcode)
+
+      qr.addData(`${this.$store.getters.qrcode}`)
+      // qr.addData('this.$store.getters.qrcode')
       qr.make()
       document.querySelector('#placeHolder').innerHTML = qr.createImgTag(10)
     },

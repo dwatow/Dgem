@@ -84,7 +84,6 @@ var route = new Router({
 })
 
 route.beforeEach(async (to, from, next) => {
-  console.log('router: ', to.name)
   if (route.app.$store !== undefined) {
     switch (to.name) {
       case 'Activating':
@@ -100,7 +99,7 @@ route.beforeEach(async (to, from, next) => {
         await route.app.$store.dispatch(`goTo${to.name}Page`, { nextIndex: 1 })
         break
       case 'Group':
-        await route.app.$store.dispatch('userDownLines', { idUser: 1 })
+        await route.app.$store.dispatch('userDownLines', { idUser: route.app.$store.getters.myId })
         break
       case 'Wallet':
       case 'TransferUSD':
