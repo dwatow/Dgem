@@ -29,7 +29,7 @@ export default {
   },
   async created () {
     await this.$store.dispatch('Login')
-    this.$store.dispatch('userDownLines', { idUser: 1 })
+    this.$store.dispatch('userDownLines', { idUser: this.$store.getters.myId })
     this.$store.dispatch(`allChildAccount`)
     await this.$store.dispatch(`WalletPage`)
     // await this.$store.dispatch('CreateQRcode')
