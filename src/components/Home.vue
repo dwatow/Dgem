@@ -16,7 +16,6 @@ export default {
     },
     test () {
       // this.$store.dispatch('CreateQRcode')
-      console.log(this.$router)
       this.$router.push('/Main')
     },
   },
