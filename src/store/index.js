@@ -42,6 +42,7 @@ export default new Vuex.Store({
       '美金',
     ],
     qrcode: (state) => state.qrCode.qrcode_url,
+    qrcodeUser: (state) => state.qrCode,
   },
   mutations: {
     token (state, payload) {
