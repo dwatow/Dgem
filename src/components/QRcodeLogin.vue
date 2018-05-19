@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <button type="button" name="button" @click="test()">登入</button>
+    <!-- <button type="button" name="button" @click="test()">登入</button> -->
     <div id="placeHolder"></div>
   </div>
 </template>
@@ -38,6 +38,10 @@ export default {
     async isLoginSuccess () {
       try {
         await this.$store.dispatch('LoginQRcode')
+        // await this.$store.dispatch('Login')
+        this.$store.dispatch('userDownLines', { idUser: this.$store.getters.myId })
+        this.$store.dispatch(`allChildAccount`)
+        await this.$store.dispatch(`WalletPage`)
         this.$router.push('/Main')
       } catch (e) {
         setTimeout(this.isLoginSuccess, 2000)

@@ -32,7 +32,7 @@ export default {
   computed: {
     currUSD () {
       if (this.$store.getters.isExist('wallet', 'wallet')) {
-        const wallet = this.$store.getters.wallet.filter(wallet => wallet.id === 17).pop()
+        const wallet = this.$store.getters.wallet.filter(wallet => wallet.gem === 4).pop()
         return wallet.amount
       } else {
         return 0
