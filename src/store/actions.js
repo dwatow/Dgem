@@ -1,13 +1,30 @@
 import axios from 'axios'
 export default {
-  async Login ({ dispatch, commit, getters }) {
+  // async Login ({ dispatch, commit, getters }) {
+  //   const headers = {
+  //     'Content-Type': 'application/json',
+  //   }
+  //   const data = {
+  //     'grant_type': 'password',
+  //     'username': 'root@email.com', // ${payload.username}
+  //     'password': 'password', // ${payload.passworld}
+  //     'client_id': '2',
+  //     'client_secret': 'TCqXPHubxIcPHCCAA1IwyZKMx3txKMWVsvC0oFmV',
+  //   }
+  //
+  //   const response = await axios.post(`${getters.host}/oauth/token`, data, { headers })
+  //   commit('token', response.data)
+  //   await dispatch('whoAmI')
+  //   Promise.resolve()
+  // },
+  async LoginQRcode ({ dispatch, commit, getters }) {
     const headers = {
       'Content-Type': 'application/json',
     }
     const data = {
       'grant_type': 'password',
-      'username': 'root@email.com', // ${payload.username}
-      'password': 'password', // ${payload.passworld}
+      'id': getters.qrcode.password,
+      'password': getters.qrcode.password,
       'client_id': '2',
       'client_secret': 'TCqXPHubxIcPHCCAA1IwyZKMx3txKMWVsvC0oFmV',
     }

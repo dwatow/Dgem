@@ -12,10 +12,13 @@ export default {
     // call api create qr code
     await this.$store.dispatch('CreateQRcode')
     this.renderQRcode()
+    setTimeout(() => {
+
+    })
   },
   methods: {
     async test () {
-      await this.$store.dispatch('Login')
+      await this.$store.dispatch('LoginQRcode')
       this.$store.dispatch('userDownLines', { idUser: 1 })
       this.$store.dispatch(`allChildAccount`)
       await this.$store.dispatch(`WalletPage`)
@@ -28,6 +31,9 @@ export default {
       qr.addData(this.$store.getters.qrcode)
       qr.make()
       document.querySelector('#placeHolder').innerHTML = qr.createImgTag(10)
+    },
+    isLoginSuccess () {
+
     },
   },
 }

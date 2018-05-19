@@ -78,11 +78,6 @@ var route = new Router({
           name: 'Group',
           component: Group,
         },
-        // {
-        //   path: 'QRcodeLogin',
-        //   name: 'QRcodeLogin',
-        //   component: QRcodeLogin,
-        // },
       ],
     },
   ],
