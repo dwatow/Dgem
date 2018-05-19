@@ -16,7 +16,7 @@ export default new Vuex.Store({
     qrCode: {},
   },
   getters: {
-    isExist: (state) => (module, collection) => !!state[module][collection].data,
+    isExist: (state) => (module, collection) => !!state[module][collection].data && state[module][collection].data.length > 0,
     isLogin: (state) => state.token.length !== 0,
     token: (state) => state.token,
     host: (state) => state.host,
