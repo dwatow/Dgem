@@ -40,10 +40,7 @@ export default {
                 class: 'defaultStyle',
                 on: {
                   'on-click': (value) => {
-                    params.row.operate = [
-                      ...this.$store.getters.allChildAccount,
-                      this.$store.getters.self,
-                    ].filter(item => item.activated && item.id === value).shift()
+                    params.row.operate = this.dropdownItems.filter(item => item.id === value).shift()
                   },
                 },
               }, [
@@ -55,10 +52,7 @@ export default {
                 ]),
                 h('DropdownMenu', {
                   slot: 'list',
-                }, [
-                  ...this.$store.getters.allChildAccount,
-                  this.$store.getters.self,
-                ].filter(item => item.activated)
+                }, this.dropdownItems
                   .sort((a, b) => a.id - b.id)
                   .map(item => {
                     return h('DropdownItem', {
@@ -114,6 +108,14 @@ export default {
     },
     paging () {
       return this.$store.getters.paging('tree', 'tree')
+    },
+    dropdownItems () {
+      let users = {}
+      users[`${this.$store.getters.self.id}`] = this.$store.getters.self
+      this.$store.getters.allChildAccount.forEach(function (item) {
+        users[item.id] = item
+      })
+      return Object.values(users).filter(item => item.activated)
     },
   },
   methods: {

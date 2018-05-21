@@ -43,11 +43,7 @@ export default {
                 class: 'defaultStyle',
                 on: {
                   'on-click': (value) => {
-                    params.row.operate = [
-                      ...this.$store.getters.downlines,
-                      ...this.$store.getters.allChildAccount,
-                      this.$store.getters.self,
-                    ].filter(item => item.id === value).shift()
+                    params.row.operate = this.dropdownItems.filter(item => item.id === value).shift()
                   },
                 },
               }, [
@@ -61,11 +57,7 @@ export default {
                 })]),
                 h('DropdownMenu', {
                   slot: 'list',
-                }, [
-                  ...this.$store.getters.downlines,
-                  ...this.$store.getters.allChildAccount,
-                  this.$store.getters.self,
-                ].sort((a, b) => a.id - b.id)
+                }, this.dropdownItems.sort((a, b) => a.id - b.id)
                   .map(item => {
                     return h('DropdownItem', {
                       props: {
@@ -121,15 +113,33 @@ export default {
     paging () {
       return this.$store.getters.paging('dragon', 'dragon')
     },
+    dropdownItems () {
+      let users = {}
+      users[`${this.$store.getters.self.id}`] = this.$store.getters.self
+      this.$store.getters.allChildAccount.forEach(function (item) {
+        users[item.id] = item
+      })
+      this.$store.getters.downlines.forEach(function (item) {
+        users[item.id] = item
+      })
+      return Object.values(users).filter(item => !item.activated)
+    },
   },
   methods: {
     async changePage (nextIndex) {
       await this.$store.dispatch('goToDragonPage', { nextIndex })
     },
     async activate (payload) {
-      const nextIndex = this.$store.getters.paging('dragon', 'dragon').curr_page
-      await this.$store.dispatch('activateDragon', payload)
-      this.$store.dispatch('goToDragonPage', { nextIndex })
+      try {
+        const nextIndex = this.$store.getters.paging('dragon', 'dragon').curr_page
+        await this.$store.dispatch('activateDragon', payload)
+        this.$store.dispatch('goToDragonPage', { nextIndex })
+      } catch (e) {
+        // not do anything
+      }
+      this.$store.dispatch('userDownLines', { idUser: this.$store.getters.myId })
+      this.$store.dispatch(`allChildAccount`)
+      this.$store.dispatch('whoAmI')
     },
   },
 }

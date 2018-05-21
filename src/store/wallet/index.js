@@ -8,9 +8,13 @@ export default {
     wallet: (state) => {
       return state.wallet.data
     },
-    idUsdWallet: (state) => {
-      const usd = state.wallet.filter((item) => item.gem === '4').shift
-      return usd.id
+    idUsdWallet: (state, getters) => {
+      if (getters.isExist('wallet', 'wallet')) {
+        const usdWallet = state.wallet.data.filter((item) => item.gem === 4).shift()
+        return usdWallet.id
+      } else {
+        return 0
+      }
     },
   },
   mutations: {

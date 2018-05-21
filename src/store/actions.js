@@ -9,7 +9,7 @@ export default {
       'username': 'root@email.com', // ${payload.username}
       'password': 'password', // ${payload.passworld}
       'client_id': '2',
-      'client_secret': 'TCqXPHubxIcPHCCAA1IwyZKMx3txKMWVsvC0oFmV',
+      'client_secret': 'vZ08ruaFRkqnDgzWJhnUImmIBtNON19YAzdKWSRF',
     }
 
     const response = await axios.post(`${getters.host}/oauth/token`, data, { headers })
@@ -26,7 +26,7 @@ export default {
       'id': `${getters.qrcodeUser.id}`,
       'password': `${getters.qrcodeUser.password}`,
       'client_id': '2',
-      'client_secret': 'TCqXPHubxIcPHCCAA1IwyZKMx3txKMWVsvC0oFmV',
+      'client_secret': 'vZ08ruaFRkqnDgzWJhnUImmIBtNON19YAzdKWSRF',
     }
 
     const response = await axios.post(`${getters.host}/oauth/token`, data, { headers })
