@@ -47,7 +47,7 @@ export default {
                       ...this.$store.getters.downlines,
                       ...this.$store.getters.allChildAccount,
                       this.$store.getters.self,
-                    ].filter(item => item.activated && item.id === value).shift()
+                    ].filter(item => item.id === value).shift()
                   },
                 },
               }, [
@@ -65,8 +65,7 @@ export default {
                   ...this.$store.getters.downlines,
                   ...this.$store.getters.allChildAccount,
                   this.$store.getters.self,
-                ].filter(item => item.activated)
-                  .sort((a, b) => a.id - b.id)
+                ].sort((a, b) => a.id - b.id)
                   .map(item => {
                     return h('DropdownItem', {
                       props: {
