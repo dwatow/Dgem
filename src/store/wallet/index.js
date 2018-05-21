@@ -8,6 +8,10 @@ export default {
     wallet: (state) => {
       return state.wallet.data
     },
+    idUsdWallet: (state) => {
+      const usd = state.wallet.filter((item) => item.gem === '4').shift
+      return usd.id
+    },
   },
   mutations: {
     setWallet (state, json) {
