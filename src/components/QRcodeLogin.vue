@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <!-- <button type="button" name="button" @click="test()">登入</button> -->
+    <button v-if="showButton" type="button" name="button" @click="test()">Demo 專用假裝掃 QR code 的登入</button>
     <div id="placeHolder"></div>
   </div>
 </template>
@@ -8,6 +8,11 @@
 <script>
 import qrcode from 'qrcode-generator'
 export default {
+  data () {
+    return {
+      showButton: false,
+    }
+  },
   async mounted () {
     // call api create qr code
     await this.$store.dispatch('CreateQRcode')
@@ -34,6 +39,7 @@ export default {
       // qr.addData('this.$store.getters.qrcode')
       qr.make()
       document.querySelector('#placeHolder').innerHTML = qr.createImgTag(10)
+      this.showButton = true
     },
     async isLoginSuccess () {
       try {

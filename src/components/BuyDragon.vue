@@ -31,55 +31,6 @@ export default {
           minWidth: 50,
         },
         {
-          title: '操作',
-          key: 'operate',
-          width: 200,
-          render: (h, params) => {
-            return h('div', [
-              h('Dropdown', {
-                props: {
-                  trigger: 'click',
-                },
-                class: 'defaultStyle',
-                on: {
-                  'on-click': (value) => {
-                    params.row.operate = [
-                      ...this.$store.getters.downlines,
-                      ...this.$store.getters.allChildAccount,
-                      this.$store.getters.self,
-                    ].filter(item => item.activated && item.id === value).shift()
-                  },
-                },
-              }, [
-                h('span', [`${params.row.operate.id} ${params.row.operate.name} `, h('Icon', {
-                  props: {
-                    type: 'arrow-down-b',
-                  },
-                  style: {
-                    marginRight: '5px',
-                  },
-                })]),
-                h('DropdownMenu', {
-                  slot: 'list',
-                }, [
-                  ...this.$store.getters.downlines,
-                  ...this.$store.getters.allChildAccount,
-                  this.$store.getters.self,
-                ].filter(item => item.activated)
-                  .sort((a, b) => a.id - b.id)
-                  .map(item => {
-                    return h('DropdownItem', {
-                      props: {
-                        name: item.id,
-                      },
-                    }, `${item.id} ${item.name}`)
-                  }),
-                ),
-              ]),
-            ])
-          },
-        },
-        {
           title: '動作',
           key: 'action',
           maxWidth: 100,
@@ -94,7 +45,7 @@ export default {
                 on: {
                   click: () => {
                     const idDragon = params.row.id
-                    this.buy({ data: { 'owner_id': params.row.operate.id }, idDragon })
+                    this.buy({ data: { 'owner_id': this.$store.getters.self.id }, idDragon })
                   },
                 },
               }, '購買'),
