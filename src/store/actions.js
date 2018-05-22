@@ -1,5 +1,28 @@
 import axios from 'axios'
 export default {
+  async CreateUser ({ dispatch, getters }, data) {
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    }
+    await axios.post(`${getters.host}/api/users`, data, { headers })
+  },
+  async Login ({ dispatch, commit, getters }, { name, password }) {
+    const headers = {
+      'Content-Type': 'application/json',
+    }
+    const data = {
+      'grant_type': 'password',
+      username: name,
+      password,
+      'client_id': '2',
+      'client_secret': 'vZ08ruaFRkqnDgzWJhnUImmIBtNON19YAzdKWSRF',
+    }
+
+    const response = await axios.post(`${getters.host}/oauth/token`, data, { headers })
+    commit('token', response.data)
+    await dispatch('whoAmI')
+  },
   async LoginQRcode ({ dispatch, commit, getters }) {
     const headers = {
       'Content-Type': 'application/json',
@@ -15,7 +38,6 @@ export default {
     const response = await axios.post(`${getters.host}/oauth/token`, data, { headers })
     commit('token', response.data)
     await dispatch('whoAmI')
-    Promise.resolve()
   },
   async CreateQRcode ({ commit, getters }) {
     const headers = {

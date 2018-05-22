@@ -11,7 +11,8 @@ import Wallet from '@/components/Wallet'
 import BuyDragon from '@/components/BuyDragon'
 import Group from '@/components/Group'
 import TransferUSD from '@/components/TransferUSD'
-import QRcodeLogin from '@/components/QRcodeLogin'
+// import QRcodeLogin from '@/components/QRcodeLogin'
+import Login from '@/components/Login'
 
 Vue.use(Router)
 
@@ -20,12 +21,12 @@ var route = new Router({
   routes: [
     {
       path: '/',
-      redirect: '/QRcodeLogin',
+      redirect: '/Login',
     },
     {
-      path: '/QRcodeLogin',
-      name: 'QRcodeLogin',
-      component: QRcodeLogin,
+      path: '/Login',
+      name: 'Login',
+      component: Login,
     },
     {
       path: '/Main',
@@ -85,8 +86,8 @@ var route = new Router({
 
 route.beforeEach(async (to, from, next) => {
   console.log(from.name, to.name)
-  if (from.name === null && to.name !== 'QRcodeLogin' && (route.app.$store === undefined || route.app.$store.getters.token.length === 0)) {
-    route.push('/QRcodeLogin')
+  if (from.name === null && to.name !== 'Login' && (route.app.$store === undefined || route.app.$store.getters.token.length === 0)) {
+    route.push('/Login')
   }
 
   if (route.app.$store !== undefined) {
@@ -113,8 +114,8 @@ route.beforeEach(async (to, from, next) => {
       case 'TransferUSD':
         await route.app.$store.dispatch(`WalletPage`)
         break
-      case 'QRcodeLogin':
-        await route.app.$store.dispatch('CreateQRcode')
+      // case 'QRcodeLogin':
+      //   await route.app.$store.dispatch('CreateQRcode')
     }
   }
   next()
