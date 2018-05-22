@@ -1,5 +1,6 @@
 <template lang="html">
   <div>
+    <currUsdWallet></currUsdWallet>
     <Button type="error" @click="buy()">買一顆全新夢寶樹</Button>
     <Page :total="paging.total" :page-size="paging.pre_page" simple size="small" @on-change="changePage($event)"></Page>
     <Table stripe :columns="columns1" :data="tree"></Table>
@@ -7,7 +8,11 @@
 </template>
 
 <script>
+import currUsdWallet from '@/components/currUsdWallet.vue'
 export default {
+  components: {
+    currUsdWallet,
+  },
   data () {
     return {
       columns1: [
@@ -21,13 +26,13 @@ export default {
           key: 'user_name',
           minWidth: 120,
         },
+        // {
+        //   title: '是否激活',
+        //   key: 'activated',
+        //   minWidth: 50,
+        // },
         {
-          title: '是否激活',
-          key: 'activated',
-          minWidth: 50,
-        },
-        {
-          title: '操作',
+          title: '選擇激活對象',
           key: 'operate',
           width: 200,
           render: (h, params) => {
@@ -128,6 +133,7 @@ export default {
       }
       const nextIndex = this.$store.getters.paging('tree', 'tree').curr_page
       await this.$store.dispatch('buyTree', { data })
+      await this.$store.dispatch(`WalletPage`)
       this.$store.dispatch('goToTreePage', { nextIndex })
     },
     async activate (payload) {

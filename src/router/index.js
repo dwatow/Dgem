@@ -98,12 +98,14 @@ route.beforeEach(async (to, from, next) => {
         break
       case 'BuyDragon':
         await route.app.$store.dispatch(`goToAllDragonPage`, { nextIndex: 1 })
+        route.app.$store.dispatch(`WalletPage`)
         break
       case 'Tree':
       case 'Dragon':
       case 'ChildAccount':
         await route.app.$store.dispatch(`goTo${to.name}Page`, { nextIndex: 1 })
         route.app.$store.dispatch('userDownLines', { idUser: route.app.$store.getters.myId })
+        route.app.$store.dispatch(`WalletPage`)
         route.app.$store.dispatch(`allChildAccount`)
         route.app.$store.dispatch('whoAmI')
         break

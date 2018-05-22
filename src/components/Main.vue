@@ -58,7 +58,7 @@ min-height: 100vh;
                       <router-link to="notStart"><MenuItem name="2-1">基本資料</MenuItem></router-link>
                       <router-link to="ChildAccount"><MenuItem name="2-2">子母帳號</MenuItem></router-link>
                       <router-link to="notStart"><MenuItem name="2-3">更換手機</MenuItem></router-link>
-                      <router-link to="notStart"><MenuItem name="2-4">夢想卡解涷</MenuItem></router-link>
+                      <!-- <router-link to="notStart"><MenuItem name="2-4">夢想卡解涷</MenuItem></router-link> -->
                   </Submenu>
                   <Submenu name="3">
                       <template slot="title">

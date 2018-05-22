@@ -1,12 +1,17 @@
 <template lang="html">
   <div>
+    <currUsdWallet></currUsdWallet>
     <Page :total="paging.total" :page-size="paging.pre_page" simple size="small" @on-change="changePage($event)"></Page>
     <Table stripe :columns="columns1" :data="allDragon"></Table>
   </div>
 </template>
 
 <script>
+import currUsdWallet from '@/components/currUsdWallet.vue'
 export default {
+  components: {
+    currUsdWallet,
+  },
   data () {
     return {
       columns1: [
@@ -25,11 +30,11 @@ export default {
           key: 'user_name',
           minWidth: 150,
         },
-        {
-          title: '是否激活',
-          key: 'activated',
-          minWidth: 50,
-        },
+        // {
+        //   title: '是否激活',
+        //   key: 'activated',
+        //   minWidth: 50,
+        // },
         {
           title: '動作',
           key: 'action',
@@ -79,6 +84,7 @@ export default {
     async buy (payload) {
       const nextIndex = this.$store.getters.paging('dragon', 'allDragon').curr_page
       await this.$store.dispatch('buyDragon', payload)
+      await this.$store.dispatch(`WalletPage`)
       this.$store.dispatch('goToAllDragonPage', { nextIndex })
     },
   },

@@ -2,7 +2,7 @@
   <div>
     <h1>子帳號</h1>
     <Button type="error" @click="addChildAccount()">增加子帳號</Button>
-    <Button type="primary" @click="callbackMe()">一鍵召回</Button>
+    <!-- <Button type="primary" @click="callbackMe()">一鍵召回</Button> -->
     <Page :total="paging.total" :page-size="paging.pre_page" simple size="small" @on-change="changePage($event)"></Page>
     <Table stripe :columns="columns1" :data="childAccount"></Table>
   </div>
@@ -23,11 +23,11 @@ export default {
           key: 'name',
           minWidth: 150,
         },
-        {
-          title: '使用者信箱',
-          key: 'email',
-          minWidth: 270,
-        },
+        // {
+        //   title: '使用者信箱',
+        //   key: 'email',
+        //   minWidth: 270,
+        // },
         {
           title: this.$store.getters.gems[0],
           key: 'gem0',

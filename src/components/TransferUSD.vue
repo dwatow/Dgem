@@ -1,27 +1,28 @@
 <template lang="html">
   <div>
-    <p>
+    <div>
       <h4>轉帳對象</h4>
       <Input class="input-id" v-model="id" :placeholder="`${myId}`" style="width: 300px" clearable></Input>
-    </p>
-    <p>
-      <h4>目前額度</h4>
-      <span class="currUSD">{{ currUSD }}</span>
-    </p>
-    <p>
+    </div>
+    <currUsdWallet></currUsdWallet>
+    <div>
       <h4>轉出額度</h4>
       <Input class="input-amount" v-model="amount" placeholder="0" style="width: 300px" clearable></Input>
-    </p>
-    <p>
+    </div>
+    <div>
       <Alert type="error">接下來的行為，將不可回溯!!</Alert>
-    </p>
+    </div>
       <Button type="error" @click="transferTo()">轉帳</Button>
       <Spin v-if="busy">轉帳中...</Spin>
   </div>
 </template>
 
 <script>
+import currUsdWallet from '@/components/currUsdWallet.vue'
 export default {
+  components: {
+    currUsdWallet,
+  },
   data () {
     return {
       id: 0,
@@ -67,12 +68,6 @@ export default {
 }
 .input-amount input:invalid {
   outline: red;
-}
-.currUSD {
-  font-size: 2em;
-}
-p {
-  margin-top: 10px;
 }
 .ivu-spin.ivu-spin-show-text, .ivu-alert.ivu-alert-error {
   display: inline-block;
