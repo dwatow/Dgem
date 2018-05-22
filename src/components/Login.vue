@@ -3,8 +3,8 @@
     <i-switch v-model="switchAreaType"></i-switch> <span>{{ areaType[switchAreaType] }}</span>
     <div v-show="!!switchAreaType" class="SignIn">
       <Form ref="SignIn" :model="SignIn" :rules="SignInRule" label-position="top">
-        <FormItem label="User Name" prop="userName">
-          <Input type="text" v-model="SignIn.userName"></Input>
+        <FormItem label="User Name" prop="username">
+          <Input type="text" v-model="SignIn.username"></Input>
         </FormItem>
         <FormItem label="Password" prop="password">
           <Input type="password" v-model="SignIn.password"></Input>
@@ -16,17 +16,24 @@
     </div>
     <div v-show="!switchAreaType" class="SignUp">
       <Form ref="SignUp" :model="SignUp" :rules="SignUpRule" label-position="top">
-        <FormItem label="User Name" prop="userName">
-          <Input type="text" v-model="SignUp.userName"></Input>
+        <FormItem label="User Name" prop="name">
+          <Input type="text" v-model="SignUp.name"></Input>
         </FormItem>
-        <FormItem label="Password" prop="passwd">
-          <Input type="password" v-model="SignUp.passwd"></Input>
+        <FormItem label="email" prop="email">
+          <Input type="email" v-model="SignUp.email"></Input>
         </FormItem>
-        <FormItem label="Confirm" prop="passwdCheck">
-          <Input type="password" v-model="SignUp.passwdCheck"></Input>
+        <FormItem label="Password" prop="password">
+          <Input type="password" v-model="SignUp.password"></Input>
+        </FormItem>
+        <FormItem label="Confirm" prop="passwordCheck">
+          <Input type="password" v-model="SignUp.passwordCheck"></Input>
+        </FormItem>
+        <FormItem label="Upline Id" prop="upline_id">
+          <Input v-model="SignUp.upline_id"></Input>
         </FormItem>
         <FormItem>
           <Button type="primary" @click="signUp()">SignUp</Button>
+          <Button type="ghost" @click="reset()">Reset</Button>
         </FormItem>
       </Form>
     </div>
@@ -40,8 +47,8 @@ export default {
       if (value === '') {
         callback(new Error('填入一組密碼，符合長度 6 個字元以上'))
       } else {
-        if (this.SignUp.passwdCheck !== '') {
-          this.$refs.SignUp.validateField('passwdCheck')
+        if (this.SignUp.passwordCheck !== '') {
+          this.$refs.SignUp.validateField('passwordCheck')
         }
         callback()
       }
@@ -49,8 +56,16 @@ export default {
     const validatePassCheck = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('再填入一樣的密碼'))
-      } else if (value !== this.SignUp.passwd) {
+      } else if (value !== this.SignUp.password) {
         callback(new Error('兩邊不一樣，請再確認'))
+      } else {
+        callback()
+      }
+    }
+
+    const validateUplineId = (rule, value, callback) => {
+      if (value < 1) {
+        callback(new Error('填入上線的 ID 號碼'))
       } else {
         callback()
       }
@@ -62,13 +77,12 @@ export default {
         false: 'SignUp', // 註冊
       },
       switchAreaType: true,
-      value: 'abc',
       SignIn: {
-        userName: '',
+        username: '',
         password: '',
       },
       SignInRule: {
-        userName: [
+        username: [
           { required: true, message: '填入要登入的使用者帳號', trigger: 'blur' },
         ],
         password: [
@@ -77,34 +91,68 @@ export default {
         ],
       },
       SignUp: {
-        userName: '',
-        passwd: '',
-        passwdCheck: '',
+        name: '',
+        email: '',
+        password: '',
+        passwordCheck: '',
+        upline_id: 0,
       },
       SignUpRule: {
-        userName: [],
-        passwd: [
-          { validator: validatePass, trigger: 'blur' },
+        name: [
+          { required: true, message: '填入要註冊的使用者帳號', trigger: 'blur' },
         ],
-        passwdCheck: [
-          { validator: validatePassCheck, trigger: 'blur' },
+        email: [
+          { required: true, message: '填入要註冊的 email', trigger: 'blur' },
+          { type: 'email', message: '請檢查 email 格式，是否有誤', trigger: 'blur' },
+        ],
+        password: [
+          { required: true, validator: validatePass, trigger: 'blur' },
+        ],
+        passwordCheck: [
+          { required: true, validator: validatePassCheck, trigger: 'blur' },
+        ],
+        upline_id: [
+          { required: true, type: 'number', validator: validateUplineId, trigger: 'blur' },
         ],
       },
     }
   },
   methods: {
     signIn () {
-      console.log('SignIn', this.$refs['SignUp'])
-    },
-    signUp () {
-      console.log('SignUp')
-      this.$refs['SignUp'].validate((valid) => {
+      this.$refs['SignIn'].validate(async (valid) => {
         if (valid) {
-          // this.$Message.success('Success!')
+          try {
+            await this.$store.dispatch('Login', {
+              password: this.SignIn.password,
+              name: this.SignIn.username,
+            })
+            this.$router.push('/Main')
+          } catch (e) {
+            this.$Message.error('帳號密碼不匹配')
+          }
         } else {
-          // this.$Message.error('Fail!')
+          this.$Message.error('帳號密碼格式出錯')
         }
       })
+    },
+    signUp () {
+      this.$refs['SignUp'].validate(async (valid) => {
+        if (valid) {
+          const data = {
+            email: this.SignUp.email,
+            name: this.SignUp.name,
+            password: this.SignUp.password,
+            upline_id: this.SignUp.upline_id,
+          }
+          await this.$store.dispatch('CreateUser', data)
+          this.switchAreaType = true
+        } else {
+          this.$Message.error('註冊失敗')
+        }
+      })
+    },
+    reset () {
+      this.$refs['SignUp'].resetFields()
     },
   },
 }
