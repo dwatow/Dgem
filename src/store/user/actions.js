@@ -29,15 +29,19 @@ export default {
     return json
   },
   accountAndWallet ({ dispatch, commit }, { array }) {
-    let accountAndWallet = []
-    array.forEach(async user => {
-      const wallets = await dispatch('childAccountWallet', { idUser: user.id })
-      wallets.data.forEach(wallet => {
-        user[`gem${wallet.gem}`] = user.activated ? wallet.amount : ''
+    if (array.constructor.name === 'Array') {
+      let accountAndWallet = []
+      array.forEach(async user => {
+        const wallets = await dispatch('childAccountWallet', { idUser: user.id })
+        wallets.data.forEach(wallet => {
+          user[`gem${wallet.gem}`] = user.activated ? wallet.amount : ''
+        })
+        accountAndWallet.push(Object.assign({}, user))
       })
-      accountAndWallet.push(Object.assign({}, user))
-    })
-    return accountAndWallet
+      return accountAndWallet
+    } else {
+      return []
+    }
   },
   async whoAmI ({ dispatch, commit }) {
     const json = await dispatch('GET', `/api/users/me`)
