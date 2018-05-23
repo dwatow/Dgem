@@ -99,7 +99,7 @@ route.beforeEach(async (to, from, next) => {
   if (route.app.$store !== undefined) {
     switch (to.name) {
       case 'Activating':
-        await route.app.$store.dispatch('goToActiveDragonPage', { nextIndex: 1 })
+        // await route.app.$store.dispatch('goToActiveDragonPage', { nextIndex: 1 })
         route.app.$store.dispatch('goToActiveTreePage', { nextIndex: 1 })
         break
       case 'BuyDragon':
