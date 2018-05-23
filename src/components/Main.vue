@@ -55,7 +55,7 @@ min-height: 100vh;
                           <Icon type="person"></Icon>
                           個人中心
                       </template>
-                      <router-link to="notStart"><MenuItem name="2-1">基本資料</MenuItem></router-link>
+                      <router-link to="userProfile"><MenuItem name="2-1">基本資料</MenuItem></router-link>
                       <router-link to="ChildAccount"><MenuItem name="2-2">子母帳號</MenuItem></router-link>
                       <router-link to="notStart"><MenuItem v-show="isFunctionEnabel" name="2-3">更換手機</MenuItem></router-link>
                       <!-- <router-link to="notStart"><MenuItem name="2-4">夢想卡解涷</MenuItem></router-link> -->

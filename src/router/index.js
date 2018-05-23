@@ -13,6 +13,7 @@ import Group from '@/components/Group'
 import TransferUSD from '@/components/TransferUSD'
 // import QRcodeLogin from '@/components/QRcodeLogin'
 import Login from '@/components/Login'
+import userProfile from '@/components/userProfile'
 
 Vue.use(Router)
 
@@ -32,12 +33,17 @@ var route = new Router({
       path: '/Main',
       name: 'Main',
       component: Main,
-      redirect: '/Main/notStart',
+      redirect: '/Main/userProfile',
       children: [
         {
           path: 'notStart',
           name: 'notStart',
           component: notStart,
+        },
+        {
+          path: 'userProfile',
+          name: 'userProfile',
+          component: userProfile,
         },
         {
           path: 'Dragon',
@@ -98,8 +104,10 @@ route.beforeEach(async (to, from, next) => {
 
   if (route.app.$store !== undefined) {
     switch (to.name) {
+      case 'userProfile':
+        await route.app.$store.dispatch('goToActiveDragonPage', { nextIndex: 1 })
+        break
       case 'Activating':
-        // await route.app.$store.dispatch('goToActiveDragonPage', { nextIndex: 1 })
         route.app.$store.dispatch('goToActiveTreePage', { nextIndex: 1 })
         break
       case 'BuyDragon':
