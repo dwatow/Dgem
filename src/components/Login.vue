@@ -128,6 +128,7 @@ export default {
             })
             this.$router.push('/Main')
           } catch (e) {
+            console.log(e)
             this.$Message.error('帳號密碼不匹配')
           }
         } else {

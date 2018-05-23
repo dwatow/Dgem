@@ -1,9 +1,9 @@
 <template lang="html">
   <div>
-    <!-- <h1>夢寶龍</h1>
+    <h1>夢寶龍</h1>
     <Page :total="pagingDragon.total" :page-size="pagingDragon.pre_page" simple size="small" @on-change="changeDragonPage($event)"></Page>
     <Table stripe :columns="columnsDragon" :data="dragon"></Table>
-    <h1>夢寶樹</h1> -->
+    <h1>夢寶樹</h1>
     <Page :total="pagingTree.total" :page-size="pagingTree.pre_page" simple size="small" @on-change="changeTreePage($event)"></Page>
     <Table stripe :columns="columnsTree" :data="tree"></Table>
   </div>
@@ -13,23 +13,23 @@
 export default {
   data () {
     return {
-      // columnsDragon: [
-      //   {
-      //     title: '夢寶龍的擁有者',
-      //     key: 'owner_name',
-      //     minWidth: 150,
-      //   },
-      //   {
-      //     title: '夢寶龍激活對象',
-      //     key: 'user_name',
-      //     minWidth: 150,
-      //   },
-      //   {
-      //     title: '是否激活',
-      //     key: 'activated',
-      //     minWidth: 100,
-      //   },
-      // ],
+      columnsDragon: [
+        {
+          title: '夢寶龍的擁有者',
+          key: 'owner_name',
+          minWidth: 150,
+        },
+        {
+          title: '夢寶龍激活對象',
+          key: 'user_name',
+          minWidth: 150,
+        },
+        {
+          title: '是否激活',
+          key: 'activated',
+          minWidth: 100,
+        },
+      ],
       columnsTree: [
         {
           title: '夢寶樹的擁有者',
