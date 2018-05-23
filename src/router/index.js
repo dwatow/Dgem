@@ -85,9 +85,15 @@ var route = new Router({
 })
 
 route.beforeEach(async (to, from, next) => {
-  console.log(from.name, to.name)
   if (from.name === null && to.name !== 'Login' && (route.app.$store === undefined || route.app.$store.getters.token.length === 0)) {
     route.push('/Login')
+  }
+
+  if (from.name === 'Login') {
+    await route.app.$store.dispatch('whoAmI')
+    route.app.$store.dispatch(`allChildAccount`)
+    route.app.$store.dispatch('userDownLines', { idUser: route.app.$store.getters.myId })
+    route.app.$store.dispatch(`WalletPage`)
   }
 
   if (route.app.$store !== undefined) {
@@ -98,14 +104,18 @@ route.beforeEach(async (to, from, next) => {
         break
       case 'BuyDragon':
         await route.app.$store.dispatch(`goToAllDragonPage`, { nextIndex: 1 })
+        route.app.$store.dispatch(`WalletPage`)
         break
       case 'Tree':
       case 'Dragon':
       case 'ChildAccount':
-        await route.app.$store.dispatch(`goTo${to.name}Page`, { nextIndex: 1 })
+        if (!route.app.$store.getters.self.is_child_account) {
+          await route.app.$store.dispatch('whoAmI')
+          route.app.$store.dispatch(`allChildAccount`)
+          await route.app.$store.dispatch(`goTo${to.name}Page`, { nextIndex: 1 })
+        }
         route.app.$store.dispatch('userDownLines', { idUser: route.app.$store.getters.myId })
-        route.app.$store.dispatch(`allChildAccount`)
-        route.app.$store.dispatch('whoAmI')
+        route.app.$store.dispatch(`WalletPage`)
         break
       case 'Group':
         await route.app.$store.dispatch('userDownLines', { idUser: route.app.$store.getters.myId })
@@ -114,8 +124,6 @@ route.beforeEach(async (to, from, next) => {
       case 'TransferUSD':
         await route.app.$store.dispatch(`WalletPage`)
         break
-      // case 'QRcodeLogin':
-      //   await route.app.$store.dispatch('CreateQRcode')
     }
   }
   next()

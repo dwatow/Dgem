@@ -36,11 +36,11 @@ export default {
           key: 'owner_name',
           minWidth: 120,
         },
-        {
-          title: '夢寶樹激活對象',
-          key: 'user_name',
-          minWidth: 120,
-        },
+        // {
+        //   title: '夢寶樹激活對象',
+        //   key: 'user_name',
+        //   minWidth: 120,
+        // },
         {
           title: '夢寶樹剩餘開採數量',
           key: 'remain',
@@ -56,11 +56,11 @@ export default {
           key: 'progress',
           minWidth: 200,
         },
-        {
-          title: '激活',
-          key: 'activated',
-          minWidth: 120,
-        },
+        // {
+        //   title: '激活',
+        //   key: 'activated',
+        //   minWidth: 120,
+        // },
       ],
     }
   },

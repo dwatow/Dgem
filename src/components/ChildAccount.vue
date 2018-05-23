@@ -1,8 +1,8 @@
 <template lang="html">
   <div>
     <h1>子帳號</h1>
-    <Button type="error" @click="addChildAccount()">增加子帳號</Button>
-    <Button type="primary" @click="callbackMe()">一鍵召回</Button>
+    <Button type="error" @click="addChildAccount()" :disabled="isFunctionEnabel">增加子帳號</Button>
+    <!-- <Button type="primary" @click="callbackMe()">一鍵召回</Button> -->
     <Page :total="paging.total" :page-size="paging.pre_page" simple size="small" @on-change="changePage($event)"></Page>
     <Table stripe :columns="columns1" :data="childAccount"></Table>
   </div>
@@ -23,11 +23,11 @@ export default {
           key: 'name',
           minWidth: 150,
         },
-        {
-          title: '使用者信箱',
-          key: 'email',
-          minWidth: 270,
-        },
+        // {
+        //   title: '使用者信箱',
+        //   key: 'email',
+        //   minWidth: 270,
+        // },
         {
           title: this.$store.getters.gems[0],
           key: 'gem0',
@@ -56,15 +56,50 @@ export default {
         {
           title: '是否已激活',
           key: 'activated',
-          minWidth: 150,
+          width: 150,
+        },
+        {
+          title: '動作',
+          key: 'action',
+          width: 150,
+          align: 'center',
+          render: (h, params) => {
+            return h('div', [
+              h('Button', {
+                props: {
+                  type: this.isFunctionEnabel ? 'success' : 'primary',
+                  disabled: this.isFunctionEnabel && this.$store.getters.self.id !== params.row.id,
+                },
+                on: {
+                  click: (e) => {
+                    if (this.isFunctionEnabel) {
+                      this.$store.dispatch('whoAmI')
+                      params.row.action.label = '變身' // change label
+                    } else {
+                      const childAccount = this.$store.getters.childAccount.filter(item => item.id === params.row.id).shift()
+                      this.$store.commit('IAm', childAccount)
+                      params.row.action.label = '恢復身份' // change label
+                    }
+                  },
+                },
+              }, params.row.action.label),
+            ])
+          },
         },
       ],
     }
   },
   computed: {
+    isFunctionEnabel () {
+      // child account not enable
+      return this.$store.getters.self.is_child_account
+    },
     childAccount () {
       if (this.$store.getters.isExist('user', 'childAccount')) {
-        return this.$store.getters.childAccount
+        return this.$store.getters.childAccount.map(item => {
+          item.action = { label: '變身' }
+          return item
+        })
       } else {
         return []
       }

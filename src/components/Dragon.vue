@@ -25,13 +25,13 @@ export default {
           key: 'user_name',
           minWidth: 150,
         },
+        // {
+        //   title: '是否激活',
+        //   key: 'activated',
+        //   minWidth: 100,
+        // },
         {
-          title: '是否激活',
-          key: 'activated',
-          minWidth: 100,
-        },
-        {
-          title: '操作',
+          title: '選擇激活對象',
           key: 'operate',
           width: 200,
           render: (h, params) => {
