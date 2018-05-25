@@ -10,7 +10,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    host: 'http://dreamsgem-staging.ap-northeast-1.elasticbeanstalk.com',
+    host: 'https://staging.dreamsgemdragon.com',
     token: '',
     token_type: '', // Bearer
     qrCode: {},

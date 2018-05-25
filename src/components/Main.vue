@@ -44,12 +44,6 @@ min-height: 100vh;
         <Layout>
             <Sider breakpoint="md" collapsible :collapsed-width="78" v-model="isCollapsed">
                 <Menu active-name="2-1" theme="dark" width="auto" :class="menuitemClasses">
-                  <!-- <router-link to="">
-                    <MenuItem name="1-1">
-                      <Icon type="ios-navigate"></Icon>
-                      首頁
-                    </MenuItem>
-                  </router-link> -->
                   <Submenu name="2">
                       <template slot="title">
                           <Icon type="person"></Icon>
@@ -58,7 +52,7 @@ min-height: 100vh;
                       <router-link to="userProfile"><MenuItem name="2-1">基本資料</MenuItem></router-link>
                       <router-link to="ChildAccount"><MenuItem name="2-2">子母帳號</MenuItem></router-link>
                       <router-link to="notStart"><MenuItem v-show="isFunctionEnabel" name="2-3">更換手機</MenuItem></router-link>
-                      <!-- <router-link to="notStart"><MenuItem name="2-4">夢想卡解涷</MenuItem></router-link> -->
+                      <router-link to="notStart"><MenuItem v-show="false" name="2-4">夢想卡解涷</MenuItem></router-link>
                   </Submenu>
                   <Submenu name="3">
                       <template slot="title">

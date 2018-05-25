@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <button v-if="showButton" type="button" name="button" @click="test()">Demo 專用假裝掃 QR code 的登入</button>
+    <h1>行動裝置刷 QR code 登入</h1>
     <div id="placeHolder"></div>
   </div>
 </template>
@@ -39,7 +39,9 @@ export default {
         await this.$store.dispatch('LoginQRcode')
         this.$router.push('/Main')
       } catch (e) {
-        setTimeout(this.isLoginSuccess, 2000)
+        if (!this.$store.getters.isLogin) {
+          setTimeout(this.isLoginSuccess, 2000)
+        }
       }
     },
   },
