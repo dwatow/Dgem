@@ -35,22 +35,25 @@ export default {
           key: 'progress',
           minWidth: 200,
         },
-        // {
-        //   title: '激活',
-        //   key: 'activated',
-        //   minWidth: 120,
-        // },
+        {
+          title: '激活時間',
+          key: 'activated_at',
+          minWidth: 110,
+        },
       ],
     }
   },
   computed: {
     tree () {
       if (this.$store.getters.isExist('tree', 'activeTree')) {
-        return this.$store.getters.activeTree.map((item) => {
-          item.owner_name = (item.owner && item.owner.name) || '未指定'
-          item.user_name = (item.user && item.user.name) || '未指定'
-          return item
-        })
+        return this.$store.getters.activeTree
+        // .filter(item => item.remain === 0)
+          .map((item) => {
+            item.owner_name = (item.owner && item.owner.name) || '未指定'
+            item.user_name = (item.user && item.user.name) || '未指定'
+            item.status = (item.activated && item.activated_at) || '未激活'
+            return item
+          })
       } else {
         return []
       }

@@ -8,7 +8,7 @@ export default {
   async activateTree ({ dispatch, getters }, { idTree, data }) {
     const myId = getters.myId
     await dispatch('PUT', {
-      path: `/api/users/${myId}/trees/${idTree}`,
+      path: `/api/users/${myId}/trees/${idTree}?remain_available=1`,
       data,
     })
   },
