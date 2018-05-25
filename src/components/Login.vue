@@ -1,6 +1,8 @@
 <template lang="html">
   <div class="loginIn">
-    <i-switch v-model="switchAreaType"></i-switch> <span>{{ areaType[switchAreaType] }}</span>
+    <QRcodeLogin></QRcodeLogin>
+    <h2>帳號登入</h2>
+    <i-switch v-model="switchAreaType"></i-switch> <span>切換到 {{ areaType[switchAreaType] }}</span>
     <div v-show="!!switchAreaType" class="SignIn">
       <Form ref="SignIn" :model="SignIn" :rules="SignInRule" label-position="top">
         <FormItem label="User Name" prop="username">
@@ -41,7 +43,11 @@
 </template>
 
 <script>
+import QRcodeLogin from '@/components/QRcodeLogin.vue'
 export default {
+  components: {
+    QRcodeLogin,
+  },
   data () {
     const validatePass = (rule, value, callback) => {
       if (value === '') {
@@ -73,8 +79,8 @@ export default {
 
     return {
       areaType: {
-        true: 'SignIn', // 登入
-        false: 'SignUp', // 註冊
+        true: '帳號密碼登入', // 登入
+        false: '註冊新帳號', // 註冊
       },
       switchAreaType: true,
       SignIn: {
