@@ -22,14 +22,21 @@ export default {
   },
   async userDownLines ({ dispatch, commit }, { idUser }) {
     const json = await dispatch('GET', `/api/users/${idUser}`)
-    commit('setUserDownLines', json)
+    let downlinesWithTreeStatus = []
+    json.downlines.forEach(async item => {
+      const allTreeStatus = await dispatch('allTreeStatus', { id: item.id })
+      downlinesWithTreeStatus.push(Object.assign({}, item, allTreeStatus))
+    })
+    json.downlines = downlinesWithTreeStatus
+    const allTreeStatus = await dispatch('allTreeStatus', { id: json.id })
+    commit('setUserDownLines', Object.assign({}, json, allTreeStatus))
   },
   async childAccountWallet ({ dispatch, commit }, { idUser }) {
     const json = await dispatch('GET', `/api/users/${idUser}/wallets?page=1`)
     return json
   },
   accountAndWallet ({ dispatch, commit }, { array }) {
-    if (array.constructor.name === 'Array') {
+    if (typeof array !== 'undefined' && array.constructor.name === 'Array') {
       let accountAndWallet = []
       array.forEach(async user => {
         const wallets = await dispatch('childAccountWallet', { idUser: user.id })
@@ -45,6 +52,10 @@ export default {
   },
   async whoAmI ({ dispatch, commit }) {
     const json = await dispatch('GET', `/api/users/me`)
-    commit('IAm', json)
+    const allTreeStatus = await dispatch('allTreeStatus', { id: json.id })
+    commit('IAm', Object.assign({}, json, allTreeStatus))
+  },
+  allTreeStatus ({ dispatch }, { id }) {
+    return dispatch('GET', `/api/users/${id}/tree-stats`)
   },
 }

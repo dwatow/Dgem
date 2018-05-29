@@ -117,9 +117,8 @@ export default {
     dropdownItems () {
       let users = {}
       users[`${this.$store.getters.self.id}`] = this.$store.getters.self
-      this.$store.getters.allChildAccount.forEach(function (item) {
-        users[item.id] = item
-      })
+      this.$store.getters.allChildAccount.forEach(item => { users[item.id] = item })
+      console.log('user: ', users)
       return Object.values(users).filter(item => item.activated)
     },
   },
