@@ -11,7 +11,7 @@
         <FormItem label="Password" prop="password">
           <Input type="password" v-model="SignIn.password"></Input>
         </FormItem>
-        <FormItem>
+        <FormItem class="sumitArea">
           <Button @click="signIn()" type="primary">SignIn</Button>
         </FormItem>
       </Form>
@@ -33,7 +33,7 @@
         <FormItem label="Upline Id" prop="upline_id">
           <Input v-model="SignUp.upline_id"></Input>
         </FormItem>
-        <FormItem>
+        <FormItem class="sumitArea">
           <Button type="primary" @click="signUp()">SignUp</Button>
           <Button type="ghost" @click="reset()">Reset</Button>
         </FormItem>
@@ -165,21 +165,29 @@ export default {
 }
 </script>
 
-<style lang="css">
-.loginIn {
-  position: relative;
+<style lang="css" scoped>
+h2 {
+  text-align: center;
 }
 
-.loginIn > div {
-  width: 50vw;
+.loginIn {
+  position: relative;
+  max-width: 450px;
+  min-height: 1050px;
+  margin: auto;
+  padding: 0 10px;
 }
 
 .loginIn > div{
   padding: 20px 0;
 }
 
-.loginIn {
-  padding: 20px;
+.sumitArea {
+  text-align: right;
+}
+
+.ivu-btn {
+  color: #fff;
 }
 
 </style>

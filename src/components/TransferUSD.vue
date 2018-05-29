@@ -1,16 +1,16 @@
 <template lang="html">
   <div>
-    <div>
+    <div class="form">
       <h4>轉帳對象</h4>
       <Input class="input-id" v-model="id" :placeholder="`${myId}`" style="width: 300px" clearable></Input>
     </div>
     <currUsdWallet></currUsdWallet>
-    <div>
+    <div class="form">
       <h4>轉出額度</h4>
       <Input class="input-amount" v-model="amount" placeholder="0" style="width: 300px" clearable></Input>
     </div>
-    <div>
-      <Alert type="error">接下來的行為，將不可回溯!!</Alert>
+    <div class="form">
+      <Alert type="">接下來的行為，將不可回溯!!</Alert>
     </div>
       <Button type="error" @click="transferTo()">轉帳</Button>
       <Spin v-if="busy">轉帳中...</Spin>
@@ -71,5 +71,9 @@ export default {
 }
 .ivu-spin.ivu-spin-show-text, .ivu-alert.ivu-alert-error {
   display: inline-block;
+}
+
+.form {
+  margin: 10px 0;
 }
 </style>

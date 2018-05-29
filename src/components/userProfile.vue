@@ -1,8 +1,8 @@
 <template lang="html">
   <div>
-    <h1>夢寶龍</h1>
+    <h1>待激活夢寶龍 × {{ this.$store.getters.paging('dragon', 'activeDragon').total }}</h1>
     <Page :total="pagingDragon.total" :page-size="pagingDragon.pre_page" simple size="small" @on-change="changeDragonPage($event)"></Page>
-    <Table stripe :columns="columnsDragon" :data="dragon"></Table>
+    <Table :columns="columnsDragon" :data="dragon"></Table>
   </div>
 </template>
 

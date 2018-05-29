@@ -1,18 +1,16 @@
 <style>
 .layout{
-  border: 1px solid #d7dde4;
-  background: #f5f7f9;
+  /* border: 1px solid #d7dde4; */
+  /* background: #f5f7f9; */
   position: relative;
   border-radius: 4px;
   overflow: hidden;
 }
-.layout-header-bar{
-  background: #fff;
-  box-shadow: 0 1px 1px rgba(0,0,0,.1);
-}
+
 .ivu-layout-sider {
-min-height: 100vh;
+  min-height: 100vh;
 }
+
 .menu-item span{
   display: inline-block;
   overflow: hidden;
@@ -22,7 +20,7 @@ min-height: 100vh;
   vertical-align: bottom;
   transition: width .2s ease .2s;
 }
-.menu-item i{
+.menu-item i {
   transform: translateX(0px);
   transition: font-size .2s ease, transform .2s ease;
   vertical-align: middle;
@@ -37,6 +35,81 @@ min-height: 100vh;
   transition: font-size .2s ease .2s, transform .2s ease .2s;
   vertical-align: middle;
   font-size: 22px;
+}
+.ivu-layout-sider-children {
+  padding-top: 50px;
+  background-image: url("../../static/images/logo1.svg");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.ivu-layout-content {
+  background:
+  url("../../static/images/gems_decoration_L.png") no-repeat left 110%,
+  url("../../static/images/gems_decoration_R.png") no-repeat right bottom,
+  url("../../static/images/bg_lighting.png") no-repeat center bottom;
+  background-size: auto, auto, cover;
+  color: #f8f8f9;
+}
+
+.layout-header-bar.ivu-layout-header {
+  background-color: #923233;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active, .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active:hover {
+  background-color: #cc3536!important;
+}
+
+.ivu-table-wrapper {
+  padding-top: 20px;
+  border: none;
+  max-width: 750px;
+}
+
+thead {
+  background-image: linear-gradient(90deg, #FF8C8C 0%, rgba(148,54,54,0.90) 100%, black 100%);
+  color: #f8f8f9;
+}
+
+.ivu-table th {
+  background-color: transparent;
+}
+
+.ivu-table td {
+  background-color: #fffc;
+}
+
+.ivu-table, .ivu-table::after, .ivu-table::before,
+.ivu-table:after, .ivu-table:before,
+.ivu-table-header, .ivu-table-body {
+  background-color: transparent;
+}
+
+.ivu-page {
+  padding: 10px 0;
+}
+
+.ivu-page li {
+  background-color: rgba(148,54,54,0.90);
+}
+
+.ivu-btn-primary {
+  background-color: #d26e6d;
+  border-color: #d26e6d;
+  color: #fff;
+}
+
+.ivu-btn-error {
+  background-color: #fff;
+  border-color: #fff;
+  color: #000;
+}
+
+.ivu-layout-sider-zero-width-trigger {
+  top: 0;
 }
 </style>
 <template>
@@ -83,8 +156,10 @@ min-height: 100vh;
                 <div slot="trigger"></div>
             </Sider>
             <Layout>
-                <Header class="layout-header-bar"></Header>
-                <Content :style="{margin: '20px', background: '#fff', minHeight: '220px'}">
+                <Header class="layout-header-bar">
+                  <span>{{ userHeadUpDisplay }}</span>
+                </Header>
+                <Content :style="{padding: '20px', minHeight: '220px'}">
                   <keep-alive>
                     <router-view></router-view>
                   </keep-alive>
@@ -105,11 +180,14 @@ export default {
       // child account not show
       return !this.$store.getters.self.is_child_account
     },
-    menuitemClasses: function () {
+    menuitemClasses: () => {
       return [
         'menu-item',
         this.isCollapsed ? 'collapsed-menu' : '',
       ]
+    },
+    userHeadUpDisplay () {
+      return `${this.$store.getters.self.id} ${this.$store.getters.self.name}`
     },
   },
 }

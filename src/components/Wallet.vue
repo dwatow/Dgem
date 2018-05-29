@@ -13,6 +13,19 @@ export default {
           title: '寶石種類',
           key: 'gem_name',
           minWidth: 120,
+          render: (h, params) => {
+            return h('div', [
+              h('img', {
+                class: {
+                  'gems-shadow': true,
+                },
+                domProps: {
+                  src: `static/images/icon_gem${params.index}.svg`,
+                },
+              }),
+              h('span', params.row.gem_name),
+            ])
+          },
         },
         {
           title: '寶石種類',
@@ -38,4 +51,8 @@ export default {
 </script>
 
 <style lang="css">
+.gems-shadow {
+  -webkit-filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.7))
+}
 </style>

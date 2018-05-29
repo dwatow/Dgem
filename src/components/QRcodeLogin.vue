@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <h1>行動裝置刷 QR code 登入</h1>
-    <div id="placeHolder"></div>
+    <div id="placeHolder"><img id="qrcodeImg" src="" alt=""></div>
   </div>
 </template>
 
@@ -26,12 +26,10 @@ export default {
       var typeNumber = 0
       var errorCorrectionLevel = 'L'
       var qr = qrcode(typeNumber, errorCorrectionLevel)
-      // console.log(this.$store.getters.qrcode.length, this.$store.getters.qrcode)
 
       qr.addData(`${this.$store.getters.qrcode}`)
-      // qr.addData('this.$store.getters.qrcode')
       qr.make()
-      document.querySelector('#placeHolder').innerHTML = qr.createImgTag(10)
+      document.querySelector('#qrcodeImg').src = qr.createDataURL(10)
       this.showButton = true
     },
     async isLoginSuccess () {
@@ -48,5 +46,16 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+h1 {
+  text-align: center;
+}
+
+#placeHolder > img {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  max-height: 100vh;
+  margin: auto;
+}
 </style>
