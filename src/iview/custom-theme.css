@@ -1,0 +1,84 @@
+
+.ivu-form .ivu-form-item-label {
+  color: #f8f8f9;
+}
+
+.ivu-layout-sider {
+  min-height: 100vh;
+}
+
+.ivu-layout-sider-children {
+  padding-top: 50px;
+  background-image: url("../../static/images/logo1.svg");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.ivu-layout-content {
+  background:
+  url("../../static/images/gems_decoration_L.png") no-repeat left 110%,
+  url("../../static/images/gems_decoration_R.png") no-repeat right bottom,
+  url("../../static/images/bg_lighting.png") no-repeat center bottom;
+  background-size: auto, auto, cover;
+  color: #f8f8f9;
+}
+
+.layout-header-bar.ivu-layout-header {
+  background-color: #923233;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active, .ivu-menu-dark.ivu-menu-vertical .ivu-menu-submenu .ivu-menu-item-active:hover {
+  background-color: #cc3536!important;
+}
+
+.ivu-table-wrapper {
+  padding-top: 20px;
+  border: none;
+  max-width: 750px;
+}
+
+thead {
+  background-image: linear-gradient(90deg, #FF8C8C 0%, rgba(148,54,54,0.90) 100%, black 100%);
+  color: #f8f8f9;
+}
+
+.ivu-table th {
+  background-color: transparent;
+}
+
+.ivu-table td {
+  background-color: #fffc;
+}
+
+.ivu-table, .ivu-table::after, .ivu-table::before,
+.ivu-table:after, .ivu-table:before,
+.ivu-table-header, .ivu-table-body {
+  background-color: transparent;
+}
+
+.ivu-page {
+  padding: 10px 0;
+}
+
+.ivu-page li {
+  background-color: rgba(148,54,54,0.90);
+}
+
+.ivu-btn-primary {
+  background-color: #d26e6d;
+  border-color: #d26e6d;
+  color: #fff;
+}
+
+.ivu-btn-error {
+  background-color: #fff;
+  border-color: #fff;
+  color: #000;
+}
+
+.ivu-layout-sider-zero-width-trigger {
+  top: 0;
+}
