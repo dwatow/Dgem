@@ -23,8 +23,18 @@ export default {
           minWidth: 150,
         },
         {
-          title: '是否涷結',
-          key: 'frozen',
+          title: '總開採數',
+          key: 'total_capacity',
+          minWidth: 100,
+        },
+        {
+          title: '未開採',
+          key: 'total_remain',
+          minWidth: 100,
+        },
+        {
+          title: '擁有子帳號',
+          key: 'total_user_count',
           minWidth: 100,
         },
         {
@@ -51,5 +61,8 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+h1 {
+  margin-top: 20px;
+}
 </style>

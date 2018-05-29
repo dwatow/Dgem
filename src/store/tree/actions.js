@@ -8,7 +8,7 @@ export default {
   async activateTree ({ dispatch, getters }, { idTree, data }) {
     const myId = getters.myId
     await dispatch('PUT', {
-      path: `/api/users/${myId}/trees/${idTree}?remain_available=1`,
+      path: `/api/users/${myId}/trees/${idTree}`,
       data,
     })
   },
@@ -21,7 +21,7 @@ export default {
   async goToActiveTreePage ({ dispatch, commit, getters }, { nextIndex }) {
     nextIndex = nextIndex || 1
     const myId = getters.myId
-    const json = await dispatch('GET', `/api/users/${myId}/trees?user_id=${myId}&page=${nextIndex}`)
+    const json = await dispatch('GET', `/api/users/${myId}/trees?user_id=${myId}&page=${nextIndex}&?remain_available=1`)
     commit('setActiveTreeList', json)
   },
 }

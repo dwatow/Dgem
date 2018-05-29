@@ -6,6 +6,7 @@ export default {
     userDownLines: {},
     allChildAccount: {},
     mySelf: {},
+    allTreeStatus: {},
   },
   getters: {
     childAccount: (state) => state.childAccount.data,
@@ -13,6 +14,7 @@ export default {
     self: (state) => state.mySelf,
     allChildAccount: (state) => state.allChildAccount.data,
     myId: (state) => state.mySelf.id,
+    allTreeStatus: (state) => state.allTreeStatus,
   },
   mutations: {
     allChildAccount (state, json) {
@@ -26,6 +28,9 @@ export default {
     },
     IAm (state, json) {
       state.mySelf = json
+    },
+    allTreeStatus (state, json) {
+      state.allTreeStatus = json
     },
   },
   actions,
