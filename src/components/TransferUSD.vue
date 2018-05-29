@@ -10,7 +10,7 @@
       <Input class="input-amount" v-model="amount" placeholder="0" style="width: 300px" clearable></Input>
     </div>
     <div class="form">
-      <Alert type="">接下來的行為，將不可回溯!!</Alert>
+      <Alert type="error">接下來的行為，將不可回溯!!</Alert>
     </div>
       <Button type="error" @click="transferTo()">轉帳</Button>
       <Spin v-if="busy">轉帳中...</Spin>

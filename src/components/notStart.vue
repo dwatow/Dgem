@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="noStart">
-    <img src="https://fakeimg.pl/350x200/fff/000/?text=Comming soon...&font=bebas" alt="">
+    Comming soon...
   </div>
 </template>
 
@@ -13,15 +13,15 @@ export default {
 .noStart {
   position: relative;
   height: 80vh;
+  text-align: center;
+  font-size: 2.2rem;
 }
 
-.noStart img {
-  display: block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
+.noStart::after {
+  content: '';
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
 }
+
 </style>

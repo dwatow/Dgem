@@ -38,7 +38,7 @@ export default {
         {
           title: '激活時間',
           key: 'activated_at',
-          minWidth: 110,
+          minWidth: 200,
         },
       ],
     }
