@@ -99,7 +99,7 @@ export default {
         return this.$store.getters.childAccount.map(item => {
           item.action = { label: '變身' }
           return item
-        })
+        }).sort((a, b) => parseInt(a.id) - parseInt(b.id))
       } else {
         return []
       }

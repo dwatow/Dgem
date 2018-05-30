@@ -12,7 +12,7 @@ export default {
     childAccount: (state) => state.childAccount.data,
     downlines: (state) => state.userDownLines.downlines,
     self: (state) => state.mySelf,
-    allChildAccount: (state) => state.allChildAccount.data,
+    allChildAccount: (state) => state.allChildAccount,
     myId: (state) => state.mySelf.id,
     allTreeStatus: (state) => state.allTreeStatus,
   },

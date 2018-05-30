@@ -25,17 +25,22 @@ export default {
         {
           title: '總開採數',
           key: 'total_capacity',
-          minWidth: 100,
+          minWidth: 85,
         },
         {
           title: '未開採',
           key: 'total_remain',
-          minWidth: 100,
+          minWidth: 75,
         },
         {
-          title: '擁有子帳號',
+          title: '已開採',
+          key: 'total_processed',
+          minWidth: 75,
+        },
+        {
+          title: '傘下帳號數量',
           key: 'total_user_count',
-          minWidth: 100,
+          minWidth: 110,
         },
         {
           title: '是否子帳號',
@@ -45,17 +50,23 @@ export default {
         {
           title: '是否激活',
           key: 'activated',
-          minWidth: 100,
+          minWidth: 85,
         },
       ],
     }
   },
   computed: {
     self () {
-      return [this.$store.getters.self]
+      return [this.$store.getters.self].map(item => {
+        item.total_processed = item.total_capacity - item.total_remain
+        return item
+      })
     },
     downlines () {
-      return this.$store.getters.downlines
+      return this.$store.getters.downlines.map(item => {
+        item.total_processed = item.total_capacity - item.total_remain
+        return item
+      })
     },
   },
 }
