@@ -21,7 +21,7 @@ export default {
   async goToActiveTreePage ({ dispatch, commit, getters }, { nextIndex }) {
     nextIndex = nextIndex || 1
     const myId = getters.myId
-    const json = await dispatch('GET', `/api/users/${myId}/trees?user_id=${myId}&page=${nextIndex}&?remain_available=1`)
+    const json = await dispatch('GET', `/api/users/${myId}/trees?user_id=${myId}&page=${nextIndex}&remain_available=1`)
     commit('setActiveTreeList', json)
   },
 }

@@ -55,4 +55,8 @@ export default {
   -webkit-filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.7));
   filter: drop-shadow(10px 10px 7px rgba(0, 0, 0, 0.7))
 }
+
+.ivu-table-cell div img, .ivu-table-cell div span {
+  vertical-align: middle;
+}
 </style>
