@@ -61,11 +61,8 @@ export default {
   async EventsLog ({ dispatch, commit, getters }, { nextIndex, searchParams }) {
     nextIndex = nextIndex || 1
     const myId = getters.myId
-    if (typeof searchParams === 'undefined') {
-      searchParams = new URLSearchParams()
-      searchParams.append('page', `${nextIndex}`)
-      searchParams.append('operatable_type', `2`)
-    }
+    searchParams = searchParams || new URLSearchParams()
+    searchParams.append('page', `${nextIndex}`)
     const json = await dispatch('GET', `/api/users/${myId}/operation-histories?${searchParams.toString()}`)
     commit('eventsLog', json)
   },

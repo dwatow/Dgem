@@ -15,6 +15,7 @@ import TransferUSD from '@/components/TransferUSD'
 import Login from '@/components/Login'
 import UserProfile from '@/components/UserProfile'
 import EventsLog from '@/components/EventsLog'
+import WalletLog from '@/components/WalletLog'
 
 Vue.use(Router)
 
@@ -91,6 +92,11 @@ var route = new Router({
           name: 'EventsLog',
           component: EventsLog,
         },
+        {
+          path: 'WalletLog',
+          name: 'WalletLog',
+          component: WalletLog,
+        },
       ],
     },
   ],
@@ -109,6 +115,7 @@ route.beforeEach(async (to, from, next) => {
   }
 
   if (route.app.$store !== undefined) {
+    const searchParams = new URLSearchParams()
     switch (to.name) {
       case 'UserProfile':
         await route.app.$store.dispatch('goToActiveDragonPage', { nextIndex: 1 })
@@ -139,10 +146,13 @@ route.beforeEach(async (to, from, next) => {
         await route.app.$store.dispatch(`WalletPage`)
         break
       case 'EventsLog':
-        route.app.$store.dispatch(`allChildAccount`)
-        route.app.$store.dispatch('userDownLines', { idUser: route.app.$store.getters.myId })
+        searchParams.append('operatable_type', `2`) // dragon
+        await route.app.$store.dispatch('EventsLog', { nextIndex: 1, searchParams })
+        break
+      case 'WalletLog':
         route.app.$store.dispatch(`WalletPage`)
-        await route.app.$store.dispatch('EventsLog', { nextIndex: 1 })
+        searchParams.append('operatable_type', `1`) // wallet
+        await route.app.$store.dispatch('EventsLog', { nextIndex: 1, searchParams })
         break
     }
   }
