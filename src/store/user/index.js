@@ -7,8 +7,10 @@ export default {
     allChildAccount: {},
     mySelf: {},
     allTreeStatus: {},
+    eventsLog: {},
   },
   getters: {
+    eventsLog: (state) => state.eventsLog.data,
     childAccount: (state) => state.childAccount.data,
     downlines: (state) => state.userDownLines.downlines,
     self: (state) => state.mySelf,
@@ -17,21 +19,12 @@ export default {
     allTreeStatus: (state) => state.allTreeStatus,
   },
   mutations: {
-    allChildAccount (state, json) {
-      state.allChildAccount = json
-    },
-    setChildAccount (state, json) {
-      state.childAccount = json
-    },
-    setUserDownLines (state, json) {
-      state.userDownLines = json
-    },
-    IAm (state, json) {
-      state.mySelf = json
-    },
-    allTreeStatus (state, json) {
-      state.allTreeStatus = json
-    },
+    IAm: (state, json) => { state.mySelf = json },
+    allChildAccount: (state, json) => { state.allChildAccount = json },
+    setChildAccount: (state, json) => { state.childAccount = json },
+    setUserDownLines: (state, json) => { state.userDownLines = json },
+    allTreeStatus: (state, json) => { state.allTreeStatus = json },
+    eventsLog: (state, json) => { state.eventsLog = json },
   },
   actions,
 }

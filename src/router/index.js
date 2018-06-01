@@ -14,6 +14,7 @@ import TransferUSD from '@/components/TransferUSD'
 // import QRcodeLogin from '@/components/QRcodeLogin'
 import Login from '@/components/Login'
 import UserProfile from '@/components/UserProfile'
+import EventsLog from '@/components/EventsLog'
 
 Vue.use(Router)
 
@@ -85,6 +86,11 @@ var route = new Router({
           name: 'Group',
           component: Group,
         },
+        {
+          path: 'EventsLog',
+          name: 'EventsLog',
+          component: EventsLog,
+        },
       ],
     },
   ],
@@ -131,6 +137,9 @@ route.beforeEach(async (to, from, next) => {
       case 'Wallet':
       case 'TransferUSD':
         await route.app.$store.dispatch(`WalletPage`)
+        break
+      case 'EventsLog':
+        await route.app.$store.dispatch('EventsLog', { nextIndex: 1 })
         break
     }
   }
