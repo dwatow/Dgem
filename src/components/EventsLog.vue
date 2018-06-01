@@ -1,11 +1,12 @@
 <template lang="html">
   <div>
-    <Select v-model="currOperatable" style="width:200px">
-        <Option v-for="item in operatable_type" :value="item" :key="item">{{ item }}</Option>
-    </Select>
     <Select v-model="currAction" style="width:200px">
-        <Option v-for="item in actionType" :value="item" :key="item">{{ item }}</Option>
+      <Option v-for="(item, index) in actionType" :value="index" :key="index">{{ item }}</Option>
     </Select>
+    <Select v-model="currOperatable" style="width:200px">
+        <Option v-for="(item, index) in operatable_type" :value="index" :key="index">{{ item }}</Option>
+    </Select>
+    <Button type="primary" @click="search()">查詢</Button>
     <Page :total="paging.total" :page-size="paging.pre_page" simple size="small" @on-change="changePage($event)"></Page>
     <Table stripe :columns="columns1" :data="eventsLog"></Table>
   </div>
@@ -74,6 +75,13 @@ export default {
   methods: {
     async changePage (nextIndex) {
       const searchParams = new URLSearchParams()
+      await this.$store.dispatch('EventsLog', { nextIndex, searchParams })
+    },
+    async search () {
+      const searchParams = new URLSearchParams()
+      searchParams.append('operatable_type', this.currOperatable)
+      searchParams.append('type', this.currAction)
+      const nextIndex = this.$store.getters.paging('tree', 'tree').curr_page
       await this.$store.dispatch('EventsLog', { nextIndex, searchParams })
     },
   },
