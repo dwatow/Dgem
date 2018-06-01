@@ -139,6 +139,9 @@ route.beforeEach(async (to, from, next) => {
         await route.app.$store.dispatch(`WalletPage`)
         break
       case 'EventsLog':
+        route.app.$store.dispatch(`allChildAccount`)
+        route.app.$store.dispatch('userDownLines', { idUser: route.app.$store.getters.myId })
+        route.app.$store.dispatch(`WalletPage`)
         await route.app.$store.dispatch('EventsLog', { nextIndex: 1 })
         break
     }
