@@ -58,4 +58,12 @@ export default {
   allTreeStatus ({ dispatch }, { id }) {
     return dispatch('GET', `/api/users/${id}/tree-stats`)
   },
+  async EventsLog ({ dispatch, commit, getters }, { nextIndex, searchParams }) {
+    nextIndex = nextIndex || 1
+    const myId = getters.myId
+    searchParams = searchParams || new URLSearchParams()
+    searchParams.append('page', `${nextIndex}`)
+    const json = await dispatch('GET', `/api/users/${myId}/operation-histories?${searchParams.toString()}`)
+    commit('eventsLog', json)
+  },
 }
