@@ -4,7 +4,7 @@
       <h4>轉帳對象</h4>
       <Input class="input-id" v-model="id" :placeholder="`${myId}`" style="width: 300px" clearable></Input>
     </div>
-    <currUsdWallet></currUsdWallet>
+    <CurrUsdWallet></CurrUsdWallet>
     <div class="form">
       <h4>轉出額度</h4>
       <Input class="input-amount" v-model="amount" placeholder="0" style="width: 300px" clearable></Input>
@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import currUsdWallet from '@/components/currUsdWallet.vue'
+import CurrUsdWallet from '@/components/CurrUsdWallet.vue'
 export default {
   components: {
-    currUsdWallet,
+    CurrUsdWallet,
   },
   data () {
     return {

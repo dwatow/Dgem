@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <currUsdWallet></currUsdWallet>
+    <CurrUsdWallet></CurrUsdWallet>
     <Button type="error" @click="buy()">買一顆全新夢寶樹</Button>
     <Page :total="paging.total" :page-size="paging.pre_page" simple size="small" @on-change="changePage($event)"></Page>
     <Table stripe :columns="columns1" :data="tree"></Table>
@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import currUsdWallet from '@/components/currUsdWallet.vue'
+import CurrUsdWallet from '@/components/CurrUsdWallet.vue'
 export default {
   components: {
-    currUsdWallet,
+    CurrUsdWallet,
   },
   data () {
     return {

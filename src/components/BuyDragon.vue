@@ -1,16 +1,16 @@
 <template lang="html">
   <div>
-    <currUsdWallet></currUsdWallet>
+    <CurrUsdWallet></CurrUsdWallet>
     <Page :total="paging.total" :page-size="paging.pre_page" simple size="small" @on-change="changePage($event)"></Page>
     <Table stripe :columns="columns1" :data="allDragon"></Table>
   </div>
 </template>
 
 <script>
-import currUsdWallet from '@/components/currUsdWallet.vue'
+import CurrUsdWallet from '@/components/CurrUsdWallet.vue'
 export default {
   components: {
-    currUsdWallet,
+    CurrUsdWallet,
   },
   data () {
     return {
