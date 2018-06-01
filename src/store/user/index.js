@@ -21,9 +21,12 @@ export default {
       state.allChildAccount.forEach(item => {
         users[item.id] = item
       })
-      state.userDownLines.downlines.forEach(item => {
-        users[item.id] = item
-      })
+
+      if (!!state.userDownLines && !!state.userDownLines.downlines) {
+        state.userDownLines.downlines.forEach(item => {
+          users[item.id] = item
+        })
+      }
       return Object.values(users).filter(item => !item.activated)
     },
   },
