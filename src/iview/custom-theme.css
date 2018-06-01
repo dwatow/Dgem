@@ -82,3 +82,11 @@ thead {
 .ivu-layout-sider-zero-width-trigger {
   top: 0;
 }
+
+.ivu-page li a {
+  color: #ccc;
+}
+
+.ivu-page-prev.ivu-page-disabled a {
+  color: #666;
+}
