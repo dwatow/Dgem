@@ -34,6 +34,10 @@
   background-color: #cc3536!important;
 }
 
+.ivu-table.ivu-table-stripe {
+  position: relative;
+}
+
 .ivu-table-wrapper {
   padding-top: 20px;
   border: none;

@@ -114,15 +114,7 @@ export default {
       return this.$store.getters.paging('dragon', 'dragon')
     },
     dropdownItems () {
-      let users = {}
-      users[`${this.$store.getters.self.id}`] = this.$store.getters.self
-      this.$store.getters.allChildAccount.forEach(item => {
-        users[item.id] = item
-      })
-      this.$store.getters.downlines.forEach(item => {
-        users[item.id] = item
-      })
-      return Object.values(users).filter(item => !item.activated)
+      return this.$store.getters.allUsers
     },
   },
   methods: {
