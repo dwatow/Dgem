@@ -1,7 +1,5 @@
 <style>
 .layout{
-  /* border: 1px solid #d7dde4; */
-  /* background: #f5f7f9; */
   position: relative;
   border-radius: 4px;
   overflow: hidden;
@@ -46,6 +44,7 @@
                       <router-link to="userProfile"><MenuItem name="2-1">基本資料</MenuItem></router-link>
                       <router-link to="ChildAccount"><MenuItem name="2-2">子母帳號</MenuItem></router-link>
                       <router-link to="notStart"><MenuItem v-show="isFunctionEnabel" name="2-3">更換手機</MenuItem></router-link>
+                      <router-link to="notStart"><MenuItem name="2-5">帳號明細查詢</MenuItem></router-link>
                       <router-link to="notStart"><MenuItem v-show="false" name="2-4">夢想卡解涷</MenuItem></router-link>
                   </Submenu>
                   <Submenu name="3">

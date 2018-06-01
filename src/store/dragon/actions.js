@@ -1,4 +1,3 @@
-// import axios from 'axios'
 export default {
   async buyDragon ({ dispatch }, { idDragon, data }) {
     await dispatch('PUT', {

@@ -1,4 +1,3 @@
-// import axios from 'axios'
 export default {
   async buyTree ({ dispatch, getters }, { data }) {
     const myId = getters.myId
