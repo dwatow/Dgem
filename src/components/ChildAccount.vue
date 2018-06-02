@@ -61,7 +61,7 @@ export default {
         {
           title: '動作',
           key: 'action',
-          width: 150,
+          width: 85,
           fixed: 'right',
           align: 'center',
           render: (h, params) => {

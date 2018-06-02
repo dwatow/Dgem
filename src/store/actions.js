@@ -69,7 +69,11 @@ export default {
           'Content-Type': 'application/json',
         },
       })
-    return response
+    if (response.status === 200) {
+      return response.data
+    } else {
+      return response
+    }
   },
   async PUT ({ getters }, { path, data }) {
     const response = await axios.put(`${getters.host}${path}`,
@@ -79,6 +83,10 @@ export default {
           'Content-Type': 'application/json',
         },
       })
-    return response
+    if (response.status === 200) {
+      return response.data
+    } else {
+      return response
+    }
   },
 }

@@ -44,7 +44,6 @@
                       <router-link to="userProfile"><MenuItem name="2-1">基本資料</MenuItem></router-link>
                       <router-link to="ChildAccount"><MenuItem name="2-2">子母帳號</MenuItem></router-link>
                       <router-link to="notStart"><MenuItem v-show="isFunctionEnabel" name="2-3">更換手機</MenuItem></router-link>
-                      <router-link to="EventsLog"><MenuItem name="2-5">帳號明細查詢</MenuItem></router-link>
                       <router-link to="notStart"><MenuItem v-show="false" name="2-4">夢想卡解涷</MenuItem></router-link>
                   </Submenu>
                   <Submenu name="3">
@@ -55,7 +54,8 @@
                       <router-link to="BuyDragon"><MenuItem v-show="isFunctionEnabel" name="3-1">夢寶龍購買</MenuItem></router-link>
                       <router-link to="Dragon"><MenuItem v-show="isFunctionEnabel" name="3-2">夢寶龍激活</MenuItem></router-link>
                       <router-link to="Tree"><MenuItem v-show="isFunctionEnabel" name="3-3">夢寶樹激活</MenuItem></router-link>
-                      <router-link to="Activating"><MenuItem name="3-4">開採狀況</MenuItem></router-link>
+                      <router-link to="EventsLog"><MenuItem name="3-4">操作明細查詢</MenuItem></router-link>
+                      <router-link to="Activating"><MenuItem name="3-5">開採狀況</MenuItem></router-link>
                   </Submenu>
                   <Submenu name="4">
                       <template slot="title">

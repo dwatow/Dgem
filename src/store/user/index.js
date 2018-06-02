@@ -10,6 +10,7 @@ export default {
   },
   getters: {
     myId: (state) => state.mySelf.id,
+    myName: (state) => state.mySelf.name,
     eventsLog: (state) => state.eventsLog.data,
     childAccount: (state) => state.childAccount.data,
     self: (state) => state.mySelf,
@@ -31,6 +32,7 @@ export default {
     },
   },
   mutations: {
+    myName: (state, name) => { state.mySelf.name = name },
     IAm: (state, json) => { state.mySelf = json },
     allChildAccount: (state, json) => { state.allChildAccount = json },
     setChildAccount: (state, json) => { state.childAccount = json },

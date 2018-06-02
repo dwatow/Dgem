@@ -18,8 +18,8 @@ export default {
           width: 50,
         },
         {
-          title: 'e-mail',
-          key: 'email',
+          title: 'name',
+          key: 'name',
           minWidth: 150,
         },
         {

@@ -59,7 +59,6 @@ export default {
   computed: {
     eventsLog () {
       return this.$store.getters.eventsLog.map(item => {
-        console.log(item)
         item.action = `${this.actionType[item.type]}`
         item.item = `${this.$store.getters.gems[item.result_data.gem]}`
         item.amount = item.result_data.amount
