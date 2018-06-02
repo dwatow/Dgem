@@ -11,29 +11,29 @@ export default {
     return {
       columnsTree: [
         {
-          title: '夢寶樹的擁有者',
+          title: '擁有者',
           key: 'owner_name',
           minWidth: 120,
         },
         // {
-        //   title: '夢寶樹激活對象',
+        //   title: '激活對象',
         //   key: 'user_name',
         //   minWidth: 120,
         // },
         {
-          title: '夢寶樹剩餘開採數量',
+          title: '剩餘開採數量',
           key: 'remain',
-          minWidth: 170,
+          minWidth: 120,
         },
         {
-          title: '夢寶樹原始開採數量',
+          title: '原始開採數量',
           key: 'capacity',
-          minWidth: 170,
+          minWidth: 120,
         },
         {
-          title: '夢寶樹目前開採進度',
+          title: '目前開採進度',
           key: 'progress',
-          minWidth: 200,
+          minWidth: 120,
         },
         {
           title: '激活時間',

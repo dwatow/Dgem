@@ -1,9 +1,8 @@
 <template lang="html">
   <div>
-    <Select v-model="currOperatableId" style="width:200px" placeholder="請選擇物品 Id">
+    <Select v-model="currOperatableId" style="width:200px" placeholder="請選擇物品 Id" @on-change="changeType()">
         <Option v-for="item in ids" :value="item.id" :key="item.id">{{ item.title }}</Option>
     </Select>
-    <Button type="primary" @click="search()">查詢</Button>
     <Page :total="paging.total" :page-size="paging.pre_page" simple size="small" @on-change="changePage($event)"></Page>
     <Table stripe :columns="columns1" :data="eventsLog"></Table>
   </div>
@@ -13,7 +12,7 @@
 export default {
   data () {
     return {
-      currOperatableId: '',
+      currOperatableId: 1,
       actionType: [
         '初始化（建立）',
         '修改',
@@ -35,7 +34,7 @@ export default {
         {
           title: '操作行為',
           key: 'action',
-          width: 100,
+          width: 120,
         },
         {
           title: '物品',
@@ -43,7 +42,7 @@ export default {
           width: 100,
         },
         {
-          title: '金額',
+          title: '餘額',
           key: 'amount',
           align: 'right',
           width: 150,
@@ -80,7 +79,7 @@ export default {
       const searchParams = new URLSearchParams()
       await this.$store.dispatch('EventsLog', { nextIndex, searchParams })
     },
-    async search () {
+    async changeType () {
       const searchParams = new URLSearchParams()
       searchParams.append('operatable_type', `1`)
       if (this.currOperatableId) {
