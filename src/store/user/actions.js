@@ -55,6 +55,16 @@ export default {
     const allTreeStatus = await dispatch('allTreeStatus', { id: json.id })
     commit('IAm', Object.assign({}, json, allTreeStatus))
   },
+  async modifyMyName ({ dispatch, commit, getters }) {
+    const myId = getters.myId
+    const json = await dispatch('PUT', {
+      path: `/api/users/${myId}`,
+      data: {
+        name: getters.myName,
+      },
+    })
+    commit('myName', json.name)
+  },
   allTreeStatus ({ dispatch }, { id }) {
     return dispatch('GET', `/api/users/${id}/tree-stats`)
   },

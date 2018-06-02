@@ -94,3 +94,14 @@ thead {
 .ivu-page-prev.ivu-page-disabled a {
   color: #666;
 }
+
+.userProfile .readyOnly > input {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+}
+
+.userProfile .ivu-switch.ivu-switch-checked {
+  background-color: rgba(148,54,54,0.90);
+  border-color: rgba(148,54,54,0.90);
+}
