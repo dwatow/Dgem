@@ -12,9 +12,10 @@ export default {
     json.data = await dispatch('accountAndWallet', { array: json.data })
     commit('setChildAccount', json)
   },
-  async addChildAccount ({ dispatch, commit, getters }) {
+  async addChildAccount ({ dispatch, commit, getters }, { data }) {
     const myId = getters.myId
     const json = await dispatch('POST', {
+      data,
       path: `/api/users/${myId}/child-accounts`,
     })
     json.data = await dispatch('accountAndWallet', { array: json.data })
