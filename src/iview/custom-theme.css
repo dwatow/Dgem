@@ -63,6 +63,10 @@ thead {
   background-color: transparent;
 }
 
+.ivu-table {
+  overflow: visible;
+}
+
 .ivu-page {
   padding: 10px 0;
 }
