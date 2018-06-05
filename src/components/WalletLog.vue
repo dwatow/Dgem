@@ -12,7 +12,7 @@
 export default {
   data () {
     return {
-      currOperatableId: 1,
+      selectedGem: 4,
       actionType: [
         '初始化（建立）',
         '修改',
@@ -78,7 +78,6 @@ export default {
         item.action = `${this.actionType[item.type]}`
         item.item = `${this.$store.getters.gems[item.result_data.gem]}`
         item.amount = item.result_data.amount
-        console.log((item.delta !== null) ? `${item.delta.amount}` : '0')
         item.delta_amount = (item.delta !== null) ? `${item.delta.amount}` : '0'
         item.descript = this.subType[item.sub_type]
         return item
@@ -93,10 +92,26 @@ export default {
         return item
       })
     },
+    currOperatableId: {
+      get () {
+        return this.$store.getters.wallet.filter((item) => {
+          return item.gem === this.selectedGem
+        }).shift().id
+      },
+      set (id) {
+        this.selectedGem = this.$store.getters.wallet.filter((item) => {
+          return item.id === id
+        }).shift().gem
+      },
+    },
   },
   methods: {
     async changePage (nextIndex) {
       const searchParams = new URLSearchParams()
+      searchParams.append('operatable_type', `1`)
+      if (this.currOperatableId) {
+        searchParams.append('operatable_id', this.currOperatableId)
+      }
       await this.$store.dispatch('EventsLog', { nextIndex, searchParams })
     },
     async changeType () {
