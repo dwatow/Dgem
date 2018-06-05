@@ -20,6 +20,12 @@ export default {
         '召回（錢包）',
         '轉賬（美金）',
       ],
+      subType: [
+        '推薦獎勵',
+        '激活龍獎勵',
+        '激活樹獎勵',
+        '結算獎勵',
+      ],
       columns1: [
         {
           title: '時間',
@@ -48,9 +54,20 @@ export default {
           width: 150,
         },
         {
+          title: '金額',
+          key: 'delta_amount',
+          align: 'right',
+          width: 150,
+        },
+        {
           title: '接受人 ID',
           key: 'user_id',
           minWidth: 100,
+        },
+        {
+          title: '操作備註',
+          key: 'descript',
+          width: 200,
         },
       ],
     }
@@ -61,6 +78,9 @@ export default {
         item.action = `${this.actionType[item.type]}`
         item.item = `${this.$store.getters.gems[item.result_data.gem]}`
         item.amount = item.result_data.amount
+        console.log((item.delta !== null) ? `${item.delta.amount}` : '0')
+        item.delta_amount = (item.delta !== null) ? `${item.delta.amount}` : '0'
+        item.descript = this.subType[item.sub_type]
         return item
       })
     },
