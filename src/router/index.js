@@ -150,8 +150,11 @@ route.beforeEach(async (to, from, next) => {
         await route.app.$store.dispatch('EventsLog', { nextIndex: 1, searchParams })
         break
       case 'WalletLog':
-        route.app.$store.dispatch(`WalletPage`)
+        await route.app.$store.dispatch(`WalletPage`)
         searchParams.append('operatable_type', `1`) // wallet
+        searchParams.append('operatable_id', route.app.$store.getters.wallet.filter((item) => {
+          return item.gem === 4
+        }).shift().id)
         await route.app.$store.dispatch('EventsLog', { nextIndex: 1, searchParams })
         break
     }
