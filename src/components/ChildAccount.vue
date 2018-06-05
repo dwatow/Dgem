@@ -1,6 +1,7 @@
 <template lang="html">
   <div>
     <h1>子帳號</h1>
+    <label for="motherId">指定母帳號: </label><Input id="motherId" v-model="motherId" placeholder="0" style="width: 50px"></Input>
     <Button type="error" @click="addChildAccount()" :disabled="isChildAccount">增加子帳號</Button>
     <!-- <Button type="primary" @click="callbackMe()">一鍵召回</Button> -->
     <Page :total="paging.total" :page-size="paging.pre_page" simple size="small" @on-change="changePage($event)"></Page>
@@ -12,6 +13,7 @@
 export default {
   data () {
     return {
+      motherId: '',
       columns1: [
         {
           title: 'ID',
@@ -116,7 +118,8 @@ export default {
     },
     async addChildAccount () {
       const nextIndex = this.$store.getters.paging('user', 'childAccount').curr_page
-      await this.$store.dispatch('addChildAccount')
+      const data = { upline_id: this.motherId }
+      await this.$store.dispatch('addChildAccount', { data })
       this.$store.dispatch('goToChildAccountPage', { nextIndex })
     },
   },
