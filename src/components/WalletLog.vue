@@ -120,7 +120,7 @@ export default {
       if (this.currOperatableId) {
         searchParams.append('operatable_id', this.currOperatableId)
       }
-      const nextIndex = this.$store.getters.paging('user', 'eventsLog').curr_page
+      const nextIndex = '1'// this.$store.getters.paging('user', 'eventsLog').curr_page
       await this.$store.dispatch('EventsLog', { nextIndex, searchParams })
     },
   },

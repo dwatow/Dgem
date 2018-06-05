@@ -137,7 +137,7 @@ export default {
     async changeType () {
       const searchParams = new URLSearchParams()
       searchParams.append('operatable_type', this.currOperatable)
-      const nextIndex = this.$store.getters.paging('user', 'eventsLog').curr_page
+      const nextIndex = `1` // this.$store.getters.paging('user', 'eventsLog').curr_page
       await this.$store.dispatch('EventsLog', { nextIndex, searchParams })
     },
   },
