@@ -11,7 +11,7 @@ export default {
   getters: {
     myId: (state) => state.mySelf.id,
     myName: (state) => state.mySelf.name,
-    eventsLog: (state) => state.eventsLog.data,
+    eventsLog: (state) => state.eventsLog,
     childAccount: (state) => state.childAccount.data,
     self: (state) => state.mySelf,
     downlines: (state) => state.userDownLines.downlines,
