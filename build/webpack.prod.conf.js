@@ -31,7 +31,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env,
-      DOMAIN: 'https://staging.dreamsgemdragon.com',
+      DOMAIN: '"https://staging.dreamsgemdragon.com"',
     }),
     new UglifyJsPlugin({
       uglifyOptions: {
