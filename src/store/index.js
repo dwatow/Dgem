@@ -10,7 +10,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    host: 'https://staging.dreamsgemdragon.com',
+    host: DOMAIN, // eslint-disable-line
     token: '',
     token_type: '', // Bearer
     qrCode: {},
