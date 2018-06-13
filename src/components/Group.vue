@@ -15,7 +15,7 @@ export default {
         {
           title: 'ID',
           key: 'id',
-          width: 50,
+          width: 100,
         },
         {
           title: 'name',
@@ -44,12 +44,12 @@ export default {
         },
         {
           title: '是否子帳號',
-          key: 'activated',
+          key: 'isChild',
           minWidth: 100,
         },
         {
           title: '是否激活',
-          key: 'activated',
+          key: 'isActivat',
           minWidth: 85,
         },
       ],
@@ -59,12 +59,16 @@ export default {
     self () {
       return [this.$store.getters.self].map(item => {
         item.total_processed = item.total_capacity - item.total_remain
+        item.isActivat = item.activated ? '是' : '否'
+        item.isChild = item.is_child_account ? '是' : '否'
         return item
       })
     },
     downlines () {
       return this.$store.getters.downlines.map(item => {
         item.total_processed = item.total_capacity - item.total_remain
+        item.isActivat = item.activated ? '是' : '否'
+        item.isChild = item.is_child_account ? '是' : '否'
         return item
       })
     },

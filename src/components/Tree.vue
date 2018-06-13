@@ -127,7 +127,7 @@ export default {
     },
     async buy () {
       const data = {
-        'user_id': '1',
+        'user_id': this.$store.getters.myId,
       }
       const nextIndex = this.$store.getters.paging('tree', 'tree').curr_page
       await this.$store.dispatch('buyTree', { data })

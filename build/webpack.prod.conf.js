@@ -32,6 +32,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': env,
       DOMAIN: '"https://staging.dreamsgemdragon.com"',
+      SECRET: '"vZ08ruaFRkqnDgzWJhnUImmIBtNON19YAzdKWSRF"',
     }),
     new UglifyJsPlugin({
       uglifyOptions: {

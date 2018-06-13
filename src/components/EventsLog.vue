@@ -113,7 +113,7 @@ export default {
   },
   computed: {
     eventsLog () {
-      return this.$store.getters.eventsLog.map(item => {
+      return this.$store.getters.eventsLog.data.map(item => {
         item.action = `${this.actionType[item.type]}`
         item.item = `${this.operatable_type[`${item.operatable_type}`]} ${item.operatable_id}`
         item.remain = item.result_data.remain

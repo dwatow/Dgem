@@ -14,12 +14,14 @@ export default new Vuex.Store({
     token: '',
     token_type: '', // Bearer
     qrCode: {},
+    secret: SECRET, // eslint-disable-line
   },
   getters: {
     isExist: (state) => (module, collection) => !!state[module][collection].data && state[module][collection].data.constructor.name === 'Array',
     isLogin: (state) => state.token.length !== 0,
     token: (state) => state.token,
     host: (state) => state.host,
+    secret: (state) => state.secret,
     // query: (state) => (module) =>
     paging: (state) => (module, collection) => {
       return {

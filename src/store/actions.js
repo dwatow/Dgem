@@ -16,7 +16,7 @@ export default {
       username: name,
       password,
       'client_id': '2',
-      'client_secret': 'vZ08ruaFRkqnDgzWJhnUImmIBtNON19YAzdKWSRF',
+      'client_secret': `${getters.secret}`,
     }
 
     const response = await axios.post(`${getters.host}/oauth/token`, data, { headers })
@@ -31,7 +31,7 @@ export default {
       'id': `${getters.qrcodeUser.id}`,
       'password': `${getters.qrcodeUser.password}`,
       'client_id': '2',
-      'client_secret': 'vZ08ruaFRkqnDgzWJhnUImmIBtNON19YAzdKWSRF',
+      'client_secret': `${getters.secret}`,
     }
 
     const response = await axios.post(`${getters.host}/oauth/token`, data, { headers })
