@@ -18,7 +18,7 @@ export default {
         {
           title: 'ID',
           key: 'id',
-          width: 50,
+          width: 100,
         },
         {
           title: '使用者名稱',
@@ -52,12 +52,12 @@ export default {
         },
         {
           title: '是否被凍結帳號',
-          key: 'frozen',
+          key: 'isFrozen',
           minWidth: 150,
         },
         {
           title: '是否已激活',
-          key: 'activated',
+          key: 'isActivat',
           width: 150,
         },
         {
@@ -101,6 +101,8 @@ export default {
     childAccount () {
       if (this.$store.getters.isExist('user', 'childAccount')) {
         return this.$store.getters.childAccount.map(item => {
+          item.isFrozen = item.frozen ? '是' : '否'
+          item.isActivat = item.activated ? '是' : '否'
           item.action = { label: '變身' }
           return item
         }).sort((a, b) => parseInt(a.id) - parseInt(b.id))

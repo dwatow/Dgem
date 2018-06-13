@@ -18,7 +18,7 @@ export default {
         {
           title: 'ID',
           key: 'id',
-          width: 50,
+          width: 100,
         },
         {
           title: '夢寶龍的擁有者',

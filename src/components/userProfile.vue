@@ -38,7 +38,7 @@ export default {
         },
         {
           title: '是否激活',
-          key: 'activated',
+          key: 'isActivat',
           minWidth: 100,
         },
       ],
@@ -50,6 +50,7 @@ export default {
         return this.$store.getters.activeDragon.map((item) => {
           item.owner_name = (item.owner && item.owner.name) || '未指定'
           item.user_name = (item.user && item.user.name) || '未指定'
+          item.isActivat = item.activated ? '是' : '否'
           return item
         })
       } else {

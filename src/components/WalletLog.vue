@@ -74,7 +74,7 @@ export default {
   },
   computed: {
     eventsLog () {
-      return this.$store.getters.eventsLog.map(item => {
+      return this.$store.getters.eventsLog.data.map(item => {
         item.action = [this.actionType[item.type], item.sub_type_string].filter(label => label !== null).join(' / ')
         item.item = `${this.$store.getters.gems[item.result_data.gem]}`
         item.amount = item.result_data.amount
