@@ -107,7 +107,7 @@ export default {
       ]
     },
     userHeadUpDisplay () {
-      return `${this.$store.getters.self.id} ${this.$store.getters.self.name}`
+      return `${this.$store.getters.self.name}`
     },
   },
 }

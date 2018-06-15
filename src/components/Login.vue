@@ -5,37 +5,37 @@
     <i-switch v-model="switchAreaType"></i-switch> <span>切換到 {{ areaType[switchAreaType] }}</span>
     <div v-show="!!switchAreaType" class="SignIn">
       <Form ref="SignIn" :model="SignIn" :rules="SignInRule" label-position="top">
-        <FormItem label="User Name" prop="username">
+        <FormItem label="請填入註冊信箱" prop="username">
           <Input type="text" v-model="SignIn.username"></Input>
         </FormItem>
-        <FormItem label="Password" prop="password">
+        <FormItem label="請填入密碼" prop="password">
           <Input type="password" v-model="SignIn.password"></Input>
         </FormItem>
         <FormItem class="sumitArea">
-          <Button @click="signIn()" type="primary">SignIn</Button>
+          <Button @click="signIn()" type="primary">登入</Button>
         </FormItem>
       </Form>
     </div>
     <div v-show="!switchAreaType" class="SignUp">
       <Form ref="SignUp" :model="SignUp" :rules="SignUpRule" label-position="top">
-        <FormItem label="User Name" prop="name">
+        <FormItem label="請填入使用者䁥稱" prop="name">
           <Input type="text" v-model="SignUp.name"></Input>
         </FormItem>
-        <FormItem label="email" prop="email">
+        <FormItem label="請填入 E-mail" prop="email">
           <Input type="email" v-model="SignUp.email"></Input>
         </FormItem>
-        <FormItem label="Password" prop="password">
+        <FormItem label="請填入密碼" prop="password">
           <Input type="password" v-model="SignUp.password"></Input>
         </FormItem>
-        <FormItem label="Confirm" prop="passwordCheck">
+        <FormItem label="請再次填入密碼" prop="passwordCheck">
           <Input type="password" v-model="SignUp.passwordCheck"></Input>
         </FormItem>
-        <FormItem label="Upline Id" prop="upline_id">
+        <FormItem label="請填入上線 ID" prop="upline_id">
           <Input v-model="SignUp.upline_id"></Input>
         </FormItem>
         <FormItem class="sumitArea">
-          <Button type="primary" @click="signUp()">SignUp</Button>
-          <Button type="ghost" @click="reset()">Reset</Button>
+          <Button type="primary" @click="signUp()">確認</Button>
+          <Button type="ghost" @click="reset()">取消</Button>
         </FormItem>
       </Form>
     </div>
@@ -51,7 +51,7 @@ export default {
   data () {
     const validatePass = (rule, value, callback) => {
       if (value === '') {
-        callback(new Error('填入一組密碼，符合長度 6 個字元以上'))
+        callback(new Error('填入密碼，符合長度 6 個字元以上'))
       } else {
         if (this.SignUp.passwordCheck !== '') {
           this.$refs.SignUp.validateField('passwordCheck')
@@ -79,8 +79,8 @@ export default {
 
     return {
       areaType: {
-        true: '帳號密碼登入', // 登入
-        false: '註冊新帳號', // 註冊
+        true: '註冊新帳號',
+        false: '帳號密碼登入',
       },
       switchAreaType: true,
       SignIn: {
@@ -89,10 +89,10 @@ export default {
       },
       SignInRule: {
         username: [
-          { required: true, message: '填入要登入的使用者帳號', trigger: 'blur' },
+          { required: true, message: '填入要登入的使用者䁥稱', trigger: 'blur' },
         ],
         password: [
-          { required: true, message: '填入要登入的使用者帳號相對應的密碼', trigger: 'blur' },
+          { required: true, message: '填入要登入的使用者䁥稱相對應的密碼', trigger: 'blur' },
           { type: 'string', min: 6, message: '長度要有 6 個字元', trigger: 'blur' },
         ],
       },
@@ -108,8 +108,8 @@ export default {
           { required: true, message: '填入要註冊的使用者帳號', trigger: 'blur' },
         ],
         email: [
-          { required: true, message: '填入要註冊的 email', trigger: 'blur' },
-          { type: 'email', message: '請檢查 email 格式，是否有誤', trigger: 'blur' },
+          { required: true, message: '填入要註冊的 E-mail', trigger: 'blur' },
+          { type: 'email', message: '請檢查 E-mail 格式，是否有誤', trigger: 'blur' },
         ],
         password: [
           { required: true, validator: validatePass, trigger: 'blur' },
