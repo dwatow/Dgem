@@ -77,4 +77,10 @@ export default {
     const json = await dispatch('GET', `/api/users/${myId}/operation-histories?${searchParams.toString()}`)
     commit('eventsLog', json)
   },
+  async Recall ({ dispatch, getters }) {
+    const myId = getters.myId
+    const path = `/api/users/${myId}/recalls`
+    await dispatch('POST', { path })
+    dispatch(`goToChildAccountPage`, { nextIndex: 1 })
+  },
 }

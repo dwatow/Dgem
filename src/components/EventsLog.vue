@@ -1,7 +1,7 @@
 <template lang="html">
   <div>
     <Select v-model="currOperatable" style="width:200px" placeholder="請選擇物品種類" @on-change="changeType()">
-      <Option v-for="(value, key) in operatable_type" :value="key" :key="value">{{ value }}</Option>
+      <Option v-for="(value, key) in operatable_type" :value="key" :key="key">{{ value.label }}</Option>
     </Select>
     <!-- <Button type="primary" @click="search()">查詢</Button> -->
     <Page :total="paging.total" :page-size="paging.pre_page" simple size="small" @on-change="changePage($event)"></Page>
@@ -15,17 +15,23 @@ export default {
     return {
       currOperatable: '2',
       operatable_type: {
-        '2': 'Dragon',
-        '3': 'Tree',
+        '2': {
+          label: '夢寶龍',
+          sign: 'DragonColumns',
+        },
+        '3': {
+          label: '夢寶樹',
+          sign: 'TreeColumns',
+        },
       },
       actionType: [
         '初始化（建立）',
-        '修改',
+        '??',
         '激活',
         '召回（錢包）',
         '轉賬（美金）',
       ],
-      Tree: [
+      TreeColumns: [
         {
           title: '時間',
           key: 'created_at',
@@ -67,7 +73,7 @@ export default {
           minWidth: 100,
         },
       ],
-      Dragon: [
+      DragonColumns: [
         {
           title: '時間',
           key: 'created_at',
@@ -115,7 +121,7 @@ export default {
     eventsLog () {
       return this.$store.getters.eventsLog.data.map(item => {
         item.action = `${this.actionType[item.type]}`
-        item.item = `${this.operatable_type[`${item.operatable_type}`]} ${item.operatable_id}`
+        item.item = `${this.operatable_type[`${item.operatable_type}`].label}`
         item.remain = item.result_data.remain
         item.capacity = item.result_data.capacity
         item.progress = item.result_data.progress
@@ -126,7 +132,7 @@ export default {
       return this.$store.getters.paging('user', 'eventsLog')
     },
     columns1 () {
-      return this[`${this.operatable_type[this.currOperatable]}`]
+      return this[`${this.operatable_type[this.currOperatable].sign}`]
     },
   },
   methods: {

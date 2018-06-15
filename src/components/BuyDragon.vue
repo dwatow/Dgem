@@ -15,11 +15,11 @@ export default {
   data () {
     return {
       columns1: [
-        {
-          title: 'ID',
-          key: 'id',
-          width: 100,
-        },
+        // {
+        //   title: 'ID',
+        //   key: 'id',
+        //   width: 100,
+        // },
         {
           title: '夢寶龍的擁有者',
           key: 'owner_name',
