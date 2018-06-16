@@ -80,7 +80,7 @@ export default {
           minWidth: 150,
         },
         {
-          title: '操作者 ID',
+          title: '操作者暱稱',
           key: 'operator_id',
           minWidth: 100,
         },
@@ -110,7 +110,7 @@ export default {
         //   minWidth: 120,
         // },
         {
-          title: '接受人 ID',
+          title: '接受人暱稱',
           key: 'user_id',
           minWidth: 100,
         },
