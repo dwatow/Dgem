@@ -140,6 +140,8 @@ export default {
   methods: {
     async changePage (nextIndex) {
       const searchParams = new URLSearchParams()
+      searchParams.append('type[]', `0`)
+      searchParams.append('type[]', `2`)
       await this.$store.dispatch('EventsLog', { nextIndex, searchParams })
     },
     async changeType () {

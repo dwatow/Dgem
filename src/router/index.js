@@ -147,6 +147,8 @@ route.beforeEach(async (to, from, next) => {
         break
       case 'EventsLog':
         searchParams.append('operatable_type', `2`) // dragon
+        searchParams.append('type[]', `0`)
+        searchParams.append('type[]', `2`)
         await route.app.$store.dispatch('EventsLog', { nextIndex: 1, searchParams })
         break
       case 'WalletLog':
