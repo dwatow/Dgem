@@ -51,7 +51,7 @@
                           <Icon type="leaf"></Icon>
                           夢寶龍樹種區
                       </template>
-                      <router-link to="BuyDragon"><MenuItem v-show="isFunctionEnabel" name="3-1">夢寶龍購買</MenuItem></router-link>
+                      <!-- <router-link to="BuyDragon"><MenuItem v-show="isFunctionEnabel" name="3-1">夢寶龍購買</MenuItem></router-link> -->
                       <router-link to="Dragon"><MenuItem v-show="isFunctionEnabel" name="3-2">夢寶龍激活</MenuItem></router-link>
                       <router-link to="Tree"><MenuItem v-show="isFunctionEnabel" name="3-3">夢寶樹激活</MenuItem></router-link>
                       <router-link to="EventsLog"><MenuItem name="3-4">操作明細查詢</MenuItem></router-link>

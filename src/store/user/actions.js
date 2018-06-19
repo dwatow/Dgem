@@ -2,7 +2,7 @@ export default {
   async allChildAccount ({ dispatch, commit, getters }) {
     const myId = getters.myId
     const json = await dispatch('GET', `/api/users/${myId}/child-accounts?hello=world&activated=1`)
-    json.data = await dispatch('accountAndWallet', { array: json.data })
+    // json.data = await dispatch('accountAndWallet', { array: json.data })
     commit('allChildAccount', json)
   },
   async goToChildAccountPage ({ dispatch, commit, getters }, { nextIndex }) {

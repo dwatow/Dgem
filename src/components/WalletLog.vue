@@ -33,8 +33,8 @@ export default {
           minWidth: 150,
         },
         {
-          title: '操作者 ID',
-          key: 'operator_id',
+          title: '操作者䁥稱',
+          key: 'operator_name',
           minWidth: 100,
         },
         {
@@ -60,8 +60,8 @@ export default {
           width: 150,
         },
         {
-          title: '接受人 ID',
-          key: 'user_id',
+          title: '接受人䁥稱',
+          key: 'user_name',
           minWidth: 100,
         },
         // {
@@ -75,10 +75,12 @@ export default {
   computed: {
     eventsLog () {
       return this.$store.getters.eventsLog.data.map(item => {
-        item.action = [this.actionType[item.type], item.sub_type_string].filter(label => label !== null).join(' / ')
+        item.action = item.sub_type_string || this.actionType[item.type]
         item.item = `${this.$store.getters.gems[item.result_data.gem]}`
         item.amount = item.result_data.amount
         item.delta_amount = (item.delta !== null) ? `${item.delta.amount}` : '0'
+        item.operator_name = item.operator ? item.operator.name : ''
+        item.user_name = item.user ? item.user.name : ''
         return item
       })
     },

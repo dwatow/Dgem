@@ -1,12 +1,18 @@
 <template lang="html">
   <div>
+    <CurrUsdWallet></CurrUsdWallet>
+    <Button type="error" @click="buy()">買一隻全新夢寶龍</Button>
     <Page :total="paging.total" :page-size="paging.pre_page" simple size="small" @on-change="changePage($event)"></Page>
     <Table stripe :columns="columns1" :data="dragon"></Table>
   </div>
 </template>
 
 <script>
+import CurrUsdWallet from '@/components/CurrUsdWallet.vue'
 export default {
+  components: {
+    CurrUsdWallet,
+  },
   data () {
     return {
       columns1: [
@@ -120,6 +126,15 @@ export default {
   methods: {
     async changePage (nextIndex) {
       await this.$store.dispatch('goToDragonPage', { nextIndex })
+    },
+    async buy () {
+      const data = {
+        'owner_id': this.$store.getters.myId,
+      }
+      const nextIndex = this.$store.getters.paging('dragon', 'dragon').curr_page
+      await this.$store.dispatch('buyDragon', { data })
+      await this.$store.dispatch(`WalletPage`)
+      this.$store.dispatch('goToDragonPage', { nextIndex })
     },
     async activate (payload) {
       try {

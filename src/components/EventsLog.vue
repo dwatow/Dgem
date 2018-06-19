@@ -25,8 +25,8 @@ export default {
         },
       },
       actionType: [
-        '初始化（建立）',
-        '??',
+        '購買',
+        '修改',
         '激活',
         '召回（錢包）',
         '轉賬（美金）',
@@ -38,8 +38,8 @@ export default {
           minWidth: 150,
         },
         {
-          title: '操作者 ID',
-          key: 'operator_id',
+          title: '操作者䁥稱',
+          key: 'operator_name',
           minWidth: 100,
         },
         {
@@ -52,24 +52,24 @@ export default {
           key: 'item',
           width: 100,
         },
+        // {
+        //   title: '剩餘開採數量',
+        //   key: 'remain',
+        //   minWidth: 120,
+        // },
+        // {
+        //   title: '原始開採數量',
+        //   key: 'capacity',
+        //   minWidth: 120,
+        // },
+        // {
+        //   title: '目前開採進度',
+        //   key: 'progress',
+        //   minWidth: 120,
+        // },
         {
-          title: '剩餘開採數量',
-          key: 'remain',
-          minWidth: 120,
-        },
-        {
-          title: '原始開採數量',
-          key: 'capacity',
-          minWidth: 120,
-        },
-        {
-          title: '目前開採進度',
-          key: 'progress',
-          minWidth: 120,
-        },
-        {
-          title: '接受人 ID',
-          key: 'user_id',
+          title: '接受人䁥稱',
+          key: 'user_name',
           minWidth: 100,
         },
       ],
@@ -81,7 +81,7 @@ export default {
         },
         {
           title: '操作者暱稱',
-          key: 'operator_id',
+          key: 'operator_name',
           minWidth: 100,
         },
         {
@@ -111,7 +111,7 @@ export default {
         // },
         {
           title: '接受人暱稱',
-          key: 'user_id',
+          key: 'user_name',
           minWidth: 100,
         },
       ],
@@ -122,9 +122,11 @@ export default {
       return this.$store.getters.eventsLog.data.map(item => {
         item.action = `${this.actionType[item.type]}`
         item.item = `${this.operatable_type[`${item.operatable_type}`].label}`
-        item.remain = item.result_data.remain
-        item.capacity = item.result_data.capacity
-        item.progress = item.result_data.progress
+        item.operator_name = item.operator.name
+        item.user_name = item.user.name
+        // item.remain = item.result_data.remain
+        // item.capacity = item.result_data.capacity
+        // item.progress = item.result_data.progress
         return item
       })
     },
@@ -138,6 +140,8 @@ export default {
   methods: {
     async changePage (nextIndex) {
       const searchParams = new URLSearchParams()
+      searchParams.append('type[]', `0`)
+      searchParams.append('type[]', `2`)
       await this.$store.dispatch('EventsLog', { nextIndex, searchParams })
     },
     async changeType () {
