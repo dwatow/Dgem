@@ -74,6 +74,8 @@ export default {
     const myId = getters.myId
     searchParams = searchParams || new URLSearchParams()
     searchParams.append('page', `${nextIndex}`)
+    searchParams.append('type[]', `0`)
+    searchParams.append('type[]', `2`)
     const json = await dispatch('GET', `/api/users/${myId}/operation-histories?${searchParams.toString()}`)
     commit('eventsLog', json)
   },
