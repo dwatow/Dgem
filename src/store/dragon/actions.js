@@ -1,7 +1,7 @@
 export default {
-  async buyDragon ({ dispatch }, { idDragon, data }) {
-    await dispatch('PUT', {
-      path: `/api/dragons/${idDragon}`,
+  async buyDragon ({ dispatch }, { data }) {
+    await dispatch('POST', {
+      path: `/api/dragons`,
       data,
     })
   },

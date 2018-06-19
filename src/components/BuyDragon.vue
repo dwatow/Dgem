@@ -50,7 +50,7 @@ export default {
                 on: {
                   click: () => {
                     const idDragon = params.row.id
-                    this.buy({ data: { 'owner_id': this.$store.getters.self.id }, idDragon })
+                    this.buy({ data: { 'owner_id': this.$store.getters.myId }, idDragon })
                   },
                 },
               }, '購買'),
